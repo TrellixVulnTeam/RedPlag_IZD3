@@ -9,7 +9,8 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PasswordDeleteComponent } from './password-delete/password-delete.component';
-import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +21,12 @@ import { HomeComponent } from './home/home.component';
     ViewProfileComponent,
     EditProfileComponent,
     PasswordDeleteComponent,
-    HomeComponent
+    HeaderComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
