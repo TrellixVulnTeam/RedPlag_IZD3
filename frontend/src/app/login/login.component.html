@@ -1,1 +1,11 @@
-<p>login works!</p>
+<form [formGroup]="profileForm">
+  <label>
+    Email:
+    <input type="email" formControlName="email" size="40" required>
+  </label>
+  <label>
+    Password:
+    <input type="password" formControlName="password" size="40" required>
+  </label>
+  <button type="submit" (click)="onSubmit()">Submit</button>
+</form>

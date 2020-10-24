@@ -1,1 +1,41 @@
-<p>signup works!</p>
+<form [formGroup]="profileForm">
+  <label>
+    First Name:
+    <input type="text" formControlName="firstName" size="40" required>
+  </label>
+  <label>
+    Last Name:
+    <input type="text" formControlName="lastName" size="40" required>
+  </label>
+  <label>
+    Email:
+    <input type="email" formControlName="email" size="40" required>
+  </label>
+
+  <label>
+    Password:
+    <input type="password" formControlName="password" size="40" required>
+  </label>
+  <label>
+    Retype Password:
+    <input type="password" formControlName="rePassword" size="40" required>
+  </label>
+  <label>
+    Phone Number:
+    <input type="text" formControlName="phone_number" size="40" required>
+  </label>
+  <label>
+    Age
+    <input type="number" formControlName="age" size="40" required>
+  </label>
+  <span>Gender</span>
+   <label>
+     <input type="radio" value="M" formControlName="gender" required>
+       <span>Male</span>
+   </label>
+   <label>
+     <input type="radio" value="F" formControlName="gender" required>
+       <span>Female</span>
+   </label>
+  <button type="submit" (click)="onSubmit()">Submit</button>
+</form>
