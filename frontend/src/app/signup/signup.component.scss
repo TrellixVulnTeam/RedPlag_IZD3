@@ -28,7 +28,7 @@ body {
     width: 100%;
     border: 0;
     padding: 10px 10px;
-    margin: 10px -10px;
+    margin: 5px -10px;
   }
   
   > button {
@@ -59,4 +59,16 @@ a {
   right: 10px;
   bottom: 10px;
   font-size: 12px;
+}
+
+span{
+    font-family: $fontAsap;
+    display: block;
+    border-radius: 5px;
+    font-size: 16px;
+    background: white;
+    width: 15%;
+    border: 0;
+    padding: 10px 10px;
+    margin: 15px -10px;
 }
