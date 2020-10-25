@@ -27,9 +27,12 @@ const routes: Routes = [
 		        component: EditProfileComponent,
 		      },
 		      {
-		      	path: 'actions',
+		      	path: 'security',
 		      	component: PasswordDeleteComponent,
-		      }
+		      },
+		      {
+		      	path: '', redirectTo: '/dashboard/account/profile', pathMatch: 'full',
+		      },
 		    ],
       },
     ],

@@ -1,1 +1,30 @@
 <p>edit-profile works!</p>
+<!-- A form same as signup but without the email and password fields is to come here -->
+<form [formGroup]="profileForm">
+  <label>
+    First Name:
+    <input type="text" formControlName="firstName" size="40" required>
+  </label>
+  <label>
+    Last Name:
+    <input type="text" formControlName="lastName" size="40" required>
+  </label>
+  <label>
+    Phone Number:
+    <input type="text" formControlName="phone_no" size="40" required>
+  </label>
+  <label>
+    Age
+    <input type="number" formControlName="age" size="40" required>
+  </label>
+  <span>Gender</span>
+   <label>
+     <input type="radio" value="M" formControlName="gender" required>
+       <span>Male</span>
+   </label>
+   <label>
+     <input type="radio" value="F" formControlName="gender" required>
+       <span>Female</span>
+   </label>
+  <button type="submit" (click)="onSubmit()">Submit</button>
+</form>
