@@ -5,35 +5,37 @@ import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap, shareReplay } from 'rxjs/operators';
 
-import * as jwtDecode from 'jwt-decode';
+import * as JwtDecode from 'jwt-decode';
 import * as moment from 'moment';
 
 import { environment } from '../environments/environment';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class AuthService {
 
-  private apiRoot = 'http://localhost:8000/api/';
+  private apiRoot = 'http://127.0.0.1:8000/api/';
 
   constructor(private http: HttpClient) { }
 
   private setSession(authResult) {
     const token = authResult.token;
-    const payload = <JWTPayload> jwtDecode(token);
+    const payload = <JWTPayload> JwtDecode(token);
+    console.log(JwtDecode(token));
     const expiresAt = moment.unix(payload.exp);
-
     localStorage.setItem('token', authResult.token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
 
-  get token(): string {
+  get_token(): string {
     return localStorage.getItem('token');
   }
 
-  login(username: string, password: string) {
+  login(email: string, password: string) {
     return this.http.post(
       this.apiRoot.concat('login/'),
-      { username, password }
+      { "email":email, "password":password }
     ).pipe(
       tap(response => this.setSession(response)),
       shareReplay(),
@@ -50,15 +52,15 @@ export class AuthService {
   }
 
   refreshToken() {
-    if (moment().isBetween(this.getExpiration().subtract(1, 'days'), this.getExpiration())) {
-      return this.http.post(
-        this.apiRoot.concat('refresh-token/'),
-        { token: this.token }
-      ).pipe(
-        tap(response => this.setSession(response)),
-        shareReplay(),
-      ).subscribe();
-    }
+    // if (moment().isBetween(this.getExpiration().subtract(1, 'hours'), this.getExpiration())) {
+    //  return this.http.post(
+    //    this.apiRoot.concat('refresh-token/'),
+    //    { token: this.token }
+    //  ).pipe(
+    //    tap(response => this.setSession(response)),
+    //    shareReplay(),
+    //  ).subscribe();
+    //}
   }
 
   getExpiration() {
@@ -107,7 +109,7 @@ export class AuthGuard implements CanActivate {
       return true;
     } else {
       this.authService.logout();
-      this.router.navigate(['login']);
+      this.router.navigate(['login/']);
 
       return false;
     }
@@ -117,6 +119,6 @@ export class AuthGuard implements CanActivate {
 interface JWTPayload {
   user_id: number;
   username: string;
-  email: string;
   exp: number;
+  email: string;
 }

@@ -27,7 +27,7 @@ const routes: Routes = [
 		        component: EditProfileComponent,
 		      },
 		      {
-		      	path: 'manage_access',
+		      	path: 'actions',
 		      	component: PasswordDeleteComponent,
 		      }
 		    ],

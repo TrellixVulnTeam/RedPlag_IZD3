@@ -41,11 +41,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'backend.app.user',
     'backend.app.profile',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -114,6 +116,15 @@ REST_FRAMEWORK = {
      )
 }
 
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:4200',
+]
+CORS_ORIGIN_REGEX_WHITELIST = [
+    'http://localhost:4200',
+]
+
 JWT_AUTH = {
   'JWT_ENCODE_HANDLER':
   'rest_framework_jwt.utils.jwt_encode_handler',
@@ -134,11 +145,11 @@ JWT_AUTH = {
   'JWT_VERIFY': True,
   'JWT_VERIFY_EXPIRATION': True,
   'JWT_LEEWAY': 0,
-  'JWT_EXPIRATION_DELTA': timedelta(days=30),
+  'JWT_EXPIRATION_DELTA': timedelta(hours=5),
   'JWT_AUDIENCE': None,
   'JWT_ISSUER': None,
   'JWT_ALLOW_REFRESH': False,
-  'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=30),
+  'JWT_REFRESH_EXPIRATION_DELTA': timedelta(hours=1),
   'JWT_AUTH_HEADER_PREFIX': 'Bearer',
   'JWT_AUTH_COOKIE': None,
 }
