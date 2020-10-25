@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-password-delete',
   templateUrl: './password-delete.component.html',
-  styleUrls: ['./password-delete.component.css']
+  styleUrls: ['./password-delete.component.scss']
 })
 export class PasswordDeleteComponent implements OnInit {
 	profileForm = this.fb.group({
