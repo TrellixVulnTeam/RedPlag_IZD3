@@ -1,0 +1,59 @@
+$greenSeaweed: rgba(2, 128, 144, 1);
+$blueQueen: rgba(69, 105, 144, 1);
+$redFire: rgba(244, 91, 105, 1);
+
+// Fonts
+$fontAsap: 'Asap', sans-serif;
+
+body {
+  background-color: $redFire;
+  font-family: $fontAsap;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.login {
+  overflow: hidden;
+  background-color: rgba(2, 128, 144, 1);
+  padding: 40px 30px 30px 30px;
+  border-radius: 10px 10px 10px 10px;
+  width: 400px;
+  box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.2);
+  
+  
+	
+    
+   
+  
+}
+.x{
+    font-family: $fontAsap;
+    display: block;
+    border-radius: 5px;
+    font-size: 16px;
+    background: white;
+    width: 100%;
+    border: 0;
+    padding: 10px 10px;
+    margin: 5px -10px;
+    text-decoration: none;
+  }
+a {
+  text-decoration: none;
+  color: rgba(white, 0.6);
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 12px;
+}
+
+span{
+    font-family: $fontAsap;
+    display: block;
+    border-radius: 5px;
+    font-size: 16px;
+    background: white;
+    width: 15%;
+    border: 0;
+    padding: 10px 10px;
+    margin: 15px -10px;
+}
