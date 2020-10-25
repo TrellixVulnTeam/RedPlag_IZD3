@@ -1,23 +1,23 @@
-<form class="login" [formGroup]="profileForm">
-   <input type="text" formControlName="firstName" placeholder="First Name" required>
-  <br>
-    <input type="text" formControlName="lastName" placeholder="Last Name" required>
-  <br>
+<div><form class="login" [formGroup]="profileForm">
+  <input type="text" formControlName="firstName" placeholder="First Name" required>
+ <br>
+   <input type="text" formControlName="lastName" placeholder="Last Name" required>
+ <br>
 
-    <input type="email" formControlName="email" placeholder="Email" required>
-  
+   <input type="email" formControlName="email" placeholder="Email" required>
+ 
 <br>
-  
-    <input type="password" formControlName="password" placeholder="Password" required>
-  
-  <br>
-    <input type="password" formControlName="rePassword" placeholder="Re-type Password" required>
-  <br>
-    <input type="text" formControlName="phone_number" placeholder="Phone Number" required>
+ 
+   <input type="password" formControlName="password" placeholder="Password" required>
+ 
+ <br>
+   <input type="password" formControlName="rePassword" placeholder="Re-type Password" required>
+ <br>
+   <input type="text" formControlName="phone_number" placeholder="Phone Number" required>
 
-  <br>
+ <br>
 
-  
-  <button type="submit" (click)="onSubmit()">Register</button>
-  <button (click)="onSubmit">Cancel</button>
-</form>
+ 
+ <button type="submit" (click)="onSubmit()">Register</button>
+ <button (click)="onSubmit">Cancel</button>
+</form></div>
