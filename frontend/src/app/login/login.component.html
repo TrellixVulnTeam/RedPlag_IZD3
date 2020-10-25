@@ -1,11 +1,10 @@
-<form [formGroup]="profileForm">
-  <label>
-    Email:
-    <input type="email" formControlName="email" size="40" required>
-  </label>
-  <label>
-    Password:
-    <input type="password" formControlName="password" size="40" required>
-  </label>
-  <button type="submit" (click)="onSubmit()">Submit</button>
-</form>
+<body>
+  <form class= "login" [formGroup]="profileForm">
+      <input type="email" formControlName="email" placeholder="Email" required>
+      <br>
+      <input type="password" formControlName="password" placeholder="Password" required>
+    <br>
+    <button type="submit" (click)="onSubmit()">Log in</button>
+    <button (click)="onClick()">Register</button>
+  </form>
+  </body>
