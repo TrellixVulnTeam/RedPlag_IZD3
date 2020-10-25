@@ -15,7 +15,7 @@ body {
   overflow: hidden;
   background-color: rgba(2, 128, 144, 1);
   padding: 40px 30px 30px 30px;
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 10px 10px 10px 10px;
   width: 400px;
   box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.2);
   
@@ -43,7 +43,8 @@ body {
     margin-top: 10px;
     margin-left: -5px;
     border-radius: 5px;
-    background-color: $redFire;
+	background-color: $redFire;
+	
     
     &:hover {
       background-color: darken($redFire, 5%);
