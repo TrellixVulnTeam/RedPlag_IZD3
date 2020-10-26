@@ -1,6 +1,6 @@
 from django.conf.urls import url,include
 from rest_framework import routers
-from .views import FileView
+from .viewsets import FileView
 
 router = routers.DefaultRouter()
 router.register('files',FileView,'files')

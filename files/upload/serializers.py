@@ -4,4 +4,4 @@ from .models import UploadFile
 class FileSerializer(serializers.ModelSerializer):
 	class Meta():
 		model = UploadFile
-		fields = ('upload','timestamp')
+		fields = ('uploaded','timestamp')
