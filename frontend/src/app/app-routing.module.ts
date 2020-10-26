@@ -8,12 +8,13 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PasswordDeleteComponent } from './password-delete/password-delete.component';
 import { AuthGuard } from './auth.service';
+import { RedPlagComponent } from './red-plag/red-plag.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: '/login', pathMatch: 'full' },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'signup', component: SignupComponent },
-	{ path: 'dashboard', component: DashboardComponent,
+	{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
 		children: [
       {
         path: 'account',
@@ -27,16 +28,23 @@ const routes: Routes = [
 		      {
 		        path: 'edit_profile',
 		        component: EditProfileComponent,
+		        canActivate: [AuthGuard],
 		      },
 		      {
 		      	path: 'security',
 		      	component: PasswordDeleteComponent,
+		      	canActivate: [AuthGuard],
 		      },
 		      {
 		      	path: '', redirectTo: '/dashboard/account/profile', pathMatch: 'full',
 		      },
 		    ],
       },
+      {
+      	path: 'red_plag',
+        component: RedPlagComponent,
+        canActivate: [AuthGuard],
+      }
     ],
 	},
 ];

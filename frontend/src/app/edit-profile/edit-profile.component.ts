@@ -11,13 +11,16 @@ export class EditProfileComponent implements OnInit {
 		profileForm = this.fb.group({
     first_name: ['', Validators.required],
     last_name: ['', Validators.required],
-    phone_no: ['', Validators.required],
+    phone_number: ['', Validators.required],
+    age: [12],
+    gender: ['M'],
   });
   constructor(private fb: FormBuilder, private accountService: AccountService ) { }
 
   ngOnInit(): void {
   }
   onSubmit() {
+  console.log(this.profileForm.value);
     this.accountService.edit_profile(this.profileForm.value).subscribe(
       success => console.log(success),
       error => console.log(error)

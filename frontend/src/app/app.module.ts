@@ -16,6 +16,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService, AuthInterceptor, AuthGuard } from './auth.service';
 import { AuthErrorHandler } from './auth-error-handler';
 import { ErrorHandler, Injectable, Injector } from '@angular/core';
+import { RedPlagComponent } from './red-plag/red-plag.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ErrorHandler, Injectable, Injector } from '@angular/core';
     PasswordDeleteComponent,
     HeaderComponent,
     DashboardComponent,
+    RedPlagComponent,
   ],
   imports: [
     BrowserModule,
