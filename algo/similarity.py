@@ -78,7 +78,7 @@ def correlation_coefficient_padding(word_dict_1,word_dict_2):
     C = E_X_Y / ((E_X_2 * E_Y_2) ** (0.5))
     return C
 
-def histogram(correlation_matrix,bin_size = 0.10,img_format = 'png'):
+def histogram(correlation_matrix,folder_path,bin_size = 0.10,img_format = 'png'):
     """Counts number of files present in each bin. 1/bin_size must be an integer. 0 < bin_size <= 1. Default value of bin_size is 0.10"""
 
     num_files = correlation_matrix.shape[0]
@@ -98,9 +98,10 @@ def histogram(correlation_matrix,bin_size = 0.10,img_format = 'png'):
     
     if(img_format[0] == '.'):
         img_format = img_format[1:]
-    file_path = os.getcwd() + "\\Graphs\\histogram." + img_format
-    if not os.path.exists("Graphs"):
-        os.makedirs("Graphs")
+    file_path = folder_path + "\\Graphs\\histogram." + img_format
+    folder_loc = folder_path + "\\Graphs"
+    if not os.path.exists(folder_loc):
+        os.makedirs(folder_loc)
     
     plt.hist(count, bins = bins)
     plt.xlabel("Similarity")
@@ -113,7 +114,7 @@ def histogram(correlation_matrix,bin_size = 0.10,img_format = 'png'):
     plt.clf()
 
 
-def plot_heat_map(correlation_matrix, coloring = 'hot', img_format = '.png'):
+def plot_heat_map(correlation_matrix,folder_path,coloring = 'hot', img_format = '.png'):
     """Plots heat map of the correlation matrix. Coloring specifies the colour scheme."""
 
     plt.imshow(correlation_matrix, cmap = coloring)
@@ -121,40 +122,69 @@ def plot_heat_map(correlation_matrix, coloring = 'hot', img_format = '.png'):
     if (img_format[0] == '.'):
         img_format = img_format[1:]
     
-    file_path = os.getcwd() + "\\Graphs\\heat_map" + img_format
+    file_path = folder_path + "\\Graphs\\heat_map" + img_format
     plt.savefig(file_path)
     plt.clf()
             
 
-folder_path = sys.argv[1]
-files = os.listdir(folder_path)
-word_dict = []
+def save_csv_file(correlation_matrix,num_to_files,folder_path):
+    """Saves similarity between files in decreasing order"""
 
-for f in files:
-    word_dict.append(compute_dict(folder_path + "/" + f))
+    csv_list = []
+    num_files = correlation_matrix.shape[0]
 
+    file_path = folder_path + "\\CSV\\similarity_list.csv"
+    folder_loc = folder_path + "\\CSV"
 
+    if not os.path.exists(folder_loc):
+        os.makedirs(folder_loc)
 
+    with open(file_path,'w') as fout:
+        for i in range(1,num_files):
+            for j in range(i):
+                line = num_to_files[i] + ',' + num_to_files[j] + ',' + str(correlation_matrix[i][j]) + '\n'
+                fout.write(line)
 
-num_files = len(files)
-correlation_matrix = np.identity(num_files)
-files_to_num = {}
-
-
-for i in range(len(files)):
-    files_to_num[files[i]] = i
-
-for i in range(num_files):
-    for j in range(i+1,num_files):
-        similarity = correlation_coefficient_padding(word_dict[i],word_dict[j])
-        correlation_matrix[i][j] = similarity
-        correlation_matrix[j][i] = similarity
+    
+    
 
 
-for i in range(num_files):
-    for j in range(num_files):
-        print(correlation_matrix[i][j]," ",end="")
-    print()
+def main():
 
-histogram(correlation_matrix)
-plot_heat_map(correlation_matrix)
+    folder_path = sys.argv[1]
+    files = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path,f))]
+    word_dict = []
+
+    for f in files:
+        word_dict.append(compute_dict(folder_path + "/" + f))
+
+
+
+
+    num_files = len(files)
+    correlation_matrix = np.identity(num_files)
+    num_to_files = {}
+
+
+    for i in range(len(files)):
+        num_to_files[i] = files[i]
+
+    for i in range(num_files):
+        for j in range(i+1,num_files):
+            similarity = correlation_coefficient_padding(word_dict[i],word_dict[j])
+            correlation_matrix[i][j] = similarity
+            correlation_matrix[j][i] = similarity
+
+
+    for i in range(num_files):
+        for j in range(num_files):
+            print(correlation_matrix[i][j]," ",end="")
+        print()
+
+    histogram(correlation_matrix,folder_path)
+    plot_heat_map(correlation_matrix,folder_path)
+    save_csv_file(correlation_matrix,num_to_files,folder_path)
+
+
+if __name__ == '__main__':
+    main()
