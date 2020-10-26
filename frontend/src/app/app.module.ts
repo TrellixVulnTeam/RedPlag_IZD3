@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -13,6 +12,10 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PasswordDeleteComponent } from './password-delete/password-delete.component';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthService, AuthInterceptor, AuthGuard } from './auth.service';
+import { AuthErrorHandler } from './auth-error-handler';
+import { ErrorHandler, Injectable, Injector } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,19 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HttpClientModule,
     RouterModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    {
+      provide: ErrorHandler, 
+      useClass: AuthErrorHandler,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

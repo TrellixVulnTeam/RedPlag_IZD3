@@ -7,6 +7,7 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PasswordDeleteComponent } from './password-delete/password-delete.component';
+import { AuthGuard } from './auth.service';
 
 const routes: Routes = [
 	{ path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
 		      {
 		        path: 'profile',
 		        component: ViewProfileComponent,
+		        canActivate: [AuthGuard],
 		      },
 		      {
 		        path: 'edit_profile',

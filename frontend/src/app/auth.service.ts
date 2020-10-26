@@ -5,10 +5,18 @@ import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap, shareReplay } from 'rxjs/operators';
 
-import * as JwtDecode from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 import * as moment from 'moment';
 
 import { environment } from '../environments/environment';
+
+export interface signup_data {
+  email: string,
+  password: string,
+  first_name: string,
+  last_name: string,
+  phone_number: string,
+}
 
 @Injectable({
     providedIn: 'root'
@@ -16,16 +24,19 @@ import { environment } from '../environments/environment';
 export class AuthService {
 
   private apiRoot = 'http://127.0.0.1:8000/api/';
-
+  token;
   constructor(private http: HttpClient) { }
 
   private setSession(authResult) {
     const token = authResult.token;
-    const payload = <JWTPayload> JwtDecode(token);
-    console.log(JwtDecode(token));
+    console.log(token);
+    const payload = <JWTPayload> jwt_decode(token);
+    console.log(jwt_decode(token));
     const expiresAt = moment.unix(payload.exp);
     localStorage.setItem('token', authResult.token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    console.log(JSON.stringify(expiresAt.valueOf()));
+    console.log(authResult.token);
   }
 
   get_token(): string {
@@ -33,6 +44,13 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
+  let token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2V4YW1wbGUuY29tLyIsInN1YiI6ImF1dGgwfGFiYzEyMyIsImF1ZCI6ImNsaWVudElkIiwiaWF0IjoxNTY4MDk2MDQyLCJleHAiOjIwNzMzNDY3Mzh9.lMKzXXCdQA3uFP5ONh1LrmKF0NouRh-Ys-q_aFeN1Ek";
+  console.log("hello");
+let decoded = jwt_decode(token);
+console.log("hi");
+console.log(decoded);
+
     return this.http.post(
       this.apiRoot.concat('login/'),
       { "email":email, "password":password }
@@ -42,8 +60,21 @@ export class AuthService {
     );
   }
 
-  signup(username: string, email: string, password1: string, password2: string) {
-    // TODO: implement signup
+  signup(sdata: signup_data) {
+    return this.http.post(
+      this.apiRoot.concat('signup/'),
+      {
+      "email":sdata.email,
+      "password":sdata.password,
+      "profile": {
+             "first_name": sdata.first_name,
+             "last_name": sdata.last_name,
+             "phone_number": sdata.phone_number,
+             "age": 11,
+             "gender": "M"
+      }
+      }
+    );
   }
 
   logout() {
@@ -51,17 +82,17 @@ export class AuthService {
     localStorage.removeItem('expires_at');
   }
 
-  refreshToken() {
-    // if (moment().isBetween(this.getExpiration().subtract(1, 'hours'), this.getExpiration())) {
-    //  return this.http.post(
-    //    this.apiRoot.concat('refresh-token/'),
-    //    { token: this.token }
-    //  ).pipe(
-    //    tap(response => this.setSession(response)),
-    //    shareReplay(),
-    //  ).subscribe();
-    //}
-  }
+  // refreshToken() {
+  //   if (moment().isBetween(this.getExpiration().subtract(1, 'hours'), this.getExpiration())) {
+  //    return this.http.post(
+  //      this.apiRoot.concat('refresh-token/'),
+  //      { token: this.token }
+  //    ).pipe(
+  //      tap(response => this.setSession(response)),
+  //      shareReplay(),
+  //    ).subscribe();
+  //   }
+  // }
 
   getExpiration() {
     const expiration = localStorage.getItem('expires_at');
@@ -104,7 +135,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate() {
     if (this.authService.isLoggedIn()) {
-      this.authService.refreshToken();
+      // this.authService.refreshToken();
 
       return true;
     } else {

@@ -1,7 +1,7 @@
 <div><form class="login" [formGroup]="profileForm">
-  <input type="text" formControlName="firstName" placeholder="First Name" required>
+  <input type="text" formControlName="first_name" placeholder="First Name" required>
  <br>
-   <input type="text" formControlName="lastName" placeholder="Last Name" required>
+   <input type="text" formControlName="last_name" placeholder="Last Name" required>
  <br>
 
    <input type="email" formControlName="email" placeholder="Email" required>
@@ -19,5 +19,6 @@
 
  
  <button type="submit" (click)="onSubmit()">Register</button>
- <button (click)="onSubmit">Cancel</button>
-</form></div>
+ <button routerLink="/login">Cancel</button>
+</form>
+</div>
