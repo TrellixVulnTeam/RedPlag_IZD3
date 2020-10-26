@@ -122,7 +122,8 @@ def plot_heat_map(correlation_matrix,folder_path,coloring = 'hot', img_format = 
     if (img_format[0] == '.'):
         img_format = img_format[1:]
     
-    file_path = folder_path + "\\Graphs\\heat_map" + img_format
+    file_path = folder_path + "\\Graphs\\heat_map." + img_format
+    
     plt.savefig(file_path)
     plt.clf()
             
