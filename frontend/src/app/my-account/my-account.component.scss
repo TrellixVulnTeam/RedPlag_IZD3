@@ -1,0 +1,23 @@
+$greenSeaweed: rgba(2, 128, 144, 1);
+$blueQueen: rgba(69, 105, 144, 1);
+$redFire: rgba(244, 91, 105, 1);
+
+$fontAsap: 'Asap', sans-serif;
+
+div{
+    display: inline-block;
+    height: 60vh;
+}
+
+a{
+    font-family: $fontAsap;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: $redFire;
+    text-decoration: none;
+ 
+}

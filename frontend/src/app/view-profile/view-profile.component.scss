@@ -9,7 +9,7 @@ body {
   background-color: $redFire;
   font-family: $fontAsap;
   border-radius: 0px 10px 10px 0px;
-  display: flex;
+  display: inline-block;
   justify-content: center;
   align-items: center;
   height: 80vh;
@@ -41,23 +41,3 @@ body {
     text-decoration: none;
     font-weight: normal;
   }
-a {
-  text-decoration: none;
-  color: rgba(white, 0.6);
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  font-size: 12px;
-}
-
-span{
-    font-family: $fontAsap;
-    display: block;
-    border-radius: 5px;
-    font-size: 16px;
-    background: white;
-    width: 15%;
-    border: 0;
-    padding: 10px 10px;
-    margin: 15px -10px;
-}
