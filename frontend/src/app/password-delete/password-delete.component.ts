@@ -18,6 +18,8 @@ export class PasswordDeleteComponent implements OnInit {
   ngOnInit(): void {
   }
   updateData() {
+    console.log(this.profileForm.value.old_password);
+    console.log(this.profileForm.value.new_password);
     this.accountService.change_password(this.profileForm.value.old_password, this.profileForm.value.new_password).subscribe(
       success => console.log(success),
       error => console.log(error)
