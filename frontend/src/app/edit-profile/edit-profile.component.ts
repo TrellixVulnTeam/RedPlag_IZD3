@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -8,17 +9,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class EditProfileComponent implements OnInit {
 		profileForm = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
+    first_name: ['', Validators.required],
+    last_name: ['', Validators.required],
     phone_no: ['', Validators.required],
-    age: ['', Validators.required],
-    gender: ['', Validators.required],
   });
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private accountService: AccountService ) { }
 
   ngOnInit(): void {
   }
   onSubmit() {
-  
+    this.accountService.edit_profile(this.profileForm.value).subscribe(
+      success => console.log(success),
+      error => console.log(error)
+    )
   }
 }
