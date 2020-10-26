@@ -1,0 +1,4 @@
+This will not match other files.
+Why?
+
+Because I say so
