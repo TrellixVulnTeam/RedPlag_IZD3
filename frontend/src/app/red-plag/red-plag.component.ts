@@ -46,4 +46,10 @@ export class RedPlagComponent implements OnInit {
 		error => console.log("file upload failed")
 	);
 	}
+  onDownloadButtonClick() {
+    this.fileService.getProcessedFiles().subscribe(
+      response => console.log(response),
+      error => console.log(error)
+    )
+  }
 }

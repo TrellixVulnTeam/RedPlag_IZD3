@@ -36,6 +36,8 @@ class FileView(APIView):
 			return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class GraphView(APIView):
+	permission_classes = (IsAuthenticated,)
+	authentication_class = JSONWebTokenAuthentication
 	def get(self, request, format = None):
 		queryset = UploadFile.objects.get(user=request.user)
 		recent = queryset[len(queryset)-1].uploaded.path

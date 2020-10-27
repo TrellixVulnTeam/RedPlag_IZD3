@@ -5,5 +5,5 @@
       <input type="file" (change)="onFileChange($event)" />
       <button type="submit" [disabled]="formGroup.invalid" (click)="onSubmit()">Upload</button>
     </form>
-    <button>Download Results</button>
+    <button (click)="onDownloadButtonClick()">Download Results</button>
 </div>
