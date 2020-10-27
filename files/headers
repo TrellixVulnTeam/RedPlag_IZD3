@@ -1,8 +1,0 @@
-HTTP/1.1 500 Internal Server Error
-Date: Tue, 27 Oct 2020 08:14:29 GMT
-Server: WSGIServer/0.2 CPython/3.8.2
-Content-Type: text/html
-X-Content-Type-Options: nosniff
-Referrer-Policy: same-origin
-Connection: close
-
