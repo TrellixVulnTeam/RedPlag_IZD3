@@ -1,6 +1,5 @@
 import uuid
 from django.db import models
-from .plag_detect import *
 
 def random_filename(instance, filename):
         extension = filename.split(".")[-1]
@@ -8,5 +7,10 @@ def random_filename(instance, filename):
         return zip_dir_loc
 
 class UploadFile(models.Model):
-	uploaded = models.FileField('uploaded file', upload_to = random_filename)
+	uploaded = models.FileField(upload_to = random_filename)
 	timestamp = models.DateTimeField(auto_now_add = True)
+
+class OutputFile(models.Model):
+        zipfile = models.ForeignKey(UploadFile, on_delete = models.CASCADE)
+        textoutput = models.FileField()
+        
