@@ -2,6 +2,8 @@ from rest_framework import serializers
 from .models import UploadFile
 
 class FileSerializer(serializers.ModelSerializer):
+	# user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 	class Meta():
 		model = UploadFile
-		fields = ('owner','uploaded','timestamp')
+		fields = ('uploaded','timestamp')
+    
