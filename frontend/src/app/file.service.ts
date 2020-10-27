@@ -17,10 +17,13 @@ export class FileService {
 
   postFile(fileToUpload: File) {
   	console.log("service here");
+  	let headers = new Headers();
+    headers.set('Accept', 'application/json');
+    headers.set('Content-Type', '*/*' );
+    let options = new RequestOptions({ headers: headers });
     const formData: FormData = new FormData();
-    console.log(fileToUpload.name)
     formData.append('uploaded', fileToUpload, fileToUpload.name);
     console.log(formData);
-    return this.http.post<any>(this.apiRoot.concat('upload/'), formData);
+    return this.http.post<any>(this.apiRoot.concat('upload/'), formData, options);
 	}
 }

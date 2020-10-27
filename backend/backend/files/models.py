@@ -16,3 +16,6 @@ class UploadFile(models.Model):
 	def __str__(self):
 		return '{} ({})'.format(self.uploaded)
 
+class OutputFile(models.Model):
+	zipfile = models.ForeignKey(UploadFile, on_delete = models.CASCADE)
+	textoutput = models.FileField()
