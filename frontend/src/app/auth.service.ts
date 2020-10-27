@@ -44,13 +44,6 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-  let token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2V4YW1wbGUuY29tLyIsInN1YiI6ImF1dGgwfGFiYzEyMyIsImF1ZCI6ImNsaWVudElkIiwiaWF0IjoxNTY4MDk2MDQyLCJleHAiOjIwNzMzNDY3Mzh9.lMKzXXCdQA3uFP5ONh1LrmKF0NouRh-Ys-q_aFeN1Ek";
-  console.log("hello");
-let decoded = jwt_decode(token);
-console.log("hi");
-console.log(decoded);
-
     return this.http.post(
       this.apiRoot.concat('login/'),
       { "email":email, "password":password }

@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^api-token-refresh/', refresh_jwt_token),
     url(r'^api-token-verify/', verify_jwt_token),
     url(r'^admin/', admin.site.urls),
-    url(r'^upload/', include('files.urls')),
+    url(r'^file/', include('files.urls')),
     path('api/', include('backend.app.user.urls')),
     path('api/', include('backend.app.profile.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

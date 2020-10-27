@@ -1,7 +1,9 @@
 <div>
     <br>
     <br>
-    <button>Upload</button>
-    <button>Run </button>
-    <button>Download</button>
+    <form [formGroup]="formGroup" novalidate>
+      <input type="file" (change)="onFileChange($event)" />
+      <button type="submit" [disabled]="formGroup.invalid" (click)="onSubmit()">Upload</button>
+    </form>
+    <button>Download Results</button>
 </div>
