@@ -5,22 +5,26 @@ $redFire: rgba(244, 91, 105, 1);
 // Fonts
 $fontAsap: 'Asap', sans-serif;
 
-body{
-    background-color: rgba(2, 128, 144, 1);
-    align-items: flex-start;
+div{
+    text-align: center;
 }
 
-a{font-family: $fontAsap;
+a{
+    font-family: $fontAsap;
     cursor: pointer;
     color: #fff;
     font-size: 16px;
-    text-transform: uppercase;
-    width: 100px;
+    
+    width: 120px;
     border: 0;
     padding: 10px;
     margin-top: 10px;
     margin-left: 10px;
     border-radius: 5px;
-    background-color: $redFire;
+    background-color: $greenSeaweed;
+    box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.5);
     text-decoration: none;
+    &:hover {
+        background-color: darken($greenSeaweed, 5%);
+      }
 }
