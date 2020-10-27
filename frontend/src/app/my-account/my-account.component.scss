@@ -4,9 +4,18 @@ $redFire: rgba(244, 91, 105, 1);
 
 $fontAsap: 'Asap', sans-serif;
 
-div{
+.sidenav{
     display: inline-block;
     height: 60vh;
+    height: 30%;
+    width: 170px;
+    position: fixed;
+    top: 310px;
+    left: 10px;
+    overflow-x: hidden;
+    background-color: rgba(2, 128, 144, 1);
+    box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.5);
+    border-radius: 10px 10px;
 }
 
 a{
@@ -15,9 +24,25 @@ a{
     color: #fff;
     font-size: 16px;
     text-transform: uppercase;
-    margin-left: 20px;
-    margin-right: 20px;
+    width: 150px;
+    border: 0;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 15px;
+    border-radius: 5px;
     background-color: $redFire;
     text-decoration: none;
+    box-shadow: 5px 10px 10px rgba($redFire, 0.5);
+    &:hover {
+        background-color: darken($redFire, 5%);
+      }
+}
+
+router-outlet{
+    display: inline-block;
+    margin-left: 40%;
+    margin-top: 30%;
  
+  
+justify-content: center;
 }

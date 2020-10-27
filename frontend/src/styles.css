@@ -1,3 +1,4 @@
 body{
-    background-color: rgba(244, 91, 105, 1);;
+    background-image: url("red.jpg");
+    background-size: cover;
 }

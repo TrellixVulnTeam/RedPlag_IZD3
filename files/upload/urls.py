@@ -5,8 +5,8 @@ from .viewsets import FileView
 router = routers.DefaultRouter()
 router.register('files',FileView,'files')
 process_file = FileView.as_view({
-    'get':'list',
-    'post': 'process_plag'
+    'get':'process_plag',
+    'post': 'create'
 })
 
 urlpatterns = [
