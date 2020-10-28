@@ -43,6 +43,7 @@
 	- zipfile
 + Angular for the frontend
 + Django and Django REST framework for the backend with JWT authentication 
++ sqlite for backend database
 + SCSS for styling
 
 ### How the tool is supposed to be run - 
