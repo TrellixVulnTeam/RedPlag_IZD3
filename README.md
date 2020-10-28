@@ -41,7 +41,7 @@
 	- Then run `ng serve --open` to open the web page after compiling front end application.
 + On the home page, register as a user or login
 + In the RED PLAG tab on top right corner go and upload zip file and download results.
-+ In MY ACCOUNT tab you can view/edit account details
++ In the MY ACCOUNT tab you can view/edit account details
 
 
 ### What is yet to be done -  
