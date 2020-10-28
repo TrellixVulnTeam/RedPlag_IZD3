@@ -6,6 +6,7 @@
 1. Core Logic -  
 	+ Implemented the counting, padding, sorting and cosine similarity algorithm
 	+ Added white space insensitivity
+	+ Added case insensitivity
 	+ Read up some theories such as hashing and comparing for plagiarism detection
 2. Backend -
 	+ Two models for files -
