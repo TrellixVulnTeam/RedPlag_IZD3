@@ -1,20 +1,20 @@
 # RedPlag
 ## CS 251 Project
 
-## What we have implemented so far -  
+### What we have implemented so far -  
 
-1. Core Logic - 
-	+ 
-2. Backend - 
-	+
-3. Frontend -
-	+
+1. Core Logic -  
+	+ Blah Blah
+2. Backend -  
+	+ Blah
+3. Frontend - 
+	+ Blah
 
 
-## What technology we have used -  
+### What technology we have used -  
 
-+
++ Blah
 
-## How the tool is supposed to be run -  
+### How the tool is supposed to be run -  
 
-## What is yet to be done -  
+### What is yet to be done -  
