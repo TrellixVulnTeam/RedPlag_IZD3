@@ -17,7 +17,11 @@
 	+ Extraction of the files and running above algorithm on them to generate CSV file of pairwise similarity, a heat map that shows the covariance matrix pictorially and a histogram that shows the number of pairs in each similarity interval.
 	+ Zipping above results and downloading them via `get`function of `GraphView`
 3. Frontend - 
-	+ 
+	+ Login: Allows a user to Enter login details, which links to dashboard
+	+ Sign-Up: Allows a user to create a new account for the Red-Plag website
+	+ Header : Contains Red Plag, My Account, Sign Out
+	+ Red Plag: Allows user to upload a file, and download the graphs and visualisation
+	+ My Account: Created Sidebar, which links to various functionalities for your account, such as viewing details, editing, changing password and deleting account
 
 
 ### What technology we have used -  
@@ -52,4 +56,4 @@
 2. Backend -  
 	+ Blah Blah
 3. Frontend -  
-	+ 
+	+ Adding visualisations and graphs on the website
