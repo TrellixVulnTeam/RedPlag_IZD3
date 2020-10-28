@@ -12,6 +12,7 @@ def compute_dict(file_path):
     with open(file_path) as fin:
         for line in fin:
             line = line.strip()
+            line = line.lower()
             txt = re.sub('([^a-zA-Z0-9\s]+)',' \\1 ',line)
             txt = re.sub('([\s]+)',' ',txt)
             words = txt.split(" ")
