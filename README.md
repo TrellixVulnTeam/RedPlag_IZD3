@@ -29,9 +29,15 @@
 	- zipfile
 + Angular for the frontend
 + Django and Django REST framework for the backend
-+ CSS for styling
++ SCSS for styling
 
-### How the tool is supposed to be run -  
+### How the tool is supposed to be run - 
++ Fire a terminal and `cd` into `backend` directory. 
+	- Here run `source env/bin/activate` to enter the virtual environment. 
+	- Then run `pip install -r requirements.txt` to install required packages of python
+	- `cd` into `backend` directory and run `python3 manage.py runserver` to setup the server
++ Fire another terminal and `cd` into `frontend` directory.
+
 
 ### What is yet to be done -  
 
