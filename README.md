@@ -22,7 +22,7 @@
 
 ### What technology we have used -  
 
-+ Modules used in Python - 
++ Python was used for implementing the core logic as well as the backend and following libraries were used - 
 	- numpy
 	- matplotlib
 	- scipy
