@@ -8,6 +8,7 @@
 	+ Added white space insensitivity
 	+ Read up some theories such as hashing and comparing for plagiarism detection
 	+ Generated Heat maps, histogram and csv file for simlarity comparision
+	+ Added case insensitivity
 2. Backend -
 	+ Implemented login/signup using JWT(JSON Web Token) authentication with Self defined User models
 	+ Imparted one to one relationship between profile data of user and user model
