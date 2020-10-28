@@ -22,16 +22,13 @@
 
 ### What technology we have used -  
 
-+ Python for the core logic  
-Modules used in Python - 
++ Modules used in Python - 
 	- numpy
 	- matplotlib
 	- scipy
-	- os
-	- sys
-	- re
+	- zipfile
 + Angular for the frontend
-+ Django and Djangorest for the backend
++ Django and Django REST framework for the backend
 + CSS for styling
 
 ### How the tool is supposed to be run -  
