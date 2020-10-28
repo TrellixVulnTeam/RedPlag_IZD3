@@ -4,7 +4,9 @@
 ### What we have implemented so far -  
 
 1. Core Logic -  
-	+ Blah Blah
+	+ Implemented the naive algorithm
+	+ Added white space insensitivity
+	+ Read up some theories for plagiarism detection
 2. Backend -  
 	+ Blah
 3. Frontend - 
@@ -18,3 +20,11 @@
 ### How the tool is supposed to be run -  
 
 ### What is yet to be done -  
+
+1. Core Logic -  
+	+ Reading up on more theory
+	+ Implementing more improvements
+2. Backend -  
+	+ Blah Blah
+3. Frontend -  
+	+ 
