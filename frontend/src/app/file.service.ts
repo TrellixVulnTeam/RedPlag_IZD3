@@ -18,9 +18,10 @@ export class FileService {
   postFile(fileToUpload: File) {
   	console.log("service here");
     const formData: FormData = new FormData();
-    formData.append('uploaded', fileToUpload, fileToUpload.name);
+    formData.append('uploaded', fileToUpload);
     console.log(formData);
-    return this.http.post<any>(this.apiRoot.concat('upload/'), formData);
+    var httpoptions = { headers: new HttpHeaders({"Content-Type":"multipart/form-data"})}
+    return this.http.post<any>(this.apiRoot.concat('upload/'), formData, httpoptions);
 	}
 	getProcessedFiles() {
 		return this.http.get<any>(this.apiRoot.concat('results/'));

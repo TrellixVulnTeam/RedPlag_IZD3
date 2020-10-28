@@ -39,7 +39,7 @@ class GraphView(APIView):
 	permission_classes = (IsAuthenticated,)
 	authentication_class = JSONWebTokenAuthentication
 	def get(self, request, format = None):
-		queryset = UploadFile.objects.get(user=request.user)
+		queryset = UploadFile.objects.filter(user=request.user)
 		recent = queryset[len(queryset)-1].uploaded.path
 		process_given_files(recent)
 		f = open(os.path.basename(recent).split('.')[0] + 'other.zip','rb')

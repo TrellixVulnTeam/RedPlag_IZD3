@@ -47,9 +47,7 @@ export class RedPlagComponent implements OnInit {
 	);
 	}
   onDownloadButtonClick() {
-    this.fileService.getProcessedFiles().subscribe(
-      response => console.log(response),
-      error => console.log(error)
+    this.fileService.getProcessedFiles().subscribe((response) => console.log("done")
     )
   }
 }
