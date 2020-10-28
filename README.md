@@ -17,12 +17,12 @@
 
 + Python for the core logic  
 Modules used in Python - 
-	# numpy
-	# matplotlib
-	# scipy
-	# os
-	# sys
-	# re
+	- numpy
+	- matplotlib
+	- scipy
+	- os
+	- sys
+	- re
 + Angular for the frontend
 + Django and Djangorest for the backend
 + CSS for stylin
