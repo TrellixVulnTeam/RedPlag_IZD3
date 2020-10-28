@@ -24,6 +24,7 @@ export class FileService {
     return this.http.post<any>(this.apiRoot.concat('upload/'), formData, httpoptions);
 	}
 	getProcessedFiles() {
+		console.log("download service");
 		return this.http.get<any>(this.apiRoot.concat('results/'));
 	}
 }
