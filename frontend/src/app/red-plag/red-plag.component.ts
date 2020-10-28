@@ -11,7 +11,7 @@ import { AlertService } from '../alert.service';
   styleUrls: ['./red-plag.component.scss']
 })
 export class RedPlagComponent implements OnInit {
-
+  blob: Blob;
 	formGroup = this.fb.group({
     file: [null, Validators.required],
   });
@@ -48,7 +48,14 @@ export class RedPlagComponent implements OnInit {
 	}
   onDownloadButtonClick() {
     console.log("download ts");
-    this.fileService.getProcessedFiles().subscribe((response) => console.log("done")
-    )
+    this.fileService.getProcessedFiles().subscribe((data) => {
+
+      this.blob = new Blob([data as BlobPart], {type: 'application/zip'});
+      var downloadURL = window.URL.createObjectURL(data);
+      var link = document.createElement('a');
+      link.href = downloadURL;
+      link.download = "a.zip";
+      link.click();
+    });
   }
 }
