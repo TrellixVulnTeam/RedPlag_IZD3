@@ -7,8 +7,15 @@
 	+ Implemented the naive algorithm
 	+ Added white space insensitivity
 	+ Read up some theories for plagiarism detection
-2. Backend -  
-	+ Blah
+2. Backend -
+	+ Two models for files -
+		- UploadFile : for the uploaded zip file
+		- OutputFile : for the generated zip file of results and has a `ForeignKey` to UploadFile
+	+ Two views -
+		-
+	+ Zip file uploading which contains all the files that need to be checked for plagiarism via `post` function of `FileView`
+	+ Extraction of the files and running above algorithm on them to generate CSV file of pairwise similarity, a heat map that shows the covariance matrix pictorially and a histogram that shows the number of pairs in each similarity interval.
+	+ Zipping above results and downloading them via `get`function of `GraphView`
 3. Frontend - 
 	+ Blah
 
