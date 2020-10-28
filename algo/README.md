@@ -2,9 +2,7 @@ The main file for detecting plagiarism is similarity.py
 
 How to run it :
 
-python3 similarity.py <folder_name>
-
-It MIGHT work with python3 similarity.py <folder_path>. Please try to test using this format.
+python3 similarity.py <folder_name/folder_path>
 
 
 
