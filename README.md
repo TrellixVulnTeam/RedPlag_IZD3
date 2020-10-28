@@ -25,7 +25,7 @@ Modules used in Python -
 	- re
 + Angular for the frontend
 + Django and Djangorest for the backend
-+ CSS for stylin
++ CSS for styling
 
 ### How the tool is supposed to be run -  
 
