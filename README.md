@@ -1,80 +1,55 @@
 # RedPlag
-cs251 project
+## CS 251 Project
+
+### What we have implemented so far -  
+
+1. Core Logic -  
+	+ Implemented the naive algorithm
+	+ Added white space insensitivity
+	+ Read up some theories for plagiarism detection
+2. Backend -
+	+ Two models for files -
+		- `UploadFile` : for the uploaded zip file
+		- `OutputFile` : for the generated zip file of results and has a `ForeignKey` to `UploadFile`
+	+ Two views -
+		- `FileView` : contains a `post` function for uploading input zip file containing all the files that need to be checked for plagiarism
+		- `GraphView` : contains a `get` function that runs the core logic from plag_detect.py file and returns in a zipped form the results and its various visualisations.
+	+ Extraction of the files and running above algorithm on them to generate CSV file of pairwise similarity, a heat map that shows the covariance matrix pictorially and a histogram that shows the number of pairs in each similarity interval.
+	+ Zipping above results and downloading them via `get`function of `GraphView`
+3. Frontend - 
+	+ 
 
 
+### What technology we have used -  
 
-README for algo :
++ Modules used in Python - 
+	- numpy
+	- matplotlib
+	- scipy
+	- zipfile
++ Angular for the frontend
++ Django and Django REST framework for the backend
++ SCSS for styling
 
-The main file for detecting plagiarism is similarity.py
-
-(install numpy and matplotlib if not installed)
-
-How to run it :
-
-python3 similarity.py <folder_name>
-
-It MIGHT work with python3 similarity.py <folder_path>. Please try to test using this format.
-
-
-
-What does it do?
-
-Prints correlation matrix on stdout
-
-Makes 2 folders in the folder to be tested - Graphs and CSV
-
-Graphs contains 2 graphs - 
-I. Histogram
-II. Heat map
-
-CSV file contains the similarities in the format
-file_1,file_2,similarity
-
-Some points to be noted on this -
-
-A. Similarity is a number between 0 and 1 (both inclusive in case it is not obvious).
-
-B. Only one of (file_1,file_2,similarity), (file_2,file_1,similarity) will exist in the CSV file.
-
-C. CSV file will not contain (file_1,file_1,similarity) as this is trivial and the similarity will be 1.
-
-D. The similarities are arranged in no order. Use sqlite3 or something to sort according to your requirements.
+### How the tool is supposed to be run - 
++ Fire a terminal and `cd` into `backend` directory. 
+	- Here run `source env/bin/activate` to enter the virtual environment. 
+	- Then run `pip install -r requirements.txt` to install required packages of python
+	- `cd` into `backend` directory and run `python3 manage.py runserver` to setup the server
++ Fire another terminal and `cd` into `frontend` directory.
+	- Here run `npm install` to install dependencies
+	- Then run `ng serve --open` to open the web page after compiling front end application.
++ On the home page, register as a user or login
++ In the RED PLAG tab on top right corner go and upload zip file and download results.
++ In the MY ACCOUNT tab you can view/edit account details
 
 
+### What is yet to be done -  
 
-### Instructions to run the backend:
-1. cd to this ./backend/ (i.e. the folder that contains this readme file)
-2. source env/bin/activate    (run this to activate the virtual environment)
-3. pip install -r requirements.txt   (Do this for the first time you run the virtual environment to install all the dependencies)
-4. Whenever you install a dependency for the backend run: pip freeze > requirements.txt before commiting you work so that others donn't face clashes.
-5. To deactivate the virtual environment after your work run: deactivate
-
-
-
-# Frontend
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+1. Core Logic -  
+	+ Reading up on more theory
+	+ Implementing more improvements
+2. Backend -  
+	+ Blah Blah
+3. Frontend -  
+	+ 
