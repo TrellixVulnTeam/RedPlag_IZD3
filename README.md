@@ -37,6 +37,11 @@
 	- Then run `pip install -r requirements.txt` to install required packages of python
 	- `cd` into `backend` directory and run `python3 manage.py runserver` to setup the server
 + Fire another terminal and `cd` into `frontend` directory.
+	- Here run `npm install` to install dependencies
+	- Then run `ng serve --open` to open the web page after compiling front end application.
++ On the home page, register as a user or login
++ In the RED PLAG tab on top right corner go and upload zip file and download results.
++ In MY ACCOUNT tab you can view/edit account details
 
 
 ### What is yet to be done -  
