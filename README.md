@@ -15,7 +15,10 @@
 
 ### What technology we have used -  
 
-+ Blah
++ Python for the core logic
++ Angular for the frontend
++ Django and Djangorest for the backend
++ CSS for styling
 
 ### How the tool is supposed to be run -  
 
