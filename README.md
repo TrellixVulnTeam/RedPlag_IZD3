@@ -17,7 +17,7 @@
 	+ Extraction of the files and running above algorithm on them to generate CSV file of pairwise similarity, a heat map that shows the covariance matrix pictorially and a histogram that shows the number of pairs in each similarity interval.
 	+ Zipping above results and downloading them via `get`function of `GraphView`
 3. Frontend - 
-	+ Blah
+	+ 
 
 
 ### What technology we have used -  
