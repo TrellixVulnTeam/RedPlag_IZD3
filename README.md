@@ -4,9 +4,9 @@
 ### What we have implemented so far -  
 
 1. Core Logic -  
-	+ Implemented the naive algorithm
+	+ Implemented the counting, padding, sorting and cosine similarity algorithm
 	+ Added white space insensitivity
-	+ Read up some theories for plagiarism detection
+	+ Read up some theories such as hashing and comparing for plagiarism detection
 2. Backend -
 	+ Two models for files -
 		- `UploadFile` : for the uploaded zip file

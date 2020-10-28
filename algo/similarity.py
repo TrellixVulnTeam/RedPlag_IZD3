@@ -129,7 +129,7 @@ def plot_heat_map(correlation_matrix,folder_path,coloring = 'hot', img_format = 
             
 
 def save_csv_file(correlation_matrix,num_to_files,folder_path):
-    """Saves similarity between files in decreasing order"""
+    """Saves similarity between files"""
 
     csv_list = []
     num_files = correlation_matrix.shape[0]
