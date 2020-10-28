@@ -12,9 +12,8 @@
 		- `UploadFile` : for the uploaded zip file
 		- `OutputFile` : for the generated zip file of results and has a `ForeignKey` to `UploadFile`
 	+ Two views -
-		- `FileView` : contains a `post` function for uploading input zip file. Input zip file contains all the files that need to be checked for plagiarism
-		- `GraphView` : 
-	+ Zip file uploading which contains all the files that need to be checked for plagiarism via `post` function of `FileView`
+		- `FileView` : contains a `post` function for uploading input zip file containing all the files that need to be checked for plagiarism
+		- `GraphView` : contains a `get` function that runs the core logic from plag_detect.py file and returns in a zipped form the results and its various visualisations.
 	+ Extraction of the files and running above algorithm on them to generate CSV file of pairwise similarity, a heat map that shows the covariance matrix pictorially and a histogram that shows the number of pairs in each similarity interval.
 	+ Zipping above results and downloading them via `get`function of `GraphView`
 3. Frontend - 
