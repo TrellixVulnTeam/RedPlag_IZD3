@@ -12,6 +12,10 @@ import { AlertService } from '../alert.service';
 })
 export class RedPlagComponent implements OnInit {
   blob: Blob;
+  progress = 0;
+  selectedFiles: FileList;
+  currentFile: File;
+  message;
 	formGroup = this.fb.group({
     file: [null, Validators.required],
   });
@@ -39,12 +43,16 @@ export class RedPlagComponent implements OnInit {
   }
 	}
 	onSubmit() { 
-	console.log("hello");
-	console.log(this.formGroup.value.file.name);
-	this.fileService.postFile(this.formGroup.value.file).subscribe(
-		response => console.log("file uploaded successfully"),
-		error => console.log("file upload failed")
-	);
+  console.log("file upload ts");
+  console.log(this.formGroup.value.file);
+  this.fileService.postFile(this.formGroup.value).subscribe(
+    event => {
+      console.log(event);
+    },
+    err => {
+      this.progress = 0;
+      this.message = 'Could not upload the file!';
+    });
 	}
   onDownloadButtonClick() {
     console.log("download ts");
