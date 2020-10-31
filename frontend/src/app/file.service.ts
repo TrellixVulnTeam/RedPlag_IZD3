@@ -22,6 +22,8 @@ export class FileService {
 
     formData.append('uploaded', file);
     console.log("hello");
+	console.log("file = ",file);
+	console.log("formData = ",formData);
     return this.http.post<any>(this.apiRoot.concat('upload/'), formData, {
       reportProgress: true,
       responseType: 'json',

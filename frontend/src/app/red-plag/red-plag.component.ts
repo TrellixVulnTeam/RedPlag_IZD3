@@ -16,36 +16,28 @@ export class RedPlagComponent implements OnInit {
   selectedFiles: FileList;
   currentFile: File;
   message;
-	formGroup = this.fb.group({
-    file: [null, Validators.required],
-  });
+	formGroup : FormGroup;
 
   constructor(private fb: FormBuilder, private fileService: FileService, private router: Router, private alertService: AlertService, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
   	console.log("Fuck angular");
+	this.formGroup = this.fb.group({ file : [''] });
   }
   onFileChange(event) {
   console.log("file changed");
   let reader = new FileReader();
  
   if(event.target.files && event.target.files.length) {
-    const [file] = event.target.files;
-    reader.readAsDataURL(file);
-  
-    reader.onload = () => {
-      this.formGroup.patchValue({
-        file: reader.result
-      });
-      
-      this.cd.markForCheck();
-    };
+    const uploaded = event.target.files[0];
+	console.log(uploaded);
+    this.formGroup.get('file').setValue(uploaded);
   }
 	}
 	onSubmit() { 
   console.log("file upload ts");
   console.log(this.formGroup.value.file);
-  this.fileService.postFile(this.formGroup.value).subscribe(
+  this.fileService.postFile(this.formGroup.value.file).subscribe(
     event => {
       console.log(event);
     },
