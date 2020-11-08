@@ -15,6 +15,12 @@
 	 if(condition) <=> if(!(!condition)) and  if-else reverse by negating condition
 	 pair<int,int> vs user-defined struct
 	 typedef, define 
+	 
+#### Terminal Client
+	redplag login 
+	redplag upload file_path
+	redplag get_results
+	redplag signup
 
 #### Interface 
 	 Files deleting and viewing
