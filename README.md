@@ -4,7 +4,7 @@
 ### Next Stage Plan
 #### CORE STUFF
 	 Read up on better strategy.. preferably containing information on location of words as well.
- 	 Boilerplates.(This is applicable to vast variety of assignments.. not just coding)
+ 	 Boilerplates
 	 Detect repeating blocks (function)
 	 Iterative vs Recursive functions
 
@@ -14,7 +14,7 @@
 	 For <=> while <=> do-while
 	 if(condition) <=> if(!(!condition)) and  if-else reverse by negating condition
 	 pair<int,int> vs user-defined struct
-	 typedef, define
+	 typedef, define 
 
 #### Interface 
 	 Files deleting and viewing
