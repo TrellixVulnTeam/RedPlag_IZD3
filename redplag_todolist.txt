@@ -1,0 +1,17 @@
+Backend/Frontend - 
+	1. Aman ka login/signup jo woh dekh lega
+	2. Listing all files of user. Option to delete that upload. Option to upload that download back to user.
+	3. Kuch to services ka bol raha tha Aman. Is this option 2 only?
+
+Terminal - 
+	??
+
+Core - 
+	1. Removing comment
+	2. Loop vs function
+	3. for <=> while <=> do-while
+	4. if(condition) <=> if(!(!condition)); if-else by reversing
+	5. Boiler plate code
+	6. Matching code by location
+	7. Changing the basic algorithm (options we currently know : bag of words, k-gram, hashing. Not sure about k-gram and hashing. Just heard the name)
+	8. Still keeping the code whitespace insensitive aand case insensitive.
