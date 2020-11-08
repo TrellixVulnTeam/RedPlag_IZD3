@@ -3,22 +3,23 @@
 
 ### Next Stage Plan
 #### CORE STUFF
-	+ Read up on better strategy.. preferably containing information on location of words as well.
- 	+ Boilerplates.(This is applicable to vast variety of assignments.. not just coding)
-	+ Detect repeating blocks (function)
-	+ Iterative vs Recursive functions
+	 Read up on better strategy.. preferably containing information on location of words as well.
+ 	 Boilerplates.(This is applicable to vast variety of assignments.. not just coding)
+	 Detect repeating blocks (function)
+	 Iterative vs Recursive functions
 
 #### C++ Pro (Syntax specific stuff)
-	+ Comments + Read comments separately to detect if any references are mentioned.
-	+ Classify identifiers by type (int, class etc)
-	+ For <=> while <=> do-while
-	+ if(condition) <=> if(!(!condition)) and  if-else reverse by negating condition
-	+ pair<int,int> vs user-defined struct
+	 Comments + Read comments separately to detect if any references are mentioned
+	 Classify identifiers by type (int, class etc)
+	 For <=> while <=> do-while
+	 if(condition) <=> if(!(!condition)) and  if-else reverse by negating condition
+	 pair<int,int> vs user-defined struct
+	 typedef, define
 
 #### Interface 
-	+ Files deleting and viewing
-	+ Online result display
-	+ Login/Sign-up glitches
+	 Files deleting and viewing
+	 Online result display
+	 Login/Sign-up glitches
 
 
 ### What we have implemented so far -  
