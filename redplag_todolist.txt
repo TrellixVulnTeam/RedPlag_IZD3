@@ -1,17 +1,20 @@
-Backend/Frontend - 
-	1. Aman ka login/signup jo woh dekh lega
-	2. Listing all files of user. Option to delete that upload. Option to upload that download back to user.
-	3. Kuch to services ka bol raha tha Aman. Is this option 2 only?
+CORE STUFF
+1. Read up on better strategy.. preferably containing information on location of words as well.
+2. Boilerplates.(This is applicable to vast variety of assignments.. not just coding)
+3. Detect repeating blocks (function)
+4. Iterative vs Recursive functions
 
-Terminal - 
-	??
+C++ Pro (Syntax specific stuff)
+1. Comments + Read comments separately to detect if any references are mentioned.
+2. Classify identifiers by type (int, class etc)
+3. For <=> while <=> do-while
+4. if(condition) <=> if(!(!condition)) and  if-else reverse by negating condition
+5. pair<int,int> vs user-defined struct
 
-Core - 
-	1. Removing comment
-	2. Loop vs function
-	3. for <=> while <=> do-while
-	4. if(condition) <=> if(!(!condition)); if-else by reversing
-	5. Boiler plate code
-	6. Matching code by location
-	7. Changing the basic algorithm (options we currently know : bag of words, k-gram, hashing. Not sure about k-gram and hashing. Just heard the name)
-	8. Still keeping the code whitespace insensitive aand case insensitive.
+Interface 
+1. Files deleting and viewing
+2. Online result display
+3. Login/Sign-up glitches
+
+Terminal
+?????
