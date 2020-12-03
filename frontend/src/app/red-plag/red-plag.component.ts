@@ -22,22 +22,39 @@ export class RedPlagComponent implements OnInit {
 
   ngOnInit(): void {
   	console.log("Fuck angular");
-	this.formGroup = this.fb.group({ file : [''] });
+	this.formGroup = this.fb.group({ file : [''] , boilerplate : [''] });
   }
   onFileChange(event) {
   console.log("file changed");
   let reader = new FileReader();
- 
+
   if(event.target.files && event.target.files.length) {
     const uploaded = event.target.files[0];
 	console.log(uploaded);
     this.formGroup.get('file').setValue(uploaded);
   }
 	}
-	onSubmit() { 
+
+
+  onBoilerPlateChange(event) {
+    console.log("boilerplate changed");
+    let reader = new FileReader();
+
+    if(event.target.files && event.target.files.length) {
+      const boilerPlate = event.target.files[0];
+      console.log(boilerPlate);
+      this.formGroup.get('boilerplate').setValue(boilerPlate);
+    }
+  }
+
+
+
+
+	onSubmit() {
   console.log("file upload ts");
   console.log(this.formGroup.value.file);
-  this.fileService.postFile(this.formGroup.value.file).subscribe(
+  console.log(this.formGroup.value.boilerplate);
+  this.fileService.postFile(this.formGroup.value.file, this.formGroup.value.boilerplate).subscribe(
     event => {
       console.log(event);
     },

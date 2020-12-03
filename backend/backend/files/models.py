@@ -12,6 +12,7 @@ class UploadFile(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='upload', db_column="user")
 	uploaded = models.FileField(blank=False, null=False)
 	timestamp = models.DateTimeField(auto_now_add = True)
+	boilerplate = models.FileField(blank = True, null = True)
 
 	def __str__(self):
 		return '{} ({})'.format(self.uploaded)

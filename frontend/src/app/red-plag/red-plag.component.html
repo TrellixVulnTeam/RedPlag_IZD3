@@ -3,10 +3,11 @@
     <br>
     <form [formGroup]="formGroup" novalidate>
       <input type="file" (change)="onFileChange($event)" />
+      <input type="file" (change)="onBoilerPlateChange($event)" />
       <br>
       <br>
       <button type="submit" [disabled]="formGroup.invalid" (click)="onSubmit()">Upload the Code</button>
       <button (click)="onDownloadButtonClick()">Download Results</button>
     </form>
-    
+
 </div>
