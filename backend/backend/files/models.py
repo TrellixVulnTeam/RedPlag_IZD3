@@ -13,6 +13,7 @@ class UploadFile(models.Model):
 	uploaded = models.FileField(blank=False, null=False)
 	timestamp = models.DateTimeField(auto_now_add = True)
 	boilerplate = models.FileField(blank = True, null = True)
+	fileType = models.CharField(default = 'text', max_length = 6)
 
 	def __str__(self):
 		return '{} ({})'.format(self.uploaded)

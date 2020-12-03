@@ -21,8 +21,8 @@ export class RedPlagComponent implements OnInit {
   constructor(private fb: FormBuilder, private fileService: FileService, private router: Router, private alertService: AlertService, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-  	console.log("Fuck angular");
-	this.formGroup = this.fb.group({ file : [''] , boilerplate : [''] });
+  	console.log("Red Plag Module initiated");
+	this.formGroup = this.fb.group({ file : [''] , boilerplate : [''] , filetype : [''] });
   }
   onFileChange(event) {
   console.log("file changed");
@@ -48,13 +48,20 @@ export class RedPlagComponent implements OnInit {
   }
 
 
+  onRadioChange(event){
 
+  console.log("file type changed");
+  const fileType = event.target.value;
+  this.formGroup.get('filetype').setValue(fileType);
+  
+  }
 
 	onSubmit() {
   console.log("file upload ts");
   console.log(this.formGroup.value.file);
   console.log(this.formGroup.value.boilerplate);
-  this.fileService.postFile(this.formGroup.value.file, this.formGroup.value.boilerplate).subscribe(
+  console.log(this.formGroup.value.filetype);
+  this.fileService.postFile(this.formGroup.value.file, this.formGroup.value.boilerplate, this.formGroup.value.filetype).subscribe(
     event => {
       console.log(event);
     },

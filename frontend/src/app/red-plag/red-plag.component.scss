@@ -52,4 +52,50 @@ input{
     &:hover {
         background-color: darken($greenSeaweed, 5%);
       }
+
+
+    radio{
+        width: 100px;
+    }
+}
+
+input[type=radio]{
+    font-family: $fontAsap;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    width: 1em;
+    border: 0;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    background-color: $greenSeaweed;
+    box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.5);
+    &:hover {
+        background-color: darken($greenSeaweed, 5%);
+      }
+}
+
+
+h2{
+    
+    font-family: $fontAsap;
+    cursor: pointer;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    text-transform: uppercase;
+    border: 0;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    background-color: $greenSeaweed;
+    box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.5);
+    &:hover {
+        background-color: darken($greenSeaweed, 5%);
+      }
+
 }
