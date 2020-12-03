@@ -2,8 +2,11 @@
     <br>
     <br>
     <form [formGroup]="formGroup" novalidate>
-      <input type="file" (change)="onFileChange($event)" />
-      <input type="file" (change)="onBoilerPlateChange($event)" />
+      <input type="file" name="fileupload" (change)="onFileChange($event)" />
+      <label for="fileupload"> Upload code to be checked here </label>
+      <br>
+      <input type="file" name="boilerplateupload" (change)="onBoilerPlateChange($event)" />
+      <label for="boilerplate"> Upload boilerplate here </label>
       <br>
       <br>
       <button type="submit" [disabled]="formGroup.invalid" (click)="onSubmit()">Upload the Code</button>

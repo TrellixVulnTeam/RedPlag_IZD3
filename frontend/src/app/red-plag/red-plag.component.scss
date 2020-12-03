@@ -28,6 +28,13 @@ button{
           }
 }
 
+label{
+    font-family: $fontAsap;
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;    
+}
+
 input{
     font-family: $fontAsap;
     cursor: pointer;
