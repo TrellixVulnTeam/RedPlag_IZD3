@@ -13,4 +13,12 @@ class UploadFile(models.Model):
 class OutputFile(models.Model):
         zipfile = models.ForeignKey(UploadFile, on_delete = models.CASCADE)
         textoutput = models.FileField()
+
+class HeatMapFile(models.Model):
+	zipfile = models.ForeignKey(UploadFile, on_delete = models.CASCADE)
+	hmapoutput = models.ImageField()
+
+class HistogramFile(models.Model):
+	zipfile = models.ForeignKey(UploadFile, on_delete = models.CASCADE)
+	histoutput = models.ImageField()
         

@@ -3,7 +3,7 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import FileSerializer
-from .models import UploadFile, OutputFile
+from .models import UploadFile, OutputFile, HeatMapFile, HistogramFile
 from .plag_detect import *
 from django.core.files import File
 from django.conf import settings
@@ -38,5 +38,35 @@ class GraphView(APIView):
                 f.close()
                 with open(file_path, 'rb') as f:
                         response = HttpResponse(f, content_type='application/zip')
+                        response['Content-Disposition'] = 'attachment; filename="%s"' % file_path
+                        return response
+
+class HeatMapView(APIView):
+        def get(self, request, format = None):
+                queryset = UploadFile.objects.all()
+                recent = queryset[len(queryset)-1].uploaded.path
+                process_given_files(recent)
+                f = open(os.path.basename(recent).split('.')[0] + 'other/Graphs/heat_map.png','rb')
+                myfile = File(f)
+                queryset[len(queryset)-1].heatmapfile_set.create(hmapoutput = myfile)
+                file_path=os.path.basename(recent).split('.')[0] + 'other/Graphs/heat_map.png'
+                f.close()
+                with open(file_path, 'rb') as f:
+                        response = HttpResponse(f, content_type='image/png')
+                        response['Content-Disposition'] = 'attachment; filename="%s"' % file_path
+                        return response
+
+class HistogramView(APIView):
+        def get(self, request, format = None):
+                queryset = UploadFile.objects.all()
+                recent = queryset[len(queryset)-1].uploaded.path
+                process_given_files(recent)
+                f = open(os.path.basename(recent).split('.')[0] + 'other/Graphs/histogram.png','rb')
+                myfile = File(f)
+                queryset[len(queryset)-1].histogramfile_set.create(histoutput = myfile)
+                file_path=os.path.basename(recent).split('.')[0] + 'other/Graphs/histogram.png'
+                f.close()
+                with open(file_path, 'rb') as f:
+                        response = HttpResponse(f, content_type='image/png')
                         response['Content-Disposition'] = 'attachment; filename="%s"' % file_path
                         return response
