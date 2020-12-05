@@ -24,6 +24,14 @@ def paragraph_centroid(paragraph):
 	centroid = centroid/num_words
 	return centroid
 
+"""def line_centroid(line, k):
+        centroid = np.zeros(50)
+        for w in line:
+                if w in word_to_vec: centroid += word_to_vec[w]
+                else: centroid += np.ones(50)
+        centroid = centroid/k
+        return centroid"""
+
 def GetEmbeddingHashes(filename, k):
 	H = []
 	with open(filename, encoding='utf-8') as f:
@@ -78,8 +86,8 @@ def similarity_metric_1(X,Y):
 	similarity = trace_MN / ((trace_M2 * trace_N2) ** (0.5))
 	return similarity
 
-def centered_matrix(X):
-	"""Computes pairwise euclidean distance between rows of X and centers each cell"""
+"""def centered_matrix(X):
+	Computes pairwise euclidean distance between rows of X and centers each cell
 
 	M = squareform(pdist(X))
 	row_mean = M.mean(axis = 1)
@@ -94,7 +102,7 @@ def centered_matrix(X):
 	return centered_matrix
 
 def similarity_metric_2(X,Y):
-	"""X is a numpy matrix of size m x 50. Y is a numpy matrix of size n x 50. This function returns dCov coefficient."""
+	X is a numpy matrix of size m x 50. Y is a numpy matrix of size n x 50. This function returns dCov coefficient.
 
 	X = np.transpose(X)
 	Y = np.transpose(Y)
@@ -110,7 +118,7 @@ def similarity_metric_2(X,Y):
 	cov_N = np.sqrt((N.dot(N).sum())/((N.shape[0]) ** (0.5)))
 
 	if ((cov_M > 0.0) and (cov_N > 0.0)): return (cov_MN/np.sqrt(cov_M * cov_N))
-	else: return 1
+	else: return 1"""
 	
 def moss_embedding(t1, t2, t, k):
 	H1 = GetEmbeddingHashes(t1, k)
@@ -119,15 +127,15 @@ def moss_embedding(t1, t2, t, k):
 	HS2 = Winnowing(H2, t, k)
 
 	s = similarity_metric_1(np.array(HS1), np.array(HS2))
-	r = similarity_metric_2(np.array(HS1), np.array(HS2))
-	return (s,r)
+	#r = similarity_metric_2(np.array(HS1), np.array(HS2))
+	return s
 
-print(moss_embedding('c.txt','a.txt',4,2))
+print(moss_embedding('miraculous.txt','c.txt',9,6))
 
 folder_path = './Cartoons'
 
-t = 6
-k = 4
+t = 9
+k = 6
 
 files = os.listdir(folder_path)
 os.chdir(folder_path)
@@ -136,18 +144,18 @@ HS = [Winnowing(h,t,k) for h in H]
 
 n = len(files)
 C1 = np.identity(n)
-C2 = np.identity(n)
+#C2 = np.identity(n)
 
 for i in range(n):
 	for j in range(n):
 		s1 = similarity_metric_1(HS[i], HS[j])
-		s2 = similarity_metric_2(HS[i], HS[j])
+		#s2 = similarity_metric_2(HS[i], HS[j])
 		
 		C1[i][j] = s1
 		C1[j][i] = s1
 		
-		C2[i][j] = s2
-		C2[i][j] = s2
+		#C2[i][j] = s2
+		#C2[i][j] = s2
 
 print(C1)
 #print(C2)
