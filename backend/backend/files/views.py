@@ -51,3 +51,39 @@ class GraphView(APIView):
 			response = HttpResponse(f, content_type='application/zip')
 			response['Content-Disposition'] = 'attachment; filename="%s"' % file_path
 			return response
+
+class HeatMapView(APIView):
+		permission_classes = (IsAuthenticated,)
+		authentication_class = JSONWebTokenAuthentication
+
+		def get(self, request, format = None):
+			queryset = UploadFile.objects.filter(user=request.user)
+			recent = queryset[len(queryset)-1].uploaded.path
+			process_given_files(recent)
+			f = open(os.path.basename(recent).split('.')[0] + 'other/Graphs/heat_map.png','rb')
+			myfile = File(f)
+			queryset[len(queryset)-1].heatmapfile_set.create(hmapoutput = myfile)
+			file_path=os.path.basename(recent).split('.')[0] + 'other/Graphs/heat_map.png'
+			f.close()
+			with open(file_path, 'rb') as f:
+				response = HttpResponse(f, content_type='image/png')
+				response['Content-Disposition'] = 'attachment; filename="%s"' % file_path
+				return response
+
+class HistogramView(APIView):
+		permission_classes = (IsAuthenticated,)
+		authentication_class = JSONWebTokenAuthentication
+
+		def get(self, request, format = None):
+			queryset = UploadFile.objects.filter(user=request.user)
+			recent = queryset[len(queryset)-1].uploaded.path
+			process_given_files(recent)
+			f = open(os.path.basename(recent).split('.')[0] + 'other/Graphs/histogram.png','rb')
+			myfile = File(f)
+			queryset[len(queryset)-1].histogramfile_set.create(histoutput = myfile)
+			file_path=os.path.basename(recent).split('.')[0] + 'other/Graphs/histogram.png'
+			f.close()
+			with open(file_path, 'rb') as f:
+				response = HttpResponse(f, content_type='image/png')
+				response['Content-Disposition'] = 'attachment; filename="%s"' % file_path
+				return response
