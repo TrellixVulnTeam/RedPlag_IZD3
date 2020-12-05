@@ -1,0 +1,343 @@
+Question 1.
+
+(a)
+
+min(0,0) := 0
+min(next(n),0) := 0 for all numbers n
+min(0,next(n)) := 0 for all numbers n
+min(next(x),next(y)) := next(min(x,y)) for all numbers x,y
+
+max(0,0) := 0
+max(next(n),0) := next(n) for all numbers n
+max(0,next(n)) := next(n) for all numbers n
+max(next(x),next(y)) := next(max(x,y)) for all numbers x,y
+
+
+(b)
+
+Claim 1:
+
+add(0,m) = m for all m
+
+We will prove this by induction on m.
+
+add(0,0) = 0. So, the base case is verified
+
+add(0,next(m)) = next(add(0,m))
+
+add(0,m) = m by the induction hypothesis.
+
+next(add(0,m)) = next(m).
+
+Hence, proved.
+
+Claim 2:
+
+add(x,0) = add(max(x,0),min(x,0)) for all x
+
+Base case: add(0,0) = add(max(0,0),min(0,0)) by the definitions of min and max functions. So, the base case is true
+
+add(next(x),0) = add(max(next(x),0),min(next(x),0)) by the properties of min and max functions. So the inductive hypothesi is true and the claim is verified.
+
+Claim 3:
+
+add(0,y) = add(max(y,0),min(y,0)) for all y
+
+Base case : add(0,0) = add(max(0,0),min(0,0)) by the definitions of min and max functions. So, the base case is true.
+
+add(0,next(y)) = next(y) from Claim 1.
+
+add(next(y),0) = next(y) by the definition of addition.
+
+add(0,next(y)) = add(next(y),0) from the previous 2 statements.
+
+add(next(y),0) = add(max(next(y),0),min(0,next(y)) from claim 2.
+
+Therefore, add(0,next(y)) = add(max(next(y,0),min(next(y),0)). 
+
+Claim 4:
+
+add(next(n),m) = next(add(n,m)) for all n,m
+
+For m = 0, add(next(n),0) = next(n) and next(n) = next(add(n,0)) by definition of addition. Therefore, add(next(n),0)) = next(add(n,0))
+
+Now,
+
+add(next(n),next(m)) = next(add(next(n),m)) by the definition of addition
+add(next(n),next(m)) = next(next(add(n,m)) by induction hypothesis
+add(next(n),next(m)) = next(add(n,next(m))) by definition of addition
+
+This completes the induction step and verifies the claim
+
+So, we have proved that add(x,y) = add(max(x,y),min(x,y)) for x = 0 or y = 0.
+
+Let us prove this by induction.
+
+The base case has been verified in claims 1 2
+
+add(next(x),next(y)) = next(add(next(x),y)) from definition of addition
+add(next(x),next(y)) = next(next(add(x,y))) from claim 4
+add(next(x),next(y)) = next(next(add(max(x,y),min(x,y)) from induction hypothesis
+add(next(x),next(y)) = add(next(max(x,y)),next(min(x,y)) from claim 4 and definition of addition
+add(next(x),next(y)) = add(max(next(x),next(y)),min(next(x),next(y))) from definition of min and max functions
+
+Hence, proved
+
+
+
+(c)
+
+Let us prove this by induction on z.
+
+Base case:
+
+add(min(x,y),0) = min(x,y) by definition of addition
+add(min(x,y),0) = min(add(x,0),add(y,0)) by definition of addition
+
+So, the base case is verified
+
+Induction step :
+
+add(min(x,y),next(z)) = next(add(min(x,y),z)) by definition of addition
+add(min(x,y),next(z)) = next(min(add(x,z),add(y,z))) by induction hypothesis
+add(min(x,y),next(z)) = min(next(add(x,z)),next(add(y,z))) by definition of min function
+add(min(x,y),next(z)) = min(add(x,next(z)),add(y,next(z))) by definition of addition
+
+Hence, the induction step is complete and this completes the proof
+
+
+
+
+
+Question 2.
+
+Variable used :
+
+Type : list
+Name : size_count
+size_count will store the distinct sizes of partitions in sorted order.
+It will also store the count of partitions of each size i.e. each element in list will be of form (size_i,count_i) and size_i < size_j if size_j occurs after size_i in the list
+
+Type : integer
+Name : total
+Total will store total number of partitions
+
+Type : list of (pointer_3,array)
+Name : partitions
+List of arrays will store the partitions themseves. Each element in list will be an array containing a single partition
+pointer_3 will point to corresponding element in size_count list.
+
+Type : array
+Name : pointer_list
+pointer_list[i] will store two pointers (pointer_1,pointer_2).
+pointer_1 will point to the position of i in the correct array in partitions list, pointer_2 will point to correct element in partitions list.
+
+Type : pointer
+Name : last_element
+last_element will point to last element of size_count list.
+
+1. initialize(n):
+size_count will be initialised with single element (1,n)
+total = n
+partitions will contain n arrays. Each array will contain a single element. Array at position i = {i}. Each pointer will point to the only element in the size_count list.
+pointer_list will be initialised with appropriate arrays when size_count and partitions are initialised
+
+2. split(i):
+Use pointer_2 to get pointer_3. If pointer_3 points to element with size = 1 in the size_count list, do nothing.
+
+Else :
+Increase total by 1.
+
+Use pointer_1 and pointer_2 to exchange i with last element in partitions array. Delete i from the array.
+Updating pointer_3 of this element in partitions list:
+If this pointer points to element with count == 1, delete this (size,count) element from the list, else decrement count by one.
+Check previous element in the list. If size of previous element in list == original_size - 1, increase count of this element by 1. If this is the last element in list, update last_element.
+Else, insert new element after this element with (size,count) = (original_size - 1, 1). If this is the last element in list, update last_element.
+pointer_3 will finally point to this element in list with size = original_size - 1.
+
+
+Insert a new element in partitions array.
+For pointer_3 of this new element in partitions list, 
+check first element of size_count list. If the size of this first element = 1, increment count by 1 and pointer will point to this element.
+Else, insert new element with (size,count) = (1,1) and pointer will point to this element.
+
+
+3. shift(i,j):
+If pointer_2 of both elements points to same element in partition list, do nothing.
+
+Else,
+Follow pointer_2 of i to get pointer_3 in partitions list. Exchange i with last element. 
+Follow, pointer_3 to get size and count.
+
+If count == 1 and size != 1. Delete this element from size_count list.
+Check if previous element's size = original_size - 1. If yes, increment count of previous element by one and pointer_3 will point here.
+Else, decrement size of current element by 1.
+Delete last element present in the array in partitions i.e. i.
+
+If count != 1 and size != 1,
+Decrement count of current element by 1.
+check if size of previous element in partition list == original_size - 1. If so, increment count of this (previous) element by 1.
+Else, insert new element with (size,count) = (original_size - 1,1)
+Delete last element present in the array in partitions i.e. i.
+
+
+If size == 1,
+decrement total by 1.
+If count = 1, delete this element. Else decrement count by 1.
+Delete the current element in partitions list.
+
+
+Updating partition containing j:
+Use pointer_2 of j to get appropriate element in parititions list.
+Insert i at the end of the array.
+
+Updating pointer_3 of this partition:
+Get size and count from size_count list.
+If count == 1, increment count by 1.
+If count != 1, check next element.
+If size of next element = original_size + 1, increment count of this element by 1. Update pointer_3 to point to this element.
+If size of next element != original_size + 1, insert new element between this two elements with (size,count) = (orignal_size + 1,1).
+If pointer_3 currently points to last element in list, update last_element pointer accordingly.
+
+
+4. num_parts()
+Return total
+
+5. max_part()
+Use last_element pointer to get size of last element in size_count list. Return this size.
+
+6. meet(Q)
+Construct a boolean array (say present) of size n. present[i] = true if i is present in Q else false.
+C
+
+
+7. join(Q)
+Construct a boolean array (say present) of size n. present[i] = true if i is present in Q else false.
+Insert a new element in partitions list with empty array and pointer not yet intialised.
+Let there be a pointer P which points to this element.
+Let there be an integer variable S (size).
+
+Iterate over each element. If pointer_2 of this element == P, do nothing.
+
+Else:
+Use pointer_2 to point to element in partitions list in which the element is present.
+Follow pointer_3 to get current_size and current_count.
+If current_count = 1, delete the element in size_count list corresponding to pointer_3, else decrement count by 1.
+Increment S by current_size.
+Insert elements from array one by one to the array in last element in partitions_list. Delete element corresponding to pointer_2 from partitions list.
+Set pointer_2 = P.
+Decrement total by 1.
+
+After this iteration is over:
+Traverse size_count list.
+If there is element corresponding to size = S, increment count of that element by 1.
+Else, insert new element with (size,count) = (S,1) in between two elements such that element just previous (if it exists) has size < S and element just next (if it exists) has size > S.
+If this is the last element in size_count list, update last_element accordingly.
+Increment total by 1.
+
+Set pointer_3 of the last element in partitions to point to this element.
+
+
+
+Question 3.
+
+(a) Let us prove this by contradiction.
+
+Notation : [i,j] denotes the substring a_{i}, a_{i+1}, a_{i+2} ..... a{j}
+
+
+
+Let us pick any random element say a_{k}. Assume that it is present in present in two distinct maximal well-formed substrings say S_1 and S_2. (for proof by contradiction)
+
+Let S_1 = [i_1,j_1] and S_2 = [i_2,j_2]
+
+As this substrings are maximal, therefore one of them cannot lie within the other. 
+
+That is i_2 < i_1 <= j_1 < j_2 is not possible or i_1 < i_2 <= j_2 < j_1 is not possible.
+
+So, WLOG, let i_1 < i_2 and j_1 < j_2 else we can just exchange the subscripts and get this property.
+
+Claim : [min(i_1,i_2),max(j_1,j_2)] is also a well-formed substring.
+
+i.e. [i_1,j_2] is also a wel-formed substring.
+
+
+By the definition of well-formed substring, we have the following :
+
+1. i_1,i_2 <= k <= j_1,j_2
+
+2. a_{i_1} <= a_{x} <= a_{j_1} for i_1 <= x <= j_1
+
+3. a_{i_2} <= a_{x} <= a_{j_2} for i_2 <= x <= j_2
+
+
+
+For the above claim to hold, we must prove that
+
+a_{i_1} <= a_{x} <= a_{j_2} for i_1 <= x <= j_2.
+
+
+
+By property 2, we have that a_{i_1} <= a_{y} for i_1 <= y <= j_1
+But, a_{i_1} <= a_{i_2} by property 2.
+And, a_{i_2} <= a_{z} for i_2 <= z <= j_2 by property 3.
+Thus, by transitivity, we have that a_{i_1} <= a_{y} for i_1 <= y <= j_2.
+
+By property 3, we have that a_{y} <= a_{j_2} for i_2 <= y <= j_2
+But, a_{j_1} <= a_{j_2} by property 3.
+And, a_{z} <= a_{j_1} for i_1 <= z <= j_1 by property 2.
+Thus, by transitivity, we have that a_{y} <= a_{j_2} for i_1 <= y <= j_2.
+
+Thus, we have proved that a_{i_1} <= a_{y} <= a_{j_2} for i_1 <= y <= j_2.
+
+Thus, we have found a well formed substring [i_1,j_2] which contains both S_1 and S_2 as its proper-substrings.
+Thus, this is a contradiction as S_1 and S_2 were not maximal-well formed substrings as they both lie within another maximal well-formed substring [i_1,j_2].
+
+Thus, by contradiction, we have proved that every element lies within exactly one-well formed substring.
+
+
+(b)
+
+We will make 2 arrays.
+
+greater_right and lesser_right.
+
+greater_right[i] will store the index of the closest element whose index is greater than i and whose value is greater than or equal to a[i]. If there is no such element, it will store n.
+lesser_right[i] will store the index of the closest element whose index is greater than i and whose value is less than a[i]. If there is no such element, it will store n.
+
+By using the definition of greater_right and lesser_right,
+1. a[lesser_right[i]] < a[i] <= a[x] for i <= x < lesser_right[i]
+2. a[greater_right[i]] >= a[i] > a[x] for i <= x <= greater_right[i]
+3. (x > y) implies (x >= y)
+
+We will start iterating from i = 0.
+Since a[0] must be part of a maximal well-formed substring and there is no element to the left of it, therefore a[0] will be the left-most element in its maximal well-formed substring say [0,x].
+Since, a[0] <= a[j] for 0 <= j <= x, therefore x is strictly less than lesser_right[0] since a[lesser_right[0]] is the first element to the right of a[0] and thus all the elements in the range [0,lesser_right[0]) are greater than equal to a[0].
+
+Now, a[j] <= a[x] for 0 <= j <= x.
+
+Let z = lesser_right[0]
+Let x = 0 at starting.
+We will keep on applying y = greater_right[x] and check if y >= z. If not, x = y else we will stop.
+Now using property 2,3 and transitivity, a[x] >= a[i] for 0 <= i <= x.
+Also, x < lesser_right[0] and a[0] <= a[j] for 0 <= j < lesser_right[j].
+
+Now, this is a well-formed substring.
+
+We have to prove that this is maximal. The substring cannot be exceeded to the left as there is no element to the left.
+If we must extend the substring to the right to an index new_x, then for it to be a well-formed substring, a[j] <= a[new_x] for 0 <= j <= new_x.
+But, for this to hold, a[x] <= a[new_x].
+Therefore, new_x >= greater_right[x]. But, if new_x >= greater_right[x], then new_x >= lesser_right[0] as this was the point at which we stopped our procedure.
+Now, if new_x >= lesser_right[0], we can thus find an element in [0,new_x] which is < a[0] i.e. the leftmost element, namely a[lesser_right[0]].
+Thus, the substring cannot be extended to the right. Therefore, this is a maximal substring [0,x].
+
+Now, as each element is present in only one maximal well-formed substring and a[x+1] (if it exists) is not present in the current maximal well-formed substring starting at 0, therefore, it must be the leftmost element in its maximal well-formed substring.
+Thus, we can repeat the same procedure for a[x+1] as we did for a[0] and find its own maximal well-formed substring. We will continue this procedure for finding maximal well-formed substring until x+1 = n.
+
+
+This procedure is O(n) because :
+1. greater_right and lesser_right can be found in  O(n).
+2. Accessing lower_right[i] is an O(1) step.
+3. Accessing greater_right until it exceeds lesser_right[i] will take at most steps = length of maximal well-formed substring containing i. This occurs if all the elements are in sorted ascending order. Thus, each element is accessed at most once.
+
+Thus, this procedure is O(n).

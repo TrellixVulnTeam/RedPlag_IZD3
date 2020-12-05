@@ -1,0 +1,36 @@
+import argparse
+import pandas as pd
+import matplotlib.pyplot as plt
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--data', action = 'store')
+args = parser.parse_args()
+csvfile = args.data
+
+df = pd.read_csv(csvfile)
+grp = df.groupby(['instance'])
+
+instance_index = 1
+for inst, group in grp:
+    algos = group.groupby(['algorithm','epsilon'])
+    legend_list = []
+    title = 'Instance ' + str(instance_index) + ' -both axes on log scale'
+    file_name = 'instance' + str(instance_index) + '.png'
+    instance_index += 1
+    for algo,gp in algos:
+        regrets = gp.groupby(['horizon'])
+
+        x = [float(hor) for hor,reg in regrets]
+        y = [reg.sample(50).REG.mean() for hor,reg in regrets]
+
+        if float(algo[1]) == 0: legend_list += [str(algo[0])]
+        else: legend_list += [str(algo[0]) + ' at epsilon = ' + str(algo[1])]
+
+        plt.loglog(x,y)
+
+    plt.title(title)
+    plt.legend(legend_list, loc = 'best')
+    plt.xlabel('horizon')
+    plt.ylabel('regret')
+    plt.savefig(file_name)
+    plt.figure()

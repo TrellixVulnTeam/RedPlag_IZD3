@@ -1,0 +1,57 @@
+import matplotlib.pyplot as plt
+import matplotlib
+import numpy as np
+import pandas as pd
+import argparse
+
+
+
+def main():
+    matplotlib.use('Agg')
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data")
+    args = parser.parse_args()
+    algo = pd.read_csv(args.data)
+    grp=algo.groupby('instance')
+    grp1=grp.get_group(('i-1.txt'))
+    for name,group in grp:
+        sub_grp = group.groupby(['algorithm','epsilon'])
+        for name2,sub2 in sub_grp:
+            c=[]
+            d=[]
+            
+            sub3_grp=sub2.groupby('horizon')
+            leg=sub2.groupby(['algorithm'])
+            for name3,sub4 in sub3_grp:
+                y_var=sub4['REG'].sample(n=50).mean()
+                c.append(sub4.iloc[0,4])
+                d.append(y_var)
+                
+            if(name2[1]==0.2):
+                plt.plot(c,d,label="epsilon-greedy with epsilon=0.2")
+            elif(name2[1]==0.02):
+                plt.plot(c,d,label="epsilon-greedy with epsilon=0.02")    
+            elif(name2[1]==0.002):
+                plt.plot(c,d,label="epsilon-greedy with epsilon=0.002")
+            else:
+                plt.plot(c,d,label=name2[0])
+        plt.legend(loc="upper left")        
+        plt.xlabel('horizon')
+        plt.ylabel('Regret')
+        plt.xscale("log")
+        plt.yscale("log")
+        if(name=='i-1.txt'):
+            plt.title('Instance 1- both axes in log scale')
+            plt.savefig('instance1.png', dpi=300, bbox_inches='tight')
+            plt.clf()
+            # plt.show()
+        if(name=='i-2.txt'):
+            plt.title('Instance 2- both axes in log scale')
+            plt.savefig('instance2.png', dpi=300, bbox_inches='tight')
+            plt.clf()
+            # plt.show()
+        if(name=='i-3.txt'):
+            plt.title('Instance 3- both axes in log scale')
+            plt.savefig('instance3.png', dpi=300, bbox_inches='tight')
+            plt.clf()
+            # plt.show()
