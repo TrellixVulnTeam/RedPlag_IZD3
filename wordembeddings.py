@@ -9,6 +9,7 @@ import scipy
 import zipfile
 from django.conf import settings
 
+
 def zipdir(path, ziph):
     # ziph is zipfile handle
     for root, dirs, files in os.walk(path):
