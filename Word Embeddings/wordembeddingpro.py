@@ -214,9 +214,6 @@ folder_path = sys.argv[1]
 t = 100
 k = 50
 
-if (len(sys.argv) > 1):
-	t = int(sys.argv[2])
-	t = int(sys.argv[3])
 
 files = os.listdir(folder_path)
 os.chdir(folder_path)
