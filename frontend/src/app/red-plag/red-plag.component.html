@@ -2,11 +2,25 @@
     <br>
     <br>
     <form [formGroup]="formGroup" novalidate>
-      <input type="file" (change)="onFileChange($event)" />
+      <input type="file" name="fileupload" (change)="onFileChange($event)" />
+      <label for="fileupload"> Upload files to be checked here </label>
+      <br>
+      <input type="file" name="boilerplateupload" (change)="onBoilerPlateChange($event)" />
+      <label for="boilerplate"> Upload boilerplate here </label>
       <br>
       <br>
+
+
+      <h2> Please select type of plagiarism checking you want to do </h2>
+      <input type="radio" name="filetype" value="cpp" required="required" (change)="onRadioChange($event)" />
+      <label for="cpp">C++</label><br>
+      <input type="radio" name="filetype" value="python" required="required" (change)="onRadioChange($event)" />
+      <label for="python">Python</label><br>
+      <input type="radio" name="filetype" value="text" required="required" (change)="onRadioChange($event)" />
+      <label for="text">Text</label><br>
+
       <button type="submit" [disabled]="formGroup.invalid" (click)="onSubmit()">Upload the Code</button>
       <button (click)="onDownloadButtonClick()">Download Results</button>
     </form>
-    
+
 </div>

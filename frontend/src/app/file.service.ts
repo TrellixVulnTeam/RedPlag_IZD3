@@ -15,12 +15,14 @@ export class FileService {
 	private apiRoot = 'http://127.0.0.1:8000/file/';
   constructor(private http: HttpClient) { }
 
-  postFile(file: File): Observable<any> {
+  postFile(file: File, boilerplate: File, fileType): Observable<any> {
   	console.log("post file");
   	console.log(file);
     const formData: FormData = new FormData();
 
     formData.append('uploaded', file);
+    formData.append('boilerplate', boilerplate);
+    formData.append('fileType',fileType);
     console.log("hello");
 	console.log("file = ",file);
 	console.log("formData = ",formData);

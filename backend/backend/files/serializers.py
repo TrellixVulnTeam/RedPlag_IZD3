@@ -5,5 +5,4 @@ class FileSerializer(serializers.ModelSerializer):
 	# user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 	class Meta():
 		model = UploadFile
-		fields = ('uploaded','timestamp')
-    
+		fields = ('uploaded','timestamp', 'boilerplate','fileType')

@@ -13,6 +13,7 @@
 	 Classify identifiers by type (int, class etc)
 	 For <=> while <=> do-while
 	 if(condition) <=> if(!(!condition)) and  if-else reverse by negating condition
+	 if-else <=> use of ? operator
 	 pair<int,int> vs user-defined struct
 	 typedef, define 
 	 
