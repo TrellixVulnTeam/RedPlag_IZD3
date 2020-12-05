@@ -115,6 +115,9 @@ def GetEmbeddingHashesCharacter(filename,k):
 				kgram = kgram[:-1]
 				i -= 1
 				length -= len(words[i])
+
+	if(len(H) == 0):
+		return [word_centroid(kgram)]
 	
 	return H	
 		
@@ -163,6 +166,40 @@ def similarity_metric_1(X,Y):
 
 	similarity = trace_MN / ((trace_M2 * trace_N2) ** (0.5))
 	return similarity
+
+"""def centered_matrix(X):
+	Computes pairwise euclidean distance between rows of X and centers each cell
+
+	M = squareform(pdist(X))
+	row_mean = M.mean(axis = 1)
+	column_mean = M.mean(axis = 0)
+	total_mean = row_mean.mean()
+
+	R = np.tile(row_mean, (M.shape[0],1)).transpose()
+	C = np.tile(column_mean, (M.shape[1],1))
+	G = np.tile(total_mean,M.shape)
+
+	centered_matrix = M - R - C + G
+	return centered_matrix
+
+def similarity_metric_2(X,Y):
+	X is a numpy matrix of size m x 50. Y is a numpy matrix of size n x 50. This function returns dCov coefficient.
+
+	X = np.transpose(X)
+	Y = np.transpose(Y)
+
+	# Now X and Y have same number of rows
+	# X has dimension = 50 x m. Y has dimension = 50 x n
+
+	M = centered_matrix(X)
+	N = centered_matrix(Y)
+
+	cov_MN = np.sqrt(M.dot(N).sum())/M.shape[0]
+	cov_M = np.sqrt((M.dot(M).sum())/((M.shape[0]) ** (0.5)))
+	cov_N = np.sqrt((N.dot(N).sum())/((N.shape[0]) ** (0.5)))
+
+	if ((cov_M > 0.0) and (cov_N > 0.0)): return (cov_MN/np.sqrt(cov_M * cov_N))
+	else: return 1"""
 	
 def moss_embedding(t1, t2, t, k):
 	H1 = GetEmbeddingHashesCharacter(t1, k)
@@ -171,6 +208,7 @@ def moss_embedding(t1, t2, t, k):
 	HS2 = Winnowing(H2, t, k)
 
 	s = similarity_metric_1(np.array(HS1), np.array(HS2))
+	#r = similarity_metric_2(np.array(HS1), np.array(HS2))
 	return s
 
 
@@ -179,6 +217,7 @@ folder_path = sys.argv[1]
 t = 100
 k = 30
 
+
 files = os.listdir(folder_path)
 os.chdir(folder_path)
 H = [GetEmbeddingHashesCharacter(f,k) for f in files]
@@ -186,12 +225,18 @@ HS = [Winnowing(h,t,k) for h in H]
 
 n = len(files)
 C1 = np.identity(n)
+#C2 = np.identity(n)
 
 for i in range(n):
 	for j in range(n):
 		s1 = similarity_metric_1(HS[i], HS[j])
+		#s2 = similarity_metric_2(HS[i], HS[j])
 		
 		C1[i][j] = s1
 		C1[j][i] = s1
+		
+		#C2[i][j] = s2
+		#C2[i][j] = s2
 
 print(C1)
+#print(C2)
