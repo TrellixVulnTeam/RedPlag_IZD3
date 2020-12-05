@@ -1,4 +1,7 @@
+import re
+import sys
 import numpy as np
+from numpy.linalg import norm
 import os
 from scipy.spatial.distance import squareform, pdist
 
@@ -41,7 +44,81 @@ def GetEmbeddingHashes(filename, k):
 		for i in range(len(lines)-k):
 			kparagraph = lines[i:i+k]
 			H.append(paragraph_centroid(kparagraph))
+		if len(lines) <= k: H = [paragraph_centroid(lines[0:])]
 	return H
+
+def word_centroid(kgram):
+	num_words = 0
+	centroid = np.zeros(50)
+	for word in kgram:
+		if word in word_to_vec:
+			centroid += word_to_vec[word]
+		else: centroid += np.zeros(50)
+		num_words += 1
+	centroid = centroid/num_words
+	if norm(centroid == 0.0):
+		return (np.ones(50) / num_words)
+	return centroid
+
+def GetEmbeddingHashesCharacter(filename,k):
+	H = []
+	with open(filename, encoding = 'utf-8') as f:
+		lines = [line for line in f]
+		words = []
+		for line in lines:
+			text = re.sub('([^a-zA-Z0-9\s]+)',' ',line)
+			text = text.strip()
+			text = text.lower()
+			text = re.sub('([\s])+',' ',text)
+			text = re.sub('(\n+)','',text)
+			text = text.strip()
+			new_words = text.split(' ')
+			for word in new_words:
+				words.append(word)
+		#print(words[0])
+		kgram = []
+		i = 0
+		length = 0
+		n = len(words)
+		while length < k and i < n:
+			kgram.append(words[i])
+			length += len(words[i])
+			i += 1
+
+
+		if (length > k) and (i > 1):
+			kgram = kgram[:-1]
+			i -= 1
+			length -= len(words[i])
+
+		j = 0
+		
+		H = []
+		#print(kgram)
+		while i < n:
+			H.append(word_centroid(kgram))
+			kgram.append(words[i])
+			length += len(words[i])
+			i += 1
+
+			while length >= k and j < i:
+				kgram = kgram[1:]
+				length -= len(words[j])
+				j += 1
+
+			while length < k and i < n:
+				kgram.append(words[i])
+				length += len(words[i])
+				i += 1
+
+			if length > k and i > (j+1):
+				kgram = kgram[:-1]
+				i -= 1
+				length -= len(words[i])
+	
+	return H	
+		
+
 
 def Winnowing(H, t, k):
 	HS = []
@@ -55,6 +132,7 @@ def Winnowing(H, t, k):
 	mI = -1
 	pmI = -1
 
+	if len(H) < w: HS.append(H[0])
 	for i in range(len(H)-w+1):
 		tm = 2
 		for j in range(i, i+w):
@@ -121,8 +199,8 @@ def similarity_metric_2(X,Y):
 	else: return 1"""
 	
 def moss_embedding(t1, t2, t, k):
-	H1 = GetEmbeddingHashes(t1, k)
-	H2 = GetEmbeddingHashes(t2, k)
+	H1 = GetEmbeddingHashesCharacter(t1, k)
+	H2 = GetEmbeddingHashesCharacter(t2, k)
 	HS1 = Winnowing(H1, t, k)
 	HS2 = Winnowing(H2, t, k)
 
@@ -130,16 +208,19 @@ def moss_embedding(t1, t2, t, k):
 	#r = similarity_metric_2(np.array(HS1), np.array(HS2))
 	return s
 
-print(moss_embedding('miraculous.txt','c.txt',9,6))
 
-folder_path = './Cartoons'
+folder_path = sys.argv[1]
 
-t = 9
-k = 6
+t = 100
+k = 50
+
+if (len(sys.argv) > 1):
+	t = int(sys.argv[2])
+	t = int(sys.argv[3])
 
 files = os.listdir(folder_path)
 os.chdir(folder_path)
-H = [GetEmbeddingHashes(f,k) for f in files]
+H = [GetEmbeddingHashesCharacter(f,k) for f in files]
 HS = [Winnowing(h,t,k) for h in H]
 
 n = len(files)
