@@ -22,6 +22,9 @@
       <br>
       <button type="submit" [disabled]="formGroup.invalid" (click)="onSubmit()">Upload the Code</button>
       <button (click)="onDownloadButtonClick()">Download Results</button>
+      <button (click)="onShowResults()"> Show Results </button>
+      <img [src]='heatMap' />
+      <img [src]='histogram' />
     </form>
 
 </div>

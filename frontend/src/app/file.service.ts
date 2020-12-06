@@ -34,9 +34,27 @@ export class FileService {
 	getProcessedFiles() {
 		console.log("download service");
 		const httpOptions = {
-    responseType: 'blob' as 'json',
-	  };
+    			responseType: 'blob' as 'json',
+	  	};
 
-	  return this.http.get(this.apiRoot.concat('results/'), httpOptions);
-		}
+	 	return this.http.get(this.apiRoot.concat('results/'), httpOptions);
+	}
+
+	getHeatMap() {
+		console.log("HeatMap");
+		const httpOptions = {
+			responseType: 'blob' as 'json',
+		};
+
+		return this.http.get(this.apiRoot.concat('heatmap/'), httpOptions);
+	}
+
+	getHistogram() {
+		console.log("Histogram");
+		const httpOptions = {
+			responseType: 'blob' as 'json',
+		};
+
+		return this.http.get(this.apiRoot.concat('histogram/'), httpOptions);
+	}
 }
