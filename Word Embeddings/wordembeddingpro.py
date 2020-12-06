@@ -6,6 +6,9 @@ import os
 from scipy.spatial.distance import squareform, pdist
 
 word_to_vec = {}
+
+# Loading glove vectors 
+
 with open('glove100D.txt', encoding='utf-8') as glove:
 	lines = [line for line in glove]
 	for line in lines:
@@ -15,39 +18,8 @@ with open('glove100D.txt', encoding='utf-8') as glove:
 		word_to_vec[line[0]] = vec
 
 
-def paragraph_centroid(paragraph):
-	num_words = 0
-	centroid = np.zeros(100)
-	for line in paragraph:
-		words = line.split(' ')
-		for word in words:
-			if word in word_to_vec: centroid += word_to_vec[word]
-			else: centroid += np.ones(100)
-			num_words += 1
-	centroid = centroid/num_words
-	return centroid
-
-"""def line_centroid(line, k):
-        centroid = np.zeros(50)
-        for w in line:
-                if w in word_to_vec: centroid += word_to_vec[w]
-                else: centroid += np.ones(50)
-        centroid = centroid/k
-        return centroid"""
-
-def GetEmbeddingHashes(filename, k):
-	H = []
-	with open(filename, encoding='utf-8') as f:
-		#lines = f.read()
-		#lines = lines.rstrip('\n')
-		lines = [line for line in f]
-		for i in range(len(lines)-k):
-			kparagraph = lines[i:i+k]
-			H.append(paragraph_centroid(kparagraph))
-		if len(lines) <= k: H = [paragraph_centroid(lines[0:])]
-	return H
-
 def word_centroid(kgram):
+	"""Returns centroid of kgram using glove vectors. kgram is a list of words."""
 	num_words = 0
 	centroid = np.zeros(100)
 	for word in kgram:
@@ -61,6 +33,7 @@ def word_centroid(kgram):
 	return centroid
 
 def GetEmbeddingHashesCharacter(filename,k):
+	"""Returns Hashes of k-grams. k-grams has the number of words such that length (number of characters) is just greater than k. Hash of a k-gram is defined to be the centroid of the glove vectors of the words."""
 	H = []
 	with open(filename, encoding = 'utf-8') as f:
 		lines = [line for line in f]
@@ -124,6 +97,7 @@ def GetEmbeddingHashesCharacter(filename,k):
 
 
 def Winnowing(H, t, k):
+	"""Appplying winnowing algorithm on hashes."""
 	HS = []
 	w = t + 1 - k
 	n = len(H)
@@ -149,7 +123,7 @@ def Winnowing(H, t, k):
 	return HS
 		
 def similarity_metric_1(X,Y):
-	"""X is a numpy matrix of size m x 50. Y is a numpy matrix of size n x 50. This function returns a similarity coefficient between them = trace(X'XY'Y)/sqrt(trace((X'X)^2)trace((Y'Y)^2))."""
+	"""X is a numpy matrix of size m x 100. Y is a numpy matrix of size n x 100. This function returns a similarity coefficient between them = trace(X'XY'Y)/sqrt(trace((X'X)^2)trace((Y'Y)^2))."""
 	M = np.transpose(X).dot(X)
 	N = np.transpose(Y).dot(Y)
   
@@ -167,48 +141,15 @@ def similarity_metric_1(X,Y):
 	similarity = trace_MN / ((trace_M2 * trace_N2) ** (0.5))
 	return similarity
 
-"""def centered_matrix(X):
-	Computes pairwise euclidean distance between rows of X and centers each cell
-
-	M = squareform(pdist(X))
-	row_mean = M.mean(axis = 1)
-	column_mean = M.mean(axis = 0)
-	total_mean = row_mean.mean()
-
-	R = np.tile(row_mean, (M.shape[0],1)).transpose()
-	C = np.tile(column_mean, (M.shape[1],1))
-	G = np.tile(total_mean,M.shape)
-
-	centered_matrix = M - R - C + G
-	return centered_matrix
-
-def similarity_metric_2(X,Y):
-	X is a numpy matrix of size m x 50. Y is a numpy matrix of size n x 50. This function returns dCov coefficient.
-
-	X = np.transpose(X)
-	Y = np.transpose(Y)
-
-	# Now X and Y have same number of rows
-	# X has dimension = 50 x m. Y has dimension = 50 x n
-
-	M = centered_matrix(X)
-	N = centered_matrix(Y)
-
-	cov_MN = np.sqrt(M.dot(N).sum())/M.shape[0]
-	cov_M = np.sqrt((M.dot(M).sum())/((M.shape[0]) ** (0.5)))
-	cov_N = np.sqrt((N.dot(N).sum())/((N.shape[0]) ** (0.5)))
-
-	if ((cov_M > 0.0) and (cov_N > 0.0)): return (cov_MN/np.sqrt(cov_M * cov_N))
-	else: return 1"""
 	
 def moss_embedding(t1, t2, t, k):
+	"""Get similarity between t1 and t2."""
 	H1 = GetEmbeddingHashesCharacter(t1, k)
 	H2 = GetEmbeddingHashesCharacter(t2, k)
 	HS1 = Winnowing(H1, t, k)
 	HS2 = Winnowing(H2, t, k)
 
 	s = similarity_metric_1(np.array(HS1), np.array(HS2))
-	#r = similarity_metric_2(np.array(HS1), np.array(HS2))
 	return s
 
 
@@ -224,19 +165,15 @@ H = [GetEmbeddingHashesCharacter(f,k) for f in files]
 HS = [Winnowing(h,t,k) for h in H]
 
 n = len(files)
+
+# Similarity matrix
 C1 = np.identity(n)
-#C2 = np.identity(n)
 
 for i in range(n):
-	for j in range(n):
+	for j in range(i):
 		s1 = similarity_metric_1(HS[i], HS[j])
-		#s2 = similarity_metric_2(HS[i], HS[j])
 		
 		C1[i][j] = s1
 		C1[j][i] = s1
-		
-		#C2[i][j] = s2
-		#C2[i][j] = s2
 
 print(C1)
-#print(C2)
