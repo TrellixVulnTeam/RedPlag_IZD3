@@ -99,3 +99,46 @@ h2{
       }
 
 }
+
+.column {
+    float: left;
+    width: 40%;
+    padding: 5px;
+    margin-left: 180px;
+    border-radius: 5px;
+  }
+
+  .columnr {
+    float: right;
+    width: 40%;
+    padding: 5px;
+    margin-right: 180px;
+    border-radius: 5px;
+  }
+  
+  /* Clear floats after image containers */
+  .row::after {
+    content: "";
+    text-align: center;
+    clear: both;
+    display: table;
+  }
+
+  img {
+    border-radius: 5px;
+    border: 10px solid rgba(2, 128, 144, 1);
+    margin: 5px;
+    box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.5);
+    &:hover {
+        background-color: darken($greenSeaweed, 5%);
+      }
+  }
+
+  figcaption{
+    font-family: $fontAsap;
+    cursor: pointer;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+  }

@@ -1,6 +1,4 @@
 <div>
-    <br>
-    <br>
     <form [formGroup]="formGroup" novalidate>
       <input type="file" name="fileupload" (change)="onFileChange($event)" />
       <label for="fileupload"> &nbsp; &nbsp; Select the files &nbsp; &nbsp; &nbsp;</label>
@@ -24,8 +22,22 @@
       <button (click)="onProcessFiles()">Process Files</button>
       <button (click)="onDownloadButtonClick()">Download Results</button>
       <button (click)="onShowResults()"> Show Results </button>
-      <img [src]='heatMap' />
-      <img [src]='histogram' />
     </form>
-
+    <br>
+    <br>
+    <br>
+    <div class="row">
+      <div class="column">
+        <figure>
+          <img [src]="heatMap"  style="width:100%">
+          <figcaption>Heat Map</figcaption>
+        </figure>
+      </div>
+      <div class="columnr">
+        <figure>
+          <img [src]="histogram"  style="width:100%">
+          <figcaption>Histogram</figcaption>
+        </figure>
+      </div>
+    </div>
 </div>
