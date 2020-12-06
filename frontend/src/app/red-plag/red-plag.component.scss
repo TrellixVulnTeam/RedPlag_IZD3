@@ -31,7 +31,7 @@ button{
 label{
     font-family: $fontAsap;
     color: #fff;
-    font-size: 20px;
+    font-size: 16px;
     text-transform: uppercase;    
 }
 
@@ -71,8 +71,8 @@ input[type=radio]{
     margin-top: 10px;
     margin-left: 10px;
     border-radius: 5px;
-    background-color: $greenSeaweed;
-    box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.5);
+
+
     &:hover {
         background-color: darken($greenSeaweed, 5%);
       }
@@ -84,7 +84,7 @@ h2{
     font-family: $fontAsap;
     cursor: pointer;
     color: #fff;
-    font-size: 24px;
+    font-size: 16px;
     text-align: center;
     text-transform: uppercase;
     border: 0;
@@ -93,6 +93,7 @@ h2{
     margin-left: 10px;
     border-radius: 5px;
     background-color: $greenSeaweed;
+    text-decoration: none;
     box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.5);
     &:hover {
         background-color: darken($greenSeaweed, 5%);

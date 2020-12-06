@@ -19,7 +19,7 @@ def zipdir(path, ziph):
 def compute_dict(file_path):
     """Computes the dict for a file whose path is file_path"""
     file_dict = {}
-    with open(file_path) as fin:
+    with open(file_path, encoding = 'utf8') as fin:
         for line in fin:
             line = line.strip()
             txt = re.sub('([^a-zA-Z0-9\s]+)',' \\1 ',line)
