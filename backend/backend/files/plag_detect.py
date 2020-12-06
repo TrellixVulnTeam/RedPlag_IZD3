@@ -108,8 +108,8 @@ def histogram(correlation_matrix,folder_path,bin_size = 0.10,img_format = 'png')
     
     if(img_format[0] == '.'):
         img_format = img_format[1:]
-    file_path = folder_path + "\\Graphs\\histogram." + img_format
-    folder_loc = folder_path + "\\Graphs"
+    file_path = folder_path + "/Graphs/histogram." + img_format
+    folder_loc = folder_path + "/Graphs"
     if not os.path.exists(folder_loc):
         os.makedirs(folder_loc)
     
@@ -132,7 +132,7 @@ def plot_heat_map(correlation_matrix,folder_path,coloring = 'hot', img_format = 
     if (img_format[0] == '.'):
         img_format = img_format[1:]
     
-    file_path = folder_path + "\\Graphs\\heat_map." + img_format
+    file_path = folder_path + "/Graphs/heat_map." + img_format
     
     plt.savefig(file_path)
     plt.clf()
@@ -144,8 +144,8 @@ def save_csv_file(correlation_matrix,num_to_files,folder_path):
     csv_list = []
     num_files = correlation_matrix.shape[0]
 
-    file_path = folder_path + "\\CSV\\similarity_list.csv"
-    folder_loc = folder_path + "\\CSV"
+    file_path = folder_path + "/CSV/similarity_list.csv"
+    folder_loc = folder_path + "/CSV"
 
     if not os.path.exists(folder_loc):
         os.makedirs(folder_loc)
