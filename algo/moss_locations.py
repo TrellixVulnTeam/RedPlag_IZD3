@@ -2,21 +2,21 @@ import numpy as np
 q=1000000007
 
 def intersection(lst1, lst2):
-	l1hash = [hash[0] for hash in lst1] 
-	l2hash = [hash[0] for hash in lst2]
-	l1loc = {hash[0]:hash[1:] for hash in lst1}
-	l2loc = {hash[0]:hash[1:] for hash in lst2}
+	l1h = [h[0] for h in lst1] 
+	l2h = [h[0] for h in lst2]
+	l1loc = {h[0]:h[1:] for h in lst1}
+	l2loc = {h[0]:h[1:] for h in lst2}
 	
-	l3hash = list(set(l1hash)&set(l2hash))
-	l3 = [(hash, l1loc[hash], l2loc[hash]) for hash in l3hash] 
-	sim = len(l3)/min(len(set(l1hash)), len(set(l2hash)))
+	l3h = list(set(l1h)&set(l2h))
+	l3 = [(h, l1loc[h], l2loc[h]) for h in l3h] 
+	sim = len(l3)/min(len(set(l1h)), len(set(l2h)))
 	return l3, sim
 
 def similarity(lst1, lst2):
-	l1hash = [hash[0] for hash in lst1] 
-	l2hash = [hash[0] for hash in lst2]
-	l3hash = list(set(l1hash)&set(l2hash))
-	sim = len(l3hash)/min(len(set(l1hash)), len(set(l2hash)))
+	l1h = [h[0] for h in lst1] 
+	l2h = [h[0] for h in lst2]
+	l3h = list(set(l1h)&set(l2h))
+	sim = len(l3h)/min(len(set(l1h)), len(set(l2h)))
 	return sim
 
 def GetHLoc(t,id,k):
@@ -72,8 +72,8 @@ def moss(files, t, k):
 				max_overlap_index = j
 		intersect, s = intersection(HS[i], HS[max_overlap_index])
 		markings_i = []
-		for hash in intersect:
-				markings_i += [hash[1][1]]
+		for h in intersect:
+				markings_i += [h[1][1]]
 		markings += [markings_i]
 
 	return C, markings
@@ -98,8 +98,8 @@ def moss_all_pairs(files, t, k):
 			intersect,sim = intersection(HS[i], HS[j])
 			C[i][j] = sim
 			C[j][i] = sim
-			for hash in intersect:
-				markings[i][j] += [hash[1][1]]
-				markings[j][i] += [hash[2][1]]				
+			for h in intersect:
+				markings[i][j] += [h[1][1]]
+				markings[j][i] += [h[2][1]]				
 
 	return C, markings			
