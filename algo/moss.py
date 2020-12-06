@@ -4,6 +4,7 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy
+import seaborn as sns
 
 q=1000000007
 
@@ -77,14 +78,23 @@ def histogram(correlation_matrix,folder_path,bin_size = 0.10,img_format = 'png')
     plt.clf()
 
 
-def plot_heat_map(correlation_matrix,folder_path,coloring = 'hot', img_format = '.png'):
+def plot_heat_map(correlation_matrix,files,folder_path,coloring = 'hot', img_format = '.png'):
     """Plots heat map of the correlation matrix. Coloring specifies the colour scheme."""
 
-    plt.imshow(correlation_matrix, cmap = coloring)
-    #plt.show()
+    plt.figure()
+    sns.set(font_scale=0.7)
+    hm = sns.heatmap(correlation_matrix,
+                     cbar=True,
+                     annot=True,
+                     square=True,
+                     fmt='.3f',
+                     annot_kws={'size': 12},
+                     yticklabels=files.values(),
+                     xticklabels=files.values())
+    plt.title('Covariance matrix showing correlation coefficients')
+    plt.tight_layout()
     if (img_format[0] == '.'):
         img_format = img_format[1:]
-    
     file_path = folder_path + "/Graphs/heat_map." + img_format
     
     plt.savefig(file_path)
@@ -140,8 +150,8 @@ def main():
         print()
 
     histogram(correlation_matrix,folder_path)
-    plot_heat_map(correlation_matrix,folder_path)
-    save_csv_file(correlation_matrix,num_to_files,folder_path)
+    plot_heat_map(correlation_matrix,num_to_files,folder_path)
+    save_csv_file(correlation_matrix,files,folder_path)
 
 
 if __name__ == '__main__':
