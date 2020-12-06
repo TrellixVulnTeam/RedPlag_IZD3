@@ -89,8 +89,8 @@ def plot_heat_map(correlation_matrix,files,folder_path,coloring = 'hot', img_for
                      square=True,
                      fmt='.3f',
                      annot_kws={'size': 12},
-                     yticklabels=files.values(),
-                     xticklabels=files.values())
+                     yticklabels=files,
+                     xticklabels=files)
     plt.title('Covariance matrix showing correlation coefficients')
     plt.tight_layout()
     if (img_format[0] == '.'):
@@ -150,8 +150,8 @@ def main():
         print()
 
     histogram(correlation_matrix,folder_path)
-    plot_heat_map(correlation_matrix,num_to_files,folder_path)
-    save_csv_file(correlation_matrix,files,folder_path)
+    plot_heat_map(correlation_matrix,files,folder_path)
+    save_csv_file(correlation_matrix,num_to_files,folder_path)
 
 
 if __name__ == '__main__':
