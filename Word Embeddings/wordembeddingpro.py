@@ -6,7 +6,7 @@ import os
 from scipy.spatial.distance import squareform, pdist
 
 word_to_vec = {}
-with open('glove50D.txt', encoding='utf-8') as glove:
+with open('glove100D.txt', encoding='utf-8') as glove:
 	lines = [line for line in glove]
 	for line in lines:
 		line = line.split(' ')
@@ -17,12 +17,12 @@ with open('glove50D.txt', encoding='utf-8') as glove:
 
 def paragraph_centroid(paragraph):
 	num_words = 0
-	centroid = np.zeros(50)
+	centroid = np.zeros(100)
 	for line in paragraph:
 		words = line.split(' ')
 		for word in words:
 			if word in word_to_vec: centroid += word_to_vec[word]
-			else: centroid += np.ones(50)
+			else: centroid += np.ones(100)
 			num_words += 1
 	centroid = centroid/num_words
 	return centroid
@@ -49,15 +49,15 @@ def GetEmbeddingHashes(filename, k):
 
 def word_centroid(kgram):
 	num_words = 0
-	centroid = np.zeros(50)
+	centroid = np.zeros(100)
 	for word in kgram:
 		if word in word_to_vec:
 			centroid += word_to_vec[word]
-		else: centroid += np.zeros(50)
+		else: centroid += np.zeros(100)
 		num_words += 1
 	centroid = centroid/num_words
 	if norm(centroid == 0.0):
-		return (np.ones(50) / num_words)
+		return (np.ones(100) / num_words)
 	return centroid
 
 def GetEmbeddingHashesCharacter(filename,k):
@@ -128,7 +128,7 @@ def Winnowing(H, t, k):
 	w = t + 1 - k
 	n = len(H)
 
-	mean = np.zeros(50)
+	mean = np.zeros(100)
 	for h in H: mean += h
 	mean = mean/n
 
