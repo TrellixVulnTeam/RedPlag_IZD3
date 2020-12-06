@@ -8,7 +8,13 @@ import numpy as np
 q=1000000007
 
 def intersection(lst1, lst2):
-	"""Input: 2 lists $lst1 and $lst2 whose elements are of the form (hash, document ID)Finds hashes that are common to both $lst1 and $lst2"""
+	"""Input: 2 lists $lst1 and $lst2 whose elements are of the form (hash, document ID, character position)
+		Finds hashes that are common to both $lst1 and $lst2 and stores their location in both documents
+		Finds similarity that is measured by 
+			\f[
+			sim(A,B) = \frac{\left | A \cap B\right |}{min \left(\ \left | A \right | , \left | B \right | right)}\f]
+			
+	Output: list of common hashes with locations and similarity"""
 	l1h = [h[0] for h in lst1] 
 	l2h = [h[0] for h in lst2]
 	l1loc = {h[0]:h[1:] for h in lst1}
@@ -20,6 +26,7 @@ def intersection(lst1, lst2):
 	return l3, sim
 
 def similarity(lst1, lst2):
+	"""Evaluates similarity as done in $intersection function but doesn't return locations of common hashes"""
 	l1h = [h[0] for h in lst1] 
 	l2h = [h[0] for h in lst2]
 	l3h = list(set(l1h)&set(l2h))
@@ -27,6 +34,9 @@ def similarity(lst1, lst2):
 	return sim
 
 def GetHLoc(t,id,k):
+	"""Given a file $t of ID $i and k-gram parameter $k, this function reads the file in a single string and evaluate its k-grams. 
+	For each k-gram, Karp-Rabin hash value is evaluated and stored in a list $H. Along with the hashes, the location given by document ID and the character 
+	at which the k-gram begins are stored"""
 	H = []
 	infile = open(t,'r').read()
 	infile = infile.rstrip('\n')
@@ -39,6 +49,10 @@ def GetHLoc(t,id,k):
 	return H
 
 def Win(H,t,k):
+	"""Given a list $H that contains the result of GetHLoc function, i.e. a list whose elements are of the form (hash, document ID, character position),
+		a threshold parameter $t and k-gram parameter $k, function applies Winnowing algorithm on a window size such that for every substring of length $t we pick a hash.
+		
+	Returns a list $HS that has selected (winnowed) some elements of $H by the above method"""
 	HS=[]
 	w=t+1-k
 	n=len(H)
@@ -87,6 +101,10 @@ def moss(files, t, k):
 		
 		
 def moss_all_pairs(files, t, k):
+	""" Given a list of files, threshold parameter $t and k-gram parameter $k, 
+	evaluates for every pair, the MOSS similarity and 
+	stores matching hashes into matrices C and markings respectively"""
+	
 	n = len(files)
 	H = [GetHLoc(files[i],i,k) for i in range(n)]
 	HS = [Win(h,t,k) for h in H]
