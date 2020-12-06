@@ -33,21 +33,7 @@ with open('glove100D.txt', encoding='utf-8') as glove:
 		word_to_vec[line[0]] = vec
 
 def histogram(correlation_matrix,folder_path,bin_size = 0.10,img_format = 'png'):
-	"""!
-	\brief Creates histogram of frequencies of values in correlation matrix.
-
-	\details Counts number of files present in each bin. 1/bin_size must be an integer. 0 < bin_size <= 1. Default value of bin_size is 0.10
-
-	\param correlation matrix : Similarity values between all pairs of files
-
-	\param folder_path : Location where graph is to be stored
-
-	\param bin_size : Bin size of histogram. Default value is 0.10
-
-	\param img_format : Format in which image is to be stored. Default value is 'png'
-
-	\return void
-	"""
+	"""Counts number of files present in each bin. 1/bin_size must be an integer. 0 < bin_size <= 1. Default value of bin_size is 0.10"""
 
 	num_files = correlation_matrix.shape[0]
 	bins = np.arange(0,1+bin_size,bin_size)
@@ -79,76 +65,45 @@ def histogram(correlation_matrix,folder_path,bin_size = 0.10,img_format = 'png')
 
 
 def plot_heat_map(correlation_matrix,files,folder_path,coloring = 'hot', img_format = '.png'):
-	"""!
-	\brief Creates heat map of similarity values of files
+    """Plots heat map of the correlation matrix. Coloring specifies the colour scheme."""
 
-	\details Creates heat map of similarity values of files. X - axis and Y - axis represent the files. The colour of the block represents the similarity.
-
-	\param correlation matrix : Similarity values between all pairs of files
-
-	\param files :	List containing names of all files on which simila
-
-	\param folder_path : Location where graph is to be stored
-
-	\param coloring : Coloring of heat map. Default is hot
-
-	\param img_format : Format in which image is to be stored. Default value is 'png'
-
-	\return void
-	"""
-
-
-	plt.figure()
-	sns.set(font_scale=0.7)
-	hm = sns.heatmap(correlation_matrix,
-			cbar=True,
-			annot=True,
-			square=True,
-			fmt='.3f',
-			annot_kws={'size': 12},
-			yticklabels=files,
-			xticklabels=files)
-	plt.title('Covariance matrix showing correlation coefficients')
-	plt.tight_layout()
-	if (img_format[0] == '.'):
-		img_format = img_format[1:]
-	file_path = folder_path + "/Graphs/heat_map." + img_format
+    plt.figure()
+    sns.set(font_scale=0.7)
+    hm = sns.heatmap(correlation_matrix,
+                     cbar=True,
+                     annot=True,
+                     square=True,
+                     fmt='.3f',
+                     annot_kws={'size': 12},
+                     yticklabels=files,
+                     xticklabels=files)
+    plt.title('Covariance matrix showing correlation coefficients')
+    plt.tight_layout()
+    if (img_format[0] == '.'):
+        img_format = img_format[1:]
+    file_path = folder_path + "/Graphs/heat_map." + img_format
     
-	plt.savefig(file_path)
-	plt.clf()
+    plt.savefig(file_path)
+    plt.clf()
             
 
 def save_csv_file(correlation_matrix,num_to_files,folder_path):
-	"""!
-	\brief Stores similarity values between files in a file.
+    """Saves similarity between files"""
 
-	\details Stores similarity values between files currently stored in correlation_matrix in .csv format
+    csv_list = []
+    num_files = correlation_matrix.shape[0]
 
-	\param correlation matrix : Similarity values between all pairs of files
+    file_path = folder_path + "/CSV/similarity_list.csv"
+    folder_loc = folder_path + "/CSV"
 
-	\param num_to_files : Conversion of file index to file name
+    if not os.path.exists(folder_loc):
+        os.makedirs(folder_loc)
 
-	\param folder_path : Location where graph is to be stored
-
-	\return void
-	"""
-
-
-
-	csv_list = []
-	num_files = correlation_matrix.shape[0]
-
-	file_path = folder_path + "/CSV/similarity_list.csv"
-	folder_loc = folder_path + "/CSV"
-
-	if not os.path.exists(folder_loc):
-		os.makedirs(folder_loc)
-
-	with open(file_path,'w') as fout:
-		for i in range(1,num_files):
-			for j in range(i):
-				line = num_to_files[i] + ',' + num_to_files[j] + ',' + str(correlation_matrix[i][j]) + '\n'
-				fout.write(line)
+    with open(file_path,'w') as fout:
+        for i in range(1,num_files):
+            for j in range(i):
+                line = num_to_files[i] + ',' + num_to_files[j] + ',' + str(correlation_matrix[i][j]) + '\n'
+                fout.write(line)
 
 
 def word_centroid(kgram):
