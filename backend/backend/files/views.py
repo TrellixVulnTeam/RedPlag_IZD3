@@ -19,9 +19,11 @@ class FileView(APIView):
 	authentication_class = JSONWebTokenAuthentication
 
 	def get(self, request, format = None):
-		queryset = UploadFile.objects.get(user=request.user)
+		queryset = UploadFile.objects.filter(user=request.user)
+		recent = queryset[len(queryset)-1].uploaded.path
+		process_given_files(recent)
 		filelist = [file.uploaded.name for file in queryset]
-		return Response(filelist)
+		return Response(filelist[-1])
 
 	def post(self, request, *args, **kwargs):
 		file_serializer = FileSerializer(data=request.data)
@@ -41,7 +43,7 @@ class GraphView(APIView):
 	def get(self, request, format = None):
 		queryset = UploadFile.objects.filter(user=request.user)
 		recent = queryset[len(queryset)-1].uploaded.path
-		process_given_files(recent)
+		#process_given_files(recent)
 		f = open(os.path.basename(recent).split('.')[0] + 'other.zip','rb')
 		myfile = File(f)
 		queryset[len(queryset)-1].outputfile_set.create(textoutput = myfile)
@@ -59,7 +61,7 @@ class HeatMapView(APIView):
 		def get(self, request, format = None):
 			queryset = UploadFile.objects.filter(user=request.user)
 			recent = queryset[len(queryset)-1].uploaded.path
-			process_given_files(recent)
+			#process_given_files(recent)
 			f = open(os.path.basename(recent).split('.')[0] + 'other/Graphs/heat_map.png','rb')
 			myfile = File(f)
 			queryset[len(queryset)-1].heatmapfile_set.create(hmapoutput = myfile)
@@ -77,7 +79,7 @@ class HistogramView(APIView):
 		def get(self, request, format = None):
 			queryset = UploadFile.objects.filter(user=request.user)
 			recent = queryset[len(queryset)-1].uploaded.path
-			process_given_files(recent)
+			#process_given_files(recent)
 			f = open(os.path.basename(recent).split('.')[0] + 'other/Graphs/histogram.png','rb')
 			myfile = File(f)
 			queryset[len(queryset)-1].histogramfile_set.create(histoutput = myfile)

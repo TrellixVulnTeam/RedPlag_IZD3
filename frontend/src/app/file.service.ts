@@ -31,6 +31,16 @@ export class FileService {
       responseType: 'json',
     });
   }
+
+	processFiles() {
+		console.log("download service");
+		const httpOptions = {
+    			responseType: 'blob' as 'json',
+	  	};
+
+	 	return this.http.get(this.apiRoot.concat('upload/'), httpOptions);
+	}
+		
 	getProcessedFiles() {
 		console.log("download service");
 		const httpOptions = {

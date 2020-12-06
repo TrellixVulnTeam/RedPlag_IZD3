@@ -75,6 +75,10 @@ export class RedPlagComponent implements OnInit {
     		});
 	}
 
+	onProcessFiles() {
+		this.fileService.processFiles().subscribe((data) => {});
+	}
+
 	onDownloadButtonClick() {
     		console.log("download ts");
     		this.fileService.getProcessedFiles().subscribe((data) => {
