@@ -1,7 +1,14 @@
+""" \package MOSS With Locations
+Plagiarism detector for source code files.
+Detects plagiarism using Karp Rabin Hashing and winnowing
+Marks overlapping hashes to exactly show the parts which where copied
+"""
+
 import numpy as np
 q=1000000007
 
 def intersection(lst1, lst2):
+	"""Input: 2 lists $lst1 and $lst2 whose elements are of the form (hash, document ID)Finds hashes that are common to both $lst1 and $lst2"""
 	l1h = [h[0] for h in lst1] 
 	l2h = [h[0] for h in lst2]
 	l1loc = {h[0]:h[1:] for h in lst1}
