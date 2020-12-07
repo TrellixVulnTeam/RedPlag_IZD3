@@ -13,6 +13,7 @@ import scipy
 import zipfile
 import seaborn as sns
 from .graph_utils import *
+from .preprocess import *
 from django.conf import settings
 
 q=1000000007
@@ -98,6 +99,7 @@ def moss_given_files(zip_dir):
     paths = []
 
     for f in files:
+        preprocess(folder_path + "/" + f, False)
         paths.append(folder_path + "/" + f)
 
     num_files = len(files)
