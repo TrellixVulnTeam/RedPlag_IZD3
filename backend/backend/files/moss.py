@@ -51,7 +51,6 @@ def Win(H,t,k):
     n=len(H)
     mI=-1
     pmI=-1
-    if len(H) < w: HS.append(H[0])
     for i in range(0,len(H)-w+1):
         tm=9223372036854775807
         for j in range(i, i+w):
@@ -82,6 +81,8 @@ def moss(t1,t2,t,k):
 
 def moss_given_files(zip_dir):
     initial_path = os.getcwd()
+    print(os.getcwd())
+    os.chdir(settings.BASE_DIR)
     basename = os.path.basename(zip_dir).split('.')[0]
     folder_path = settings.MEDIA_ROOT + '/' + basename + '/'
     other_things = settings.MEDIA_ROOT + '/' + basename + 'other/'
@@ -135,10 +136,13 @@ def moss_given_files(zip_dir):
     save_csv_file(correlation_matrix,num_to_files,other_things)
 
     os.chdir(settings.MEDIA_ROOT)
+    print(os.getcwd())
     if os.path.isfile(basename + 'other' + '.zip'): os.remove(basename + 'other' + '.zip')
 
     zipf = zipfile.ZipFile(basename + 'other' + '.zip','w',zipfile.ZIP_DEFLATED)
     zipdir(basename + 'other/', zipf)
     zipf.close()
+    print(os.getcwd())
     os.chdir(initial_path)
-
+    os.chdir(settings.BASE_DIR)
+    print(os.getcwd())

@@ -25,6 +25,7 @@ word_to_vec = {}
 
 
 def generate_embedding_dict():
+        print(os.getcwd())
         with open('files/glove100D.txt', encoding='utf-8') as glove:
                 lines = [line for line in glove]
                 for line in lines:
@@ -206,6 +207,8 @@ def moss_embedding(t1, t2, t, k):
 
 def embedding_process_files(zip_dir):
         initial_path = os.getcwd()
+        os.chdir(settings.BASE_DIR)
+        print(os.getcwd())
         generate_embedding_dict()
         basename = os.path.basename(zip_dir).split('.')[0]
         folder_path = settings.MEDIA_ROOT + '/' + basename + '/'
@@ -226,7 +229,9 @@ def embedding_process_files(zip_dir):
         ## List of files in folder which is being queried
 
         files = os.listdir(folder_path)
+        print(os.getcwd())
         os.chdir(folder_path)
+        print(os.getcwd())
 
         ## \var np.darray $H
         ## Array of hashes of each file
@@ -271,10 +276,15 @@ def embedding_process_files(zip_dir):
         histogram(C1,other_things)
         plot_heat_map(C1,files,other_things)
         save_csv_file(C1,num_to_files,other_things)
-
+        
+        print(os.getcwd())
         os.chdir(settings.MEDIA_ROOT)
+        print(os.getcwd())
         if os.path.isfile(basename + 'other' + '.zip'): os.remove(basename + 'other' + '.zip')
         zipf = zipfile.ZipFile(basename + 'other' + '.zip','w',zipfile.ZIP_DEFLATED)
         zipdir(basename + 'other/', zipf)
         zipf.close()
+        print(os.getcwd())
         os.chdir(initial_path)
+        os.chdir(settings.BASE_DIR)
+        print(os.getcwd())

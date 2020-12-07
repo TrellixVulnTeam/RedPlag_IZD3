@@ -66,6 +66,7 @@ class GraphView(APIView):
 		"""
 		queryset = UploadFile.objects.filter(user=request.user)
 		recent = queryset[len(queryset)-1].uploaded.path
+		os.chdir(settings.BASE_URL)
 		f = open('media/' + os.path.basename(recent).split('.')[0] + 'other.zip','rb')
 		myfile = File(f)
 		queryset[len(queryset)-1].outputfile_set.create(textoutput = myfile)
@@ -91,6 +92,7 @@ class HeatMapView(APIView):
 			"""
 			queryset = UploadFile.objects.filter(user=request.user)
 			recent = queryset[len(queryset)-1].uploaded.path
+			os.chdir(settings.BASE_URL)
 			f = open('media/' + os.path.basename(recent).split('.')[0] + 'other/Graphs/heat_map.png','rb')
 			myfile = File(f)
 			queryset[len(queryset)-1].heatmapfile_set.create(hmapoutput = myfile)
@@ -116,6 +118,7 @@ class HistogramView(APIView):
 			"""
 			queryset = UploadFile.objects.filter(user=request.user)
 			recent = queryset[len(queryset)-1].uploaded.path
+			os.chdir(settings.BASE_URL)
 			f = open('media/' + os.path.basename(recent).split('.')[0] + 'other/Graphs/histogram.png','rb')
 			myfile = File(f)
 			queryset[len(queryset)-1].histogramfile_set.create(histoutput = myfile)
