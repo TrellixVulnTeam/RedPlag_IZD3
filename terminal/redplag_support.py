@@ -1,37 +1,39 @@
 """ \package redplag_terminal
+## redplag_terminal
 Terminal version of RedPlag.
 
-Functions :
+### Functions :
 1. Login
 2. Change password
 3. Upload
 4. Download
 
-Usage :
+### Usage :
 
 First make redplagcli executable by using the command "chmod a+x redplagcli"
 
 
-1. Login:
-.\redplagcli login <email_id> <password>
++ Login:
+`.\redplagcli login <email_id> <password>`
 
-2. Change Password:
++ Change Password:
 It is necessary to first login before changing password.
-.\redplagcli change <old_password> <new_password>
+`.\redplagcli change <old_password> <new_password>`
 
-3. Upload:
-.\replagcli upload <zip_file_path> <type_of_plag_check>
++ Upload:
+`.\replagcli upload <zip_file_path> <type_of_plag_check>`
 
 Optional arguments :
-[-b (short) or --boilerplate (long)] <boilerplate_path>
+`[-b (short) or --boilerplate (long)] <boilerplate_path>`
 
 zip file must have all files to be checked at depth 0 only. It must not contain any other subfolders.
 
-4. Download:
-.\redplagcli download
++ Download:
+`.\redplagcli download`
 
 Optional arguments :
-[-p (short) or --path (long)] <download_path>
+`[-p (short) or --path (long)] <download_path>`
+
 
 """
 
