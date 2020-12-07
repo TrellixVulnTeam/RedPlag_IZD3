@@ -663,4 +663,4 @@ def preprocess(filename, b=False, bo="none.txt"):
 	func_names = replace_function(filename)
 	stripspaces(filename)
 	replace_variables(filename, func_names)
-	stripspaces_end(filename)
+	#stripspaces_end(filename)
