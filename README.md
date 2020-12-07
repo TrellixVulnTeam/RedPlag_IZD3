@@ -7,7 +7,7 @@
 	- Used GloVe vectors to get meaning of word rather than character of word to detect plagiarism
 	- Implemented an algorithm similar to k-gram and winnowing.
 	- k-gramming equivalent : Words are selected completely to get the number of characters closest to k as possible. 
-	Next word is *always* chosen in next iteration so that algorithm does not get stuck.
+	Next word is __always__ chosen in next iteration so that algorithm does not get stuck.
 	- Winnowing : Vectors closest to centroid are chosen using cosine similarity. If tie, vector to the right is chosen.
 	- Similarity Metric : 
 		+ The fingerprints won't be of similar sizes in most cases. 
