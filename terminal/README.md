@@ -27,6 +27,11 @@ Optional arguments :
 
 zip file must have all files to be checked at depth 0 only. It must not contain any other subfolders.
 
+types of plag check = 
+  1. cpp
+  2. text
+  3. python
+
 + Download:
 `.\redplagcli download`
 
