@@ -364,7 +364,7 @@ while line<len(main_fun[2]):
 	# print(line)
 	line = line + 1;
 
-# print(used_functions)
+print(used_functions)
 for i in range(len(used_functions)-1, -1, -1):
 	if used_functions[i]==0 and recursive_list[i]==0:
 		L.pop(i)
