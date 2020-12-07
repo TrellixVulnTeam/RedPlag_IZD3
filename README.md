@@ -3,7 +3,7 @@
 
 ### Core Stuff:
 
-+ English Language :
+1. English Language :
 	- Used GloVe vectors to get meaning of word rather than character of word to detect plagiarism
 	- Implemented an algorithm similar to k-gram and winnowing.
 	- k-gramming equivalent : Words are selected completely to get the number of characters closest to k as possible. 
@@ -14,25 +14,25 @@
 		And vectors in n dimensional spaces are not easily countable on a computer.
 		So, the metric we defined was - let the fingerprint of file 1 be X (a x n matrix) and the fingerprint of file 2 be Y (b x n) matrix. 
 		Our similarity metric was trace(XX'YY')/ sqrt(trace((XX')^2) * trace((YY')^2)
-+ C++ pro :
+2. C++ pro :
 	- Blah blah blah
 	- xyz
-+ Python pro :
+3. Python pro :
 	- Blah blah blah
 	- xyz
-+ Codes in other languages :
+4. Codes in other languages :
 	- Blah Blah Blah
 	- xyz
-+ Graphical visualisation :
+5. Graphical visualisation :
 	- We should really add a surface plot. If not on the frontend, at least return in downloads.
 	- xyz
 
 ### Bonus Features :
-	+ Terminal :
-		- Blah Blah blah
-	+ Boilerplate removal :
-		- Blah Blah Blah
-	+ 
+1. Terminal :
+	- Blah Blah blah
+2. Boilerplate removal :
+	- Blah Blah Blah
+3.  
 
 
 	
