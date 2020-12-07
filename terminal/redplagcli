@@ -1,0 +1,4 @@
+#!/usr/bin/env python3
+
+import redplag_support
+redplag_support.main()
