@@ -25,8 +25,8 @@ def intersection(lst1, lst2):
 	"""
 	l1h = [h[0] for h in lst1] 
 	l2h = [h[0] for h in lst2]
-	#l1loc = {h[0]:h[1:] for h in lst1}
-	#l2loc = {h[0]:h[1:] for h in lst2}
+	l1loc = {h[0]:h[1:] for h in lst1}
+	l2loc = {h[0]:h[1:] for h in lst2}
 	
 	l3h = list(set(l1h)&set(l2h))
 	l3 = [(h, l1loc[h], l2loc[h]) for h in l3h] 
