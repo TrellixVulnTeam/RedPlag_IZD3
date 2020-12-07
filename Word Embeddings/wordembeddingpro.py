@@ -107,7 +107,7 @@ def plot_heat_map(correlation_matrix,files,folder_path,coloring = 'hot', img_for
 			annot_kws={'size': 12},
 			yticklabels=files,
 			xticklabels=files)
-	plt.title('Covariance matrix showing correlation coefficients')
+	plt.title('Similarity matrix showing similarity coefficients')
 	plt.tight_layout()
 	if (img_format[0] == '.'):
 		img_format = img_format[1:]
