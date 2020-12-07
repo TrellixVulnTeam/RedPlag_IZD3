@@ -1,4 +1,5 @@
-""" \package redplag_terminal
+"""! \package redplag_terminal
+
 ## redplag_terminal
 Terminal version of RedPlag.
 
