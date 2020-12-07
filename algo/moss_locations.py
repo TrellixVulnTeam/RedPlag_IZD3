@@ -8,13 +8,18 @@ import numpy as np
 q=1000000007
 
 def intersection(lst1, lst2):
-	"""Input: 2 lists $lst1 and $lst2 whose elements are of the form (hash, document ID, character position)
-		Finds hashes that are common to both $lst1 and $lst2 and stores their location in both documents
-		Finds similarity that is measured by 
-			\f[
+	"""!
+		\details 
+		Finds hashes that are common to both lists and stores their location in both documents
+		Finds similarity that is measured by \f[
 			sim(A,B) = \frac{\left | A \cap B\right |}{min \left(\ \left | A \right | , \left | B \right | right)}\f]
-			
-	Output: list of common hashes with locations and similarity"""
+		
+		\param
+		lst1 ,lst2: 2 lists whose elements are of the form (hash, document ID, character position)
+		\return
+		l3: list of common hashes and their locations in both documents. This is a list whose elements are of the form (common hash, (document ID1, location1), (documnet ID2, location2)
+		sim: similarity measure evaluated
+	"""
 	l1h = [h[0] for h in lst1] 
 	l2h = [h[0] for h in lst2]
 	l1loc = {h[0]:h[1:] for h in lst1}
