@@ -9,10 +9,11 @@ Terminal version of RedPlag.
 3. Upload
 4. Download
 
-### Usage :
+The server must be active. If you are testing locally, follow the instructions for backend.
 
-First make redplagcli executable by using the command "chmod a+x redplagcli"
+Name of the terminal file is `redplagcli`. The `redplag_support.py` file must be present in the same folder as `redplagcli`.
 
+First make `redplagcli` executable by using the command `chmod a+x redplagcli`
 
 + Login:
 `.\redplagcli login <email_id> <password>`
@@ -24,17 +25,19 @@ It is necessary to first login before changing password.
 + Upload:
 `.\replagcli upload <zip_file_path> <type_of_plag_check>`
 
-Optional arguments :
-`[-b (short) or --boilerplate (long)] <boilerplate_path>`
+	- Optional arguments : `[-b (short) or --boilerplate (long)] <boilerplate_path>`
 
-zip file must have all files to be checked at depth 0 only. It must not contain any other subfolders.
+	- zip file must have all files to be checked at depth 0 only. It must not contain any other subfolders.
+
+	- types of plag check = 
+		1. cpp
+		2. text
+		3. python
 
 + Download:
 `.\redplagcli download`
 
-Optional arguments :
-`[-p (short) or --path (long)] <download_path>`
-
+	- Optional arguments : `[-p (short) or --path (long)] <download_path>`
 
 """
 
