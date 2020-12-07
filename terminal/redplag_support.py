@@ -271,6 +271,7 @@ def redplag_download(path):
         print("Please enter correct credentials or relogin")
         return
     
+    path = path.strip()
     
     result_path = path + "/" + name_of_zip
     if path == '':
