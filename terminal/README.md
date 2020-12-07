@@ -32,5 +32,3 @@ zip file must have all files to be checked at depth 0 only. It must not contain 
 
 Optional arguments :
 `[-p (short) or --path (long)] <download_path>`
-
-"""
