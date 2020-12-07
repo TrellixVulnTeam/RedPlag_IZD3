@@ -31,7 +31,8 @@ def intersection(lst1, lst2):
 	return l3, sim
 
 def similarity(lst1, lst2):
-	"""Evaluates similarity as done in $intersection function but doesn't return locations of common hashes"""
+	"""!
+		\details Evaluates similarity as done in $intersection function but doesn't return locations of common hashes"""
 	l1h = [h[0] for h in lst1] 
 	l2h = [h[0] for h in lst2]
 	l3h = list(set(l1h)&set(l2h))
@@ -39,9 +40,18 @@ def similarity(lst1, lst2):
 	return sim
 
 def GetHLoc(t,id,k):
-	"""Given a file $t of ID $i and k-gram parameter $k, this function reads the file in a single string and evaluate its k-grams. 
-	For each k-gram, Karp-Rabin hash value is evaluated and stored in a list $H. Along with the hashes, the location given by document ID and the character 
-	at which the k-gram begins are stored"""
+	""" !
+		\details Reads the file in a single string and evaluate its k-grams. 
+	For each k-gram, Karp-Rabin hash value is evaluated and stored in a list H. Along with the hashes, the location given by document ID and the character 
+	at which the k-gram begins are stored
+	
+		\param
+		t: file name
+		id: document ID
+		k: k-gram parameter
+		
+		\return
+		H: The list H of hashes with their locations"""
 	H = []
 	infile = open(t,'r').read()
 	infile = infile.rstrip('\n')
