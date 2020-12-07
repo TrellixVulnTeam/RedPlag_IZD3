@@ -1,12 +1,27 @@
 import re
 import sys
 
+## @package preprocess
+# @brief Preprocesses the input file before plag check
+#
+# Removes Comments, #define declarations, headers and redundant function declarations.
+# Replaces function calls with their declaration and replaces words in the code defined with #define directive.
+# Makes the code white space insensitive.
+# Replaces all the variable in the code with 'v'.
+
+## Removes Commented portions of the code
+#
+# @param filename: location of file whose comments need to be removed
+# \return void: Modifies the input file
 def stripcomments(filename):
 	infile = open(filename, 'r').read()
 	infile = re.sub('//.*?\n|/\*.*?\*/', '', infile, flags=re.S)
 	open(filename, 'w').write(infile)
 
-
+## Removes the #define directives from the code and replaces them in the code with the specifies word
+#
+# @param filename: location of cpp file whose #define directives need to be replaced
+# @return void: modifies the input file
 def replace_define(filename):
 	infile = open(filename, 'r')
 	out = ""
@@ -45,6 +60,17 @@ def replace_define(filename):
 	outfile.write(out)
 	outfile.close()
 
+
+## Replaces the function calls with their definition in the code and removes redundant functions
+#
+# It first scans the whole file to identify functions, their parameters and declaration \n
+# Classifies each of them as recursive or not \n
+# Makes compound definitions of functions by replacing function calls within a function to another function defined in the file till the function starts calling itself, or any other recursive function or doesn't call any other function\n
+# This reduces the linear and cyclic calls of functions to one single compound defintion \n
+# It scans the main function and replaces function calls with their compound definitions developed, meanwhile keeping track of functions that are not called from main \n
+# Removes all the non recursive function definition and recursive functions that are not called from anyother recursive function or main \n
+# @param filename: the location of cpp file whose function calls need to be replaced
+# \return list of function remaining in the modified file
 def replace_function(filename):
 	#detecting functions
 	infile = open(filename, 'r')
@@ -401,6 +427,12 @@ def replace_function(filename):
 	outfile.close()
 	return func_names
 
+## Imparts white space insensitivity to the code
+# 
+# Adds spaces around variable names, keywords \n
+# Reduces multiple spaces to single space
+# @param filename: location of file
+# \return void: modifies the input file
 def stripspaces(filename):
 	infile = open(filename, 'r').read()
 	infile = re.sub('([^a-zA-Z0-9\s]+)', ' \\1 ', infile)
@@ -408,7 +440,10 @@ def stripspaces(filename):
 	open(filename, 'w').write(infile)
 
 
-# replacing variable names by v
+## Replace all the variables(not keywords, function names and operators) by 'v'
+#
+# @param filename: location of file
+# @param func_names: list of function in the file after call to @ref:replace_function()
 
 def replace_variables(filename, func_names):
 	keywords = [

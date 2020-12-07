@@ -2,13 +2,15 @@ import re
 import sys
 
 def stripcomments(filename):
-	infile = open(filename, 'r').read()
+
+	infile = open(filename, 'r',  encoding = 'utf-8').read()
 	infile = re.sub('//.*?\n|/\*.*?\*/', '', infile, flags=re.S)
 	open(filename, 'w').write(infile)
 
 
 def replace_define(filename):
-	infile = open(filename, 'r')
+
+	infile = open(filename, 'r',  encoding = 'utf-8')
 	out = ""
 	define = []
 	definition = []
@@ -41,13 +43,17 @@ def replace_define(filename):
 			out = out + l
 
 	infile.close()
-	outfile = open(filename, 'w')
+
+	outfile = open(filename, 'w',  encoding = 'utf-8')
+
 	outfile.write(out)
 	outfile.close()
 
 def replace_function(filename):
 	#detecting functions
-	infile = open(filename, 'r')
+
+	infile = open(filename, 'r',  encoding = 'utf-8')
+
 	L = []
 	cnt =0;
 	for line in infile:
@@ -402,7 +408,9 @@ def replace_function(filename):
 	return func_names
 
 def stripspaces(filename):
-	infile = open(filename, 'r').read()
+
+	infile = open(filename, 'r',  encoding = 'utf-8').read()
+
 	infile = re.sub('([^a-zA-Z0-9\s]+)', ' \\1 ', infile)
 	infile = re.sub('([\s]+)', ' ', infile)
 	open(filename, 'w').write(infile)
@@ -509,7 +517,9 @@ def replace_variables(filename, func_names):
 	"do",
 	"register"]
 
-	infile = open(filename, 'r').read()
+
+	infile = open(filename, 'r',  encoding = 'utf-8').read()
+
 	infile_temp = infile
 	x = []
 	y = []
@@ -562,7 +572,9 @@ def boiler(bo, co):
 			if ct==0:
 				skip=True
 		if skip==False:
-			with open(co, "r+") as f:
+
+			with open(co, "r+",  encoding = 'utf-8') as f:
+
 			    d = f.readlines()
 			    f.seek(0)
 			    done=False

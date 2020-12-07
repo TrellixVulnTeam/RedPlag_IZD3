@@ -140,3 +140,4 @@ def moss_given_files(zip_dir):
     zipdir(basename + 'other/', zipf)
     zipf.close()
     os.chdir(initial_path)
+
