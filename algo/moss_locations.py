@@ -9,15 +9,17 @@ q=1000000007
 
 def intersection(lst1, lst2):
 	"""!
-	\brief Finds instersection of set of hashes and their locations
+        
 	
 	\details Finds hashes that are common to both lists and stores their location in both documents
-	Finds similarity that is measured by \f[
-	sim(A,B) = \frac{\left | A \cap B\right |}{min \left(\ \left | A \right | , \left | B \right | right)}\f]
+	Finds similarity that is measured by 
+
+	sim(A,B) = number of hashes in intersection of both hash sets divided by minimum of the number of hashes in lst1 and lst2
 		
-	\param  lst1 ,lst2: 2 lists whose elements are of the form (hash, document ID, character position)
-	\return l3: list of common hashes and their locations in both documents. This is a list whose elements are of the form (common hash, (document ID1, location1), (documnet ID2, location2)
-	sim: similarity measure evaluated
+	\param  lst1 : 1st list whose elements are of the form (hash, document ID, character position)
+	\param lst2: 2nd list whose elements are of the form (hash, document ID, character position)
+	\return l3: list of common hashes and their locations in both documents. This is a list whose elements are of the form (common hash, (document ID1, location1), (documnet ID2, location2))
+	\return sim: similarity measure evaluated
 	"""
 	l1h = [h[0] for h in lst1] 
 	l2h = [h[0] for h in lst2]
@@ -31,7 +33,8 @@ def intersection(lst1, lst2):
 
 def similarity(lst1, lst2):
 	"""!
-		\details Evaluates similarity as done in $intersection function but doesn't return locations of common hashes"""
+		\details Evaluates similarity as done in intersection function but doesn't return locations of common hashes
+	"""
 	l1h = [h[0] for h in lst1] 
 	l2h = [h[0] for h in lst2]
 	l3h = list(set(l1h)&set(l2h))
@@ -39,18 +42,19 @@ def similarity(lst1, lst2):
 	return sim
 
 def GetHLoc(t,id,k):
-	""" !
-		\details Reads the file in a single string and evaluate its k-grams. 
+	"""!
+       
+        
+	\details Reads the file in a single string and evaluate its k-grams. 
 	For each k-gram, Karp-Rabin hash value is evaluated and stored in a list H. Along with the hashes, the location given by document ID and the character 
 	at which the k-gram begins are stored
 	
-		\param
-		t: file name
-		id: document ID
-		k: k-gram parameter
-		
-		\return
-		H: The list H of hashes with their locations"""
+	\param t: file name
+	\param id: document ID
+	\param k: k-gram parameter
+	
+	\return H: The list H of hashes with their locations
+	"""
 	H = []
 	infile = open(t,'r').read()
 	infile = infile.rstrip('\n')
@@ -63,10 +67,16 @@ def GetHLoc(t,id,k):
 	return H
 
 def Win(H,t,k):
-	"""Given a list $H that contains the result of GetHLoc function, i.e. a list whose elements are of the form (hash, document ID, character position),
-		a threshold parameter $t and k-gram parameter $k, function applies Winnowing algorithm on a window size such that for every substring of length $t we pick a hash.
-		
-	Returns a list $HS that has selected (winnowed) some elements of $H by the above method"""
+	"""!
+        \details Applies Winnowing algorithm on given list of hashes with a window size such that for every substring of length t we will pick atleast one hash.
+        Also stores the locations of selected hashes
+
+        \param H: List of (hash, document ID, location)
+        \param t: Winnowing threshold parameter
+        \param k: k-gram parameter used while calculating hashes
+
+        \return HS: Selected (winnowed) hashes
+	"""
 	HS=[]
 	w=t+1-k
 	n=len(H)
@@ -115,9 +125,13 @@ def moss(files, t, k):
 		
 		
 def moss_all_pairs(files, t, k):
-	""" Given a list of files, threshold parameter $t and k-gram parameter $k, 
-	evaluates for every pair, the MOSS similarity and 
-	stores matching hashes into matrices C and markings respectively"""
+	"""!
+        \details Evaluates MOSS similarity and matching portions between each pair of files
+        \param files: list of files
+        \param t: Winnowing threshold parameter
+        \param k: k-gram parameter
+        \return C: similarity matrix such that C[i][j] denotes the similarity between the ith and jth file
+        \return markings: markings matrix such that markings[i][j] is a list of charavter indices where matching k-grams begin for ith and jth file"""
 	
 	n = len(files)
 	H = [GetHLoc(files[i],i,k) for i in range(n)]
