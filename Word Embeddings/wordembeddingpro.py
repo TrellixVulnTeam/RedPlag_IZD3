@@ -1,5 +1,4 @@
 """ \package Word Embedding
-
 Plagiarism detector for text files.
 Detects plagiarism using GloVe vectors using a similar approach winnowing algorithm.
 """
@@ -34,17 +33,11 @@ with open('glove100D.txt', encoding='utf-8') as glove:
 def histogram(correlation_matrix,folder_path,bin_size = 0.10,img_format = 'png'):
 	"""!
 	\brief Creates histogram of frequencies of values in correlation matrix.
-
 	\details Counts number of files present in each bin. 1/bin_size must be an integer. 0 < bin_size <= 1. Default value of bin_size is 0.10
-
 	\param correlation matrix : Similarity values between all pairs of files
-
 	\param folder_path : Location where graph is to be stored
-
 	\param bin_size : Bin size of histogram. Default value is 0.10
-
 	\param img_format : Format in which image is to be stored. Default value is 'png'
-
 	\return void
 	"""
 
@@ -80,19 +73,12 @@ def histogram(correlation_matrix,folder_path,bin_size = 0.10,img_format = 'png')
 def plot_heat_map(correlation_matrix,files,folder_path,coloring = 'hot', img_format = '.png'):
 	"""!
 	\brief Creates heat map of similarity values of files
-
 	\details Creates heat map of similarity values of files. X - axis and Y - axis represent the files. The colour of the block represents the similarity.
-
 	\param correlation matrix : Similarity values between all pairs of files
-
-	\param files :	List containing names of all files on which simila
-
+	\param files :	List containing names of all files on which plagiarism detection is to be done
 	\param folder_path : Location where graph is to be stored
-
 	\param coloring : Coloring of heat map. Default is hot
-
 	\param img_format : Format in which image is to be stored. Default value is 'png'
-
 	\return void
 	"""
 
@@ -120,15 +106,10 @@ def plot_heat_map(correlation_matrix,files,folder_path,coloring = 'hot', img_for
 def save_csv_file(correlation_matrix,num_to_files,folder_path):
 	"""!
 	\brief Stores similarity values between files in a file.
-
 	\details Stores similarity values between files currently stored in correlation_matrix in .csv format
-
 	\param correlation matrix : Similarity values between all pairs of files
-
 	\param num_to_files : Conversion of file index to file name
-
 	\param folder_path : Location where graph is to be stored
-
 	\return void
 	"""
 
@@ -153,11 +134,8 @@ def save_csv_file(correlation_matrix,num_to_files,folder_path):
 def word_centroid(kgram):
 	"""!
 	\brief Returns centroid of glove vectors of kgram.
-
 	\details Returns centroid of glove vectors of words in kgram.
-
 	\param kgram : list of words whose centroid is to be computed
-
 	\return centroid : Centroid of glove vectors of all words in kgram.
 	"""
 	num_words = 0
@@ -175,13 +153,9 @@ def word_centroid(kgram):
 def GetEmbeddingHashesCharacter(filename,k):
 	"""!
 	\brief Calculates centroids of window size k
-
 	\detail Calculates centroids of window size of character k using GloVe word to vec dataset.
-
 	\param filename : Path of file whose hashes or centroids have to be calculated.
-
 	\param k : Size of sliding window.
-
 	\returns H : Hashes of sliding windows
 	"""
 
@@ -251,15 +225,10 @@ def GetEmbeddingHashesCharacter(filename,k):
 def Winnowing(H, t, k):
 	"""!
 	\brief Implementation of winnowing algorithm for vectors.
-
 	\detail Winnowing algorithm implemented for vectors. Criteria : select vector closest to centroid using cosine similarity. If equally close vectors exist, choose the one which is to the right.
-
 	\param H : The hashes of the sliding windows.
-
 	\param t : The threshold size
-
 	\param k : The size of the sliding window.
-
 	\returns HS : Fingerprint of document
 	"""	
 
@@ -291,13 +260,9 @@ def Winnowing(H, t, k):
 def similarity_metric_1(X,Y):
 	"""!
 	\brief Calculates similarity coefficient between 2 files based on their fingerprint.
-
 	\detail Calculates similarity coefficient between 2 files using their fingerprints X and Y. The similarity is calculated as trace(X'XY'Y) / sqrt(trace((X'X)^2) * trace((Y'Y)^2))
-
 	\param X : Fingerprint of file 1 of dimension n x 100.
-
 	\param Y : Fingerprint of file 2 of dimension m x 100.
-
 	\returns similarity : similarity between file 1 and file 2.
 	"""
 
@@ -320,17 +285,11 @@ def similarity_metric_1(X,Y):
 def moss_embedding(t1, t2, t, k):
 	"""!
 	\brief Returns similarity between two files.
-
 	\detail Returns similarity between two files without needing to iterate over all pairs of files.
-
 	\param t1 : Path of file 1
-
 	\param t2 : Path of file 2
-
 	\param t : Threshold length of winnowing algorithm
-
 	\param k : Sliding window length for calculating hash
-
 	\returns s : Similarity between file 1 and file 2
 	"""
 
@@ -377,8 +336,8 @@ HS = [Winnowing(h,t,k) for h in H]
 
 n = len(files)
 
-## \var str $paths
-## Path of each file
+## \var list $paths
+## List of paths of each file
 
 paths = []
 for f in files:
