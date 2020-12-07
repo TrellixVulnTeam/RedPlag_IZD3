@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['serializer_5fclass_40',['serializer_class',['../classviews_1_1_user_login_view.html#a4fcdf601bf6f9189fcc5ad2cb5a50fed',1,'views.UserLoginView.serializer_class()'],['../classviews_1_1_user_registration_view.html#ab5c32b8fb39425aa8433671027e6ed1f',1,'views.UserRegistrationView.serializer_class()'],['../classviews_1_1_change_password_view.html#a563823a27815cebdb9e1ade2cf3ed259',1,'views.ChangePasswordView.serializer_class()']]],
-  ['serializers_41',['serializers',['../namespaceserializers.html',1,'']]],
-  ['serializers_2epy_42',['serializers.py',['../serializers_8py.html',1,'']]]
+  ['name_169',['name',['../classfiles_1_1apps_1_1_upload_config.html#a9e40bc55c5e0eff5247f3c6e2d063e23',1,'files::apps::UploadConfig']]],
+  ['new_5fl_170',['new_l',['../namespacefunction__replace.html#a6b2e18bfbb591fe97d3d8f9e1d160982',1,'function_replace']]],
+  ['new_5fline_171',['new_line',['../namespacefunction__replace.html#a6678a1778935d7d0fbbcbfdfaa20bb4e',1,'function_replace']]],
+  ['new_5fpassword_172',['new_password',['../classserializers_1_1_change_password_serializer.html#a2910a5783ae831a9dfa15b41d35196d4',1,'serializers::ChangePasswordSerializer']]],
+  ['normalise_5fvec_173',['normalise_vec',['../namespacefiles_1_1plag__detect.html#a1f680533917e8e4e445f98632c6f5930',1,'files::plag_detect']]]
 ];

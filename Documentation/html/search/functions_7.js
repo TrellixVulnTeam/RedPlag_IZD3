@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['stripcomments_85',['stripcomments',['../namespacepreprocess.html#ae7d94e5beef2515e397a929a0754a0a5',1,'preprocess']]],
-  ['stripspaces_86',['stripspaces',['../namespacepreprocess.html#a798687ef4abaf3be4ac2d0ed6570b8a7',1,'preprocess']]]
+  ['histogram_399',['histogram',['../namespacefiles_1_1graph__utils.html#a425e3c872603cb7febe4652069c52f01',1,'files.graph_utils.histogram()'],['../namespacefiles_1_1plag__detect.html#ac5b8075249e87c8e2640215b97f58ede',1,'files.plag_detect.histogram()']]]
 ];

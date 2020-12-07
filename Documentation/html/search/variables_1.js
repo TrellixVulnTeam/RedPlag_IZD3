@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['email_91',['email',['../classmodels_1_1_user.html#aaa88e21675421b6cebbef6eb5597046b',1,'models.User.email()'],['../classserializers_1_1_user_login_serializer.html#ae72b696acf043e4adb0e5b3383995fb5',1,'serializers.UserLoginSerializer.email()']]],
-  ['extra_5fkwargs_92',['extra_kwargs',['../classserializers_1_1_user_registration_serializer_1_1_meta.html#aaff4116463cbef467e9f6ee85e4040af',1,'serializers::UserRegistrationSerializer::Meta']]]
+  ['base_5fdir_434',['BASE_DIR',['../namespacebackend_1_1settings.html#a9af2f83db14ad8f267b0a83c852560d6',1,'backend::settings']]],
+  ['boilerplate_435',['boilerplate',['../classfiles_1_1models_1_1_upload_file.html#a0312f4fbcfb9b3433b0bc4c5a42e0a93',1,'files::models::UploadFile']]]
 ];

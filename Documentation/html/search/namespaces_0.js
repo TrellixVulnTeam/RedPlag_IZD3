@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['0001_5finitial_69',['0001_initial',['../namespacemigrations_1_10001__initial.html',1,'migrations']]],
-  ['migrations_70',['migrations',['../namespacemigrations.html',1,'']]],
-  ['models_71',['models',['../namespacemodels.html',1,'']]]
+  ['asgi_301',['asgi',['../namespacebackend_1_1asgi.html',1,'backend']]],
+  ['backend_302',['backend',['../namespacebackend.html',1,'']]],
+  ['settings_303',['settings',['../namespacebackend_1_1settings.html',1,'backend']]],
+  ['urls_304',['urls',['../namespacebackend_1_1urls.html',1,'backend']]],
+  ['wsgi_305',['wsgi',['../namespacebackend_1_1wsgi.html',1,'backend']]]
 ];

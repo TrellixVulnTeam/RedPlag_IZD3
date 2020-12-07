@@ -4,7 +4,9 @@ from backend.app.user.models import User
 
 
 class UserProfile(models.Model):
-
+    """
+    User Profile model
+    """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     first_name = models.CharField(max_length=50, unique=False)

@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['id_94',['id',['../classmodels_1_1_user.html#a9a9aa1a53e9b8722a5f98595ceb52ae7',1,'models::User']]],
-  ['initial_95',['initial',['../classmigrations_1_10001__initial_1_1_migration.html#aa48272a94f71a1d612b2984ce4a19cac',1,'migrations::0001_initial::Migration']]],
-  ['is_5factive_96',['is_active',['../classmodels_1_1_user.html#a76fbfec464d6294e85accd8892c508bd',1,'models::User']]],
-  ['is_5fstaff_97',['is_staff',['../classmodels_1_1_user.html#a701db09aacb38936a84cab66c6849b44',1,'models::User']]],
-  ['is_5fsuperuser_98',['is_superuser',['../classmodels_1_1_user.html#ac28ae1c2fa7cf7030631245111e10aed',1,'models::User']]]
+  ['databases_442',['DATABASES',['../namespacebackend_1_1settings.html#a565b63f44faed90e16ee6d2a3fec4779',1,'backend::settings']]],
+  ['debug_443',['DEBUG',['../namespacebackend_1_1settings.html#ae65752919db4b4e71d597d17430526f2',1,'backend::settings']]],
+  ['dependencies_444',['dependencies',['../classmigrations_1_10001__initial_1_1_migration.html#aa0cfe184fa76a46c8f92efe484acda07',1,'migrations.0001_initial.Migration.dependencies()'],['../classfiles_1_1migrations_1_10001__initial_1_1_migration.html#a695317d3be5fe3fa4bdbc8ead9f0c8cf',1,'files.migrations.0001_initial.Migration.dependencies()'],['../classfiles_1_1migrations_1_10002__outputfile_1_1_migration.html#ae4fa253eb1c08d3e3ed32ea07c3dc4c6',1,'files.migrations.0002_outputfile.Migration.dependencies()'],['../classfiles_1_1migrations_1_10003__uploadfile__boilerplate_1_1_migration.html#aad21f2cdfbafc8b1a87e6895b628dca4',1,'files.migrations.0003_uploadfile_boilerplate.Migration.dependencies()'],['../classfiles_1_1migrations_1_10004__uploadfile__filetype_1_1_migration.html#a10841d249d1d17147133b578efdce808',1,'files.migrations.0004_uploadfile_filetype.Migration.dependencies()'],['../classfiles_1_1migrations_1_10005__heatmapfile__histogramfile_1_1_migration.html#a9f19c8f996aab02a222013b37b7e5ce6',1,'files.migrations.0005_heatmapfile_histogramfile.Migration.dependencies()']]]
 ];

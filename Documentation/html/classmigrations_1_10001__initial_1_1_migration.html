@@ -125,6 +125,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">=  [</div>
+<div class="line">        migrations.swappable_dependency(settings.AUTH_USER_MODEL),</div>
 <div class="line">    ]</div>
 </div><!-- fragment -->
 </div>
@@ -172,18 +173,18 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">=  [</div>
 <div class="line">        migrations.CreateModel(</div>
-<div class="line">            name=<span class="stringliteral">&#39;User&#39;</span>,</div>
+<div class="line">            name=<span class="stringliteral">&#39;UserProfile&#39;</span>,</div>
 <div class="line">            fields=[</div>
-<div class="line">                (<span class="stringliteral">&#39;password&#39;</span>, models.CharField(max_length=128, verbose_name=<span class="stringliteral">&#39;password&#39;</span>)),</div>
-<div class="line">                (<span class="stringliteral">&#39;last_login&#39;</span>, models.DateTimeField(blank=<span class="keyword">True</span>, null=<span class="keyword">True</span>, verbose_name=<span class="stringliteral">&#39;last login&#39;</span>)),</div>
 <div class="line">                (<span class="stringliteral">&#39;id&#39;</span>, models.UUIDField(default=uuid.uuid4, editable=<span class="keyword">False</span>, primary_key=<span class="keyword">True</span>, serialize=<span class="keyword">False</span>)),</div>
-<div class="line">                (<span class="stringliteral">&#39;email&#39;</span>, models.EmailField(max_length=255, unique=<span class="keyword">True</span>, verbose_name=<span class="stringliteral">&#39;email address&#39;</span>)),</div>
-<div class="line">                (<span class="stringliteral">&#39;is_active&#39;</span>, models.BooleanField(default=<span class="keyword">True</span>)),</div>
-<div class="line">                (<span class="stringliteral">&#39;is_staff&#39;</span>, models.BooleanField(default=<span class="keyword">False</span>)),</div>
-<div class="line">                (<span class="stringliteral">&#39;is_superuser&#39;</span>, models.BooleanField(default=<span class="keyword">False</span>)),</div>
+<div class="line">                (<span class="stringliteral">&#39;first_name&#39;</span>, models.CharField(max_length=50)),</div>
+<div class="line">                (<span class="stringliteral">&#39;last_name&#39;</span>, models.CharField(max_length=50)),</div>
+<div class="line">                (<span class="stringliteral">&#39;phone_number&#39;</span>, models.CharField(max_length=10, unique=<span class="keyword">True</span>)),</div>
+<div class="line">                (<span class="stringliteral">&#39;age&#39;</span>, models.PositiveIntegerField()),</div>
+<div class="line">                (<span class="stringliteral">&#39;gender&#39;</span>, models.CharField(choices=[(<span class="stringliteral">&#39;M&#39;</span>, <span class="stringliteral">&#39;Male&#39;</span>), (<span class="stringliteral">&#39;F&#39;</span>, <span class="stringliteral">&#39;Female&#39;</span>)], max_length=1)),</div>
+<div class="line">                (<span class="stringliteral">&#39;user&#39;</span>, models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name=<span class="stringliteral">&#39;profile&#39;</span>, to=settings.AUTH_USER_MODEL)),</div>
 <div class="line">            ],</div>
 <div class="line">            options={</div>
-<div class="line">                <span class="stringliteral">&#39;db_table&#39;</span>: <span class="stringliteral">&#39;login&#39;</span>,</div>
+<div class="line">                <span class="stringliteral">&#39;db_table&#39;</span>: <span class="stringliteral">&#39;profile&#39;</span>,</div>
 <div class="line">            },</div>
 <div class="line">        ),</div>
 <div class="line">    ]</div>
@@ -191,7 +192,7 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>migrations/<a class="el" href="0001__initial_8py.html">0001_initial.py</a></li>
+<li>backend/app/profile/migrations/<a class="el" href="backend_2app_2profile_2migrations_20001__initial_8py.html">0001_initial.py</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

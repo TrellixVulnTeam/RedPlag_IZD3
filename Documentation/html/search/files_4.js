@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['urls_2epy_79',['urls.py',['../urls_8py.html',1,'']]]
+  ['function_5freplace_2epy_355',['function_replace.py',['../function__replace_8py.html',1,'']]]
 ];

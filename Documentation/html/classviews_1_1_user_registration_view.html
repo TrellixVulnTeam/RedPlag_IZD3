@@ -108,7 +108,11 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a72056400a5b94783281d031c368e3ef5"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviews_1_1_user_registration_view.html#a72056400a5b94783281d031c368e3ef5">permission_classes</a> = (AllowAny,)</td></tr>
 <tr class="separator:a72056400a5b94783281d031c368e3ef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><pre class="fragment"> An Endpoint for registering new users
+
+ URL: http://127.0.0.1:8000/api/signup
+</pre> </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ab1848328eb37b49e5494e69e31723d5d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab1848328eb37b49e5494e69e31723d5d">&#9670;&nbsp;</a></span>post()</h2>
 
@@ -134,7 +138,17 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<pre class="fragment"> POST Request 
 
+ Status Code: 201 
+ Response = {
+    'success' : 'True',
+    'status code' : status_code,
+    'message': 'User registered  successfully',
+ }
+ Status Code: 400
+ response = Serializer Errors
+</pre> 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -183,7 +197,7 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="views_8py.html">views.py</a></li>
+<li>backend/app/user/<a class="el" href="backend_2app_2user_2views_8py.html">views.py</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

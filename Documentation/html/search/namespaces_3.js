@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['views_74',['views',['../namespaceviews.html',1,'']]]
+  ['serializers_331',['serializers',['../namespaceserializers.html',1,'']]]
 ];

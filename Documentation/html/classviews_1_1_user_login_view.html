@@ -134,7 +134,20 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<pre class="fragment"> An endpoint for logging in users
 
+ URL: http://127.0.0.1:8000/api/login
+ POST Request 
+ Status Code: 200 
+ Response = {
+    'success' : 'True',
+    'status code' : status.HTTP_200_OK,
+    'message': 'User logged in  successfully',
+    'token' : generated-token,
+    }
+ Status Code: 404
+ response = Serializer Errrors
+</pre> 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -183,7 +196,7 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="views_8py.html">views.py</a></li>
+<li>backend/app/user/<a class="el" href="backend_2app_2user_2views_8py.html">views.py</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
