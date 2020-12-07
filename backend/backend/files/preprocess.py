@@ -628,7 +628,9 @@ def boiler(bo, co):
 			if ct==0:
 				skip=True
 		if skip==False:
+
 			with open(co, "r+",  encoding = 'utf-8') as f:
+
 			    d = f.readlines()
 			    f.seek(0)
 			    done=False
