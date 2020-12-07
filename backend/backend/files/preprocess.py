@@ -462,6 +462,16 @@ def stripspaces(filename):
 		return
 
 
+def stripspaces_end(filename):
+	try:
+		infile = open(filename, 'r').read()
+		infile = re.sub('([^a-zA-Z0-9\s]+)', '\\1', infile)
+		infile = re.sub('([\s]+)', '', infile)
+		open(filename, 'w').write(infile)
+	except:
+		return
+
+
 ## Replace all the variables(not keywords, function names and operators) by 'v'
 #
 # @param filename: location of file
@@ -653,4 +663,4 @@ def preprocess(filename, b=False, bo="none.txt"):
 	func_names = replace_function(filename)
 	stripspaces(filename)
 	replace_variables(filename, func_names)
-
+	stripspaces_end(filename)
