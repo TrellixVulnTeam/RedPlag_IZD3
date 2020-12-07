@@ -1,7 +1,7 @@
 # RedPlag
 ## CS 251 Project
 
-### Core Stuff:
+### Core Stuff :
 
 1. English Language :
 	- Used GloVe vectors to get meaning of word rather than character of word to detect plagiarism
@@ -27,6 +27,18 @@
 	- We should really add a surface plot. If not on the frontend, at least return in downloads.
 	- xyz
 
+### Backend :
+
+1. Blah
+2. Blah
+3. xyz
+
+### Frontend :
+
+1. Blah
+2. xyz
+3. abc
+
 ### Bonus Features :
 1. Terminal :
 	- Blah Blah blah
@@ -35,7 +47,24 @@
 3.  
 
 
-	
+
+### What technology we used :
+
++ Blah blah blah
++ xyz
++ pqr
++ abc
+
+
+### How the tool is supposed to be run :
+
++ Blah blah blah
++ xyz
++ pqr
++ abc
+
+
+
 
 ### Next Stage Plan
 #### CORE STUFF
