@@ -13,19 +13,18 @@
 			And vectors in n dimensional spaces are not easily countable on a computer.
 			 So, the metric we defined was - let the fingerprint of file 1 be X (a x n matrix) and the fingerprint of file 2 be Y (b x n) matrix. 
 			Our similarity metric was trace(XX'YY')/ sqrt(trace((XX')^2) * trace((YY')^2)
-
 	+ C++ pro :
 		- Blah blah blah
-
-	
+		- xyz
 	+ Python pro :
 		- Blah blah blah
-
+		- xyz
 	+ Codes in other languages :
 		- Blah Blah Blah
-
+		- xyz
 	+ Graphical visualisation :
 		- We should really add a surface plot. If not on the frontend, at least return in downloads.
+		- xyz
 
 ### Bonus Features :
 	+ Terminal :
