@@ -85,7 +85,7 @@ It is necessary to first login before changing password.
 `.\replagcli upload <zip_file_path> <type_of_plag_check>`
 
 	- Optional arguments :
-	- `[-b (short) or --boilerplate (long)] <boilerplate_path>`
+		`[-b (short) or --boilerplate (long)] <boilerplate_path>`
 
 	- zip file must have all files to be checked at depth 0 only. It must not contain any other subfolders.
 
