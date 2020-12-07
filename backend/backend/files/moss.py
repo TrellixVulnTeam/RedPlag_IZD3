@@ -51,6 +51,7 @@ def Win(H,t,k):
     n=len(H)
     mI=-1
     pmI=-1
+    if len(H) < w: HS.append(H[0])
     for i in range(0,len(H)-w+1):
         tm=9223372036854775807
         for j in range(i, i+w):
