@@ -9,7 +9,7 @@ Terminal version of RedPlag.
 3. Upload
 4. Download
 
-The server must be active. If you are testing locally, follow the instructions for backend.
+The server must be active. If you are testing locally, follow the instructions for the backend.
 
 Name of the terminal file is `redplagcli`. The `redplag_support.py` file must be present in the same folder as `redplagcli`.
 
