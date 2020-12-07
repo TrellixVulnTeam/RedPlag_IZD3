@@ -11,7 +11,7 @@ Terminal version of RedPlag.
 
 The server must be active. If you are testing locally, follow the instructions for the backend.
 
-Name of the terminal file is `redplagcli`. The `redplag_support.py` file must be present in the same folder as `redplagcli`.
+The name of the terminal file is `redplagcli`. The `redplag_support.py` file must be present in the same folder as `redplagcli`.
 
 First make `redplagcli` executable by using the command `chmod a+x redplagcli`
 
