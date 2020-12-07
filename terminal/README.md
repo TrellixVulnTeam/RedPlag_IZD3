@@ -9,7 +9,7 @@ Terminal version of RedPlag.
 
 ### Usage :
 
-First make redplagcli executable by using the command "chmod a+x redplagcli"
+First make redplagcli executable by using the command `chmod a+x redplagcli`
 
 
 + Login:
@@ -26,6 +26,11 @@ Optional arguments :
 `[-b (short) or --boilerplate (long)] <boilerplate_path>`
 
 zip file must have all files to be checked at depth 0 only. It must not contain any other subfolders.
+
+types of plag check = 
+  1. cpp
+  2. text
+  3. python
 
 + Download:
 `.\redplagcli download`
