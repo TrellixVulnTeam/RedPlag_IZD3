@@ -84,21 +84,21 @@ It is necessary to first login before changing password.
 + Upload:
 `.\replagcli upload <zip_file_path> <type_of_plag_check>`
 
-Optional arguments :
-`[-b (short) or --boilerplate (long)] <boilerplate_path>`
+	- Optional arguments :
+	- `[-b (short) or --boilerplate (long)] <boilerplate_path>`
 
-zip file must have all files to be checked at depth 0 only. It must not contain any other subfolders.
+	- zip file must have all files to be checked at depth 0 only. It must not contain any other subfolders.
 
-types of plag check = 
-  1. cpp
-  2. text
-  3. python
+	- types of plag check = 
+		1. cpp
+		2. text
+		3. python
 
 + Download:
 `.\redplagcli download`
 
-Optional arguments :
-`[-p (short) or --path (long)] <download_path>`
+	- Optional arguments :
+	- `[-p (short) or --path (long)] <download_path>`
 
 
 
