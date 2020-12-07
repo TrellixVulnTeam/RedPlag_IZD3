@@ -5,6 +5,8 @@ Marks overlapping hashes to exactly show the parts which where copied
 """
 
 import numpy as np
+import sys
+import os
 q=1000000007
 
 def intersection(lst1, lst2):
@@ -23,8 +25,8 @@ def intersection(lst1, lst2):
 	"""
 	l1h = [h[0] for h in lst1] 
 	l2h = [h[0] for h in lst2]
-	l1loc = {h[0]:h[1:] for h in lst1}
-	l2loc = {h[0]:h[1:] for h in lst2}
+	#l1loc = {h[0]:h[1:] for h in lst1}
+	#l2loc = {h[0]:h[1:] for h in lst2}
 	
 	l3h = list(set(l1h)&set(l2h))
 	l3 = [(h, l1loc[h], l2loc[h]) for h in l3h] 
@@ -56,7 +58,7 @@ def GetHLoc(t,id,k):
 	\return H: The list H of hashes with their locations
 	"""
 	H = []
-	infile = open(t,'r').read()
+	infile = open(t,'r', encoding = 'utf-8').read()
 	infile = infile.rstrip('\n')
 	
 	for i in range(len(infile)-k):
@@ -136,7 +138,7 @@ def moss_all_pairs(files, t, k):
 	n = len(files)
 	H = [GetHLoc(files[i],i,k) for i in range(n)]
 	HS = [Win(h,t,k) for h in H]
-	strings = [open(files[i],'r').read().rstrip('\n')]
+	strings = [open(files[i],'r', encoding = 'utf-8').read().rstrip('\n') for i in range(n)]
 
 	C = np.identity(n)
 	markings = []
@@ -155,4 +157,8 @@ def moss_all_pairs(files, t, k):
 				markings[i][j] += [h[1][1]]
 				markings[j][i] += [h[2][1]]				
 
-	return C, markings			
+	return C, markings
+
+f = os.listdir(sys.argv[1])
+os.chdir(sys.argv[1])
+print(moss_all_pairs(f,100,50))
