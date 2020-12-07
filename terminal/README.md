@@ -9,7 +9,7 @@ Terminal version of RedPlag.
 
 ### Usage :
 
-First make redplagcli executable by using the command "chmod a+x redplagcli"
+First make redplagcli executable by using the command `chmod a+x redplagcli`
 
 
 + Login:
