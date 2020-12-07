@@ -2,12 +2,17 @@
 ## CS 251 Project
 
 ### Core Stuff:
+
 	+ English Language :
 		- Used GloVe vectors to get meaning of word rather than character of word to detect plagiarism
 		- Implemented an algorithm similar to k-gram and winnowing.
 		- k-gramming equivalent : Words are selected completely to get the number of characters closest to k as possible. Next word is *always* chosen in next iteration so that algorithm does not get stuck.
 		- Winnowing : Vectors closest to centroid are chosen using cosine similarity. If tie, vector to the right is chosen.
-		- Similarity Metric : The fingerprints won't be of similar sizes in most cases. And vectors in n dimensional spaces are not easily countable. So, the metric we defined was - let the fingerprint of file 1 be X (a x n matrix) and the fingerprint of file 2 be Y (b x n) matrix. Our similarity metric was trace(XX'YY')/ sqrt(trace((XX')^2) * trace((YY')^2)
+		- Similarity Metric : 
+			The fingerprints won't be of similar sizes in most cases. 
+			And vectors in n dimensional spaces are not easily countable on a computer.
+			 So, the metric we defined was - let the fingerprint of file 1 be X (a x n matrix) and the fingerprint of file 2 be Y (b x n) matrix. 
+			Our similarity metric was trace(XX'YY')/ sqrt(trace((XX')^2) * trace((YY')^2)
 
 	+ C++ pro :
 		- Blah blah blah
