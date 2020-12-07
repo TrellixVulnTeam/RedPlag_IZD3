@@ -13,8 +13,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy
 import seaborn as sns
+from .graph_utils import *
 from numpy.linalg import norm
 from scipy.spatial.distance import squareform, pdist
+from django.conf import settings
 
 ## \var dictionary $word_to_vec
 ## Glove conversion from word to vector
@@ -22,113 +24,14 @@ from scipy.spatial.distance import squareform, pdist
 word_to_vec = {}
 
 
-with open('glove100D.txt', encoding='utf-8') as glove:
-	lines = [line for line in glove]
-	for line in lines:
-		line = line.split(' ')
-		vec = list(map(float,line[1:]))
-		vec = np.array(vec)
-		word_to_vec[line[0]] = vec
-
-def histogram(correlation_matrix,folder_path,bin_size = 0.10,img_format = 'png'):
-	"""!
-	\brief Creates histogram of frequencies of values in correlation matrix.
-	\details Counts number of files present in each bin. 1/bin_size must be an integer. 0 < bin_size <= 1. Default value of bin_size is 0.10
-	\param correlation matrix : Similarity values between all pairs of files
-	\param folder_path : Location where graph is to be stored
-	\param bin_size : Bin size of histogram. Default value is 0.10
-	\param img_format : Format in which image is to be stored. Default value is 'png'
-	\return void
-	"""
-
-	num_files = correlation_matrix.shape[0]
-	bins = np.arange(0,1+bin_size,bin_size)
-	num_bins = int(1/bin_size)
-	total_measurements = int((num_files * (num_files - 1))/2)
-	count = np.zeros([total_measurements])
-    
-	counter = 0
-	for i in range(1,num_files):
-		for j in range(i):
-			count[counter] = correlation_matrix[i][j]
-			counter += 1
-            
-	if(img_format[0] == '.'):
-		img_format = img_format[1:]
-	file_path = folder_path + "/Graphs/histogram." + img_format
-	folder_loc = folder_path + "/Graphs"
-	if not os.path.exists(folder_loc):
-		os.makedirs(folder_loc)
-    
-	plt.hist(count, bins = bins)
-	plt.xlabel("Similarity")
-	plt.ylabel("Frequency of such similarity")
-	plt.title("Histogram of frequency of similarity vs similarity")
-	plt.xlim([0, 1])
-
-	plt.savefig(file_path)
-	plt.clf()
-
-
-def plot_heat_map(correlation_matrix,files,folder_path,coloring = 'hot', img_format = '.png'):
-	"""!
-	\brief Creates heat map of similarity values of files
-	\details Creates heat map of similarity values of files. X - axis and Y - axis represent the files. The colour of the block represents the similarity.
-	\param correlation matrix : Similarity values between all pairs of files
-	\param files :	List containing names of all files on which plagiarism detection is to be done
-	\param folder_path : Location where graph is to be stored
-	\param coloring : Coloring of heat map. Default is hot
-	\param img_format : Format in which image is to be stored. Default value is 'png'
-	\return void
-	"""
-
-
-	plt.figure()
-	sns.set(font_scale=0.7)
-	hm = sns.heatmap(correlation_matrix,
-			cbar=True,
-			annot=True,
-			square=True,
-			fmt='.3f',
-			annot_kws={'size': 12},
-			yticklabels=files,
-			xticklabels=files)
-	plt.title('Similarity matrix showing similarity coefficients')
-	plt.tight_layout()
-	if (img_format[0] == '.'):
-		img_format = img_format[1:]
-	file_path = folder_path + "/Graphs/heat_map." + img_format
-    
-	plt.savefig(file_path)
-	plt.clf()
-            
-
-def save_csv_file(correlation_matrix,num_to_files,folder_path):
-	"""!
-	\brief Stores similarity values between files in a file.
-	\details Stores similarity values between files currently stored in correlation_matrix in .csv format
-	\param correlation matrix : Similarity values between all pairs of files
-	\param num_to_files : Conversion of file index to file name
-	\param folder_path : Location where graph is to be stored
-	\return void
-	"""
-
-
-
-	csv_list = []
-	num_files = correlation_matrix.shape[0]
-
-	file_path = folder_path + "/CSV/similarity_list.csv"
-	folder_loc = folder_path + "/CSV"
-
-	if not os.path.exists(folder_loc):
-		os.makedirs(folder_loc)
-
-	with open(file_path,'w') as fout:
-		for i in range(1,num_files):
-			for j in range(i):
-				line = num_to_files[i] + ',' + num_to_files[j] + ',' + str(correlation_matrix[i][j]) + '\n'
-				fout.write(line)
+def generate_embedding_dict():
+        with open('files/glove100D.txt', encoding='utf-8') as glove:
+                lines = [line for line in glove]
+                for line in lines:
+                        line = line.split(' ')
+                        vec = list(map(float,line[1:]))
+                        vec = np.array(vec)
+                        word_to_vec[line[0]] = vec
 
 
 def word_centroid(kgram):
@@ -301,70 +204,77 @@ def moss_embedding(t1, t2, t, k):
 	s = similarity_metric_1(np.array(HS1), np.array(HS2))
 	return s
 
+def embedding_process_files(zip_dir):
+        initial_path = os.getcwd()
+        generate_embedding_dict()
+        basename = os.path.basename(zip_dir).split('.')[0]
+        folder_path = settings.MEDIA_ROOT + '/' + basename + '/'
+        other_things = settings.MEDIA_ROOT + '/' + basename + 'other/'
 
-folder_path = sys.argv[1]
+        with zipfile.ZipFile(zip_dir,'r') as zip_ref:
+                zip_ref.extractall(folder_path)
 
-## \var int $t
-## Threshold length for winnowing algorithm
+        ## \var int $t
+        ## Threshold length for winnowing algorithm
+        t = 100
 
-t = 100
+        ## \var int $k
+        ## Sliding window length
+        k = 30
 
-## \var int $k
-## Sliding window length
+        ## \var list $files
+        ## List of files in folder which is being queried
 
-k = 30
+        files = os.listdir(folder_path)
+        os.chdir(folder_path)
 
+        ## \var np.darray $H
+        ## Array of hashes of each file
 
-## \var list $files
-## List of files in folder which is being queried
+        H = [GetEmbeddingHashesCharacter(f,k) for f in files]
 
-files = os.listdir(folder_path)
-os.chdir(folder_path)
+        ## \var np.darray $HS
+        ## Array of fingerprints of each file
 
-## \var np.darray $H
-## Array of hashes of each file
+        HS = [Winnowing(h,t,k) for h in H]
 
-H = [GetEmbeddingHashesCharacter(f,k) for f in files]
+        ## \var int $n
+        ## Number of files being queried
 
-## \var np.darray $HS
-## Array of fingerprints of each file
+        n = len(files)
+        ## \var list $paths
+        ## List of paths of each file
 
-HS = [Winnowing(h,t,k) for h in H]
+        paths = []
+        for f in files:
+                paths.append(folder_path + "/" + f)
 
-## \var int $n
-## Number of files being queried
+        ## \var $dict $num_to_files
+        ## Mapping of index of file to file name
 
-n = len(files)
+        num_to_files = {}
 
-## \var list $paths
-## List of paths of each file
+        for i in range(len(files)):
+                num_to_files[i] = files[i]
 
-paths = []
-for f in files:
-    paths.append(folder_path + "/" + f)
+        ## \var np.darray $C1
+        ## Similarity matrix between files
 
+        C1 = np.identity(n)
 
-## \var $dict $num_to_files
-## Mapping of index of file to file name
+        for i in range(n):
+                for j in range(i):
+                        s1 = similarity_metric_1(HS[i], HS[j])
+                        C1[i][j] = s1
+                        C1[j][i] = s1
 
-num_to_files = {}
-for i in range(len(files)):
-    num_to_files[i] = files[i]
+        histogram(C1,other_things)
+        plot_heat_map(C1,files,other_things)
+        save_csv_file(C1,num_to_files,other_things)
 
-## \var np.darray $C1
-## Similarity matrix between files
-
-C1 = np.identity(n)
-
-for i in range(n):
-	for j in range(i):
-		s1 = similarity_metric_1(HS[i], HS[j])
-		
-		C1[i][j] = s1
-		C1[j][i] = s1
-
-histogram(C1,folder_path)
-plot_heat_map(C1,files,folder_path)    
-save_csv_file(C1,num_to_files,folder_path)
-
-print(C1)
+        os.chdir(settings.MEDIA_ROOT)
+        if os.path.isfile(basename + 'other' + '.zip'): os.remove(basename + 'other' + '.zip')
+        zipf = zipfile.ZipFile(basename + 'other' + '.zip','w',zipfile.ZIP_DEFLATED)
+        zipdir(basename + 'other/', zipf)
+        zipf.close()
+        os.chdir(initial_path)

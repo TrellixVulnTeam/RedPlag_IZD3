@@ -7,7 +7,8 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from .models import UploadFile, OutputFile
-from .plag_detect import *
+from .moss import *
+from .wordembeddingpro import *
 from django.core.files import File
 from django.conf import settings
 from django.http import HttpResponse
@@ -21,7 +22,9 @@ class FileView(APIView):
 	def get(self, request, format = None):
 		queryset = UploadFile.objects.filter(user=request.user)
 		recent = queryset[len(queryset)-1].uploaded.path
-		process_given_files(recent)
+		mode = queryset[len(queryset)-1].fileType
+		if mode == 'cpp': moss_given_files(recent)
+		elif mode == 'text': embedding_process_files(recent)
 		filelist = [file.uploaded.name for file in queryset]
 		return Response(filelist[-1])
 
@@ -44,10 +47,10 @@ class GraphView(APIView):
 		queryset = UploadFile.objects.filter(user=request.user)
 		recent = queryset[len(queryset)-1].uploaded.path
 		#process_given_files(recent)
-		f = open(os.path.basename(recent).split('.')[0] + 'other.zip','rb')
+		f = open('media/' + os.path.basename(recent).split('.')[0] + 'other.zip','rb')
 		myfile = File(f)
 		queryset[len(queryset)-1].outputfile_set.create(textoutput = myfile)
-		file_path=os.path.basename(recent).split('.')[0] + 'other.zip'
+		file_path= 'media/' + os.path.basename(recent).split('.')[0] + 'other.zip'
 		f.close()
 		with open(file_path, 'rb') as f:
 			response = HttpResponse(f, content_type='application/zip')
@@ -62,10 +65,10 @@ class HeatMapView(APIView):
 			queryset = UploadFile.objects.filter(user=request.user)
 			recent = queryset[len(queryset)-1].uploaded.path
 			#process_given_files(recent)
-			f = open(os.path.basename(recent).split('.')[0] + 'other/Graphs/heat_map.png','rb')
+			f = open('media/' + os.path.basename(recent).split('.')[0] + 'other/Graphs/heat_map.png','rb')
 			myfile = File(f)
 			queryset[len(queryset)-1].heatmapfile_set.create(hmapoutput = myfile)
-			file_path=os.path.basename(recent).split('.')[0] + 'other/Graphs/heat_map.png'
+			file_path='media/' + os.path.basename(recent).split('.')[0] + 'other/Graphs/heat_map.png'
 			f.close()
 			with open(file_path, 'rb') as f:
 				response = HttpResponse(f, content_type='image/png')
@@ -80,10 +83,10 @@ class HistogramView(APIView):
 			queryset = UploadFile.objects.filter(user=request.user)
 			recent = queryset[len(queryset)-1].uploaded.path
 			#process_given_files(recent)
-			f = open(os.path.basename(recent).split('.')[0] + 'other/Graphs/histogram.png','rb')
+			f = open('media/' + os.path.basename(recent).split('.')[0] + 'other/Graphs/histogram.png','rb')
 			myfile = File(f)
 			queryset[len(queryset)-1].histogramfile_set.create(histoutput = myfile)
-			file_path=os.path.basename(recent).split('.')[0] + 'other/Graphs/histogram.png'
+			file_path='media/' + os.path.basename(recent).split('.')[0] + 'other/Graphs/histogram.png'
 			f.close()
 			with open(file_path, 'rb') as f:
 				response = HttpResponse(f, content_type='image/png')
