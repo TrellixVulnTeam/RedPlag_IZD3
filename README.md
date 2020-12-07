@@ -41,7 +41,10 @@
 
 ### Bonus Features :
 1. Terminal :
-	- Blah Blah blah
+	- Login
+	- Change Password
+	- Upload
+	- Download
 2. Boilerplate removal :
 	- Blah Blah Blah
 3.  
