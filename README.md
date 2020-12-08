@@ -72,10 +72,19 @@
 
 The server must be active. If you are testing locally, follow the instructions for the backend.
 
+#### For Ubuntu and Mac users
+
 The name of the terminal file is `redplagcli`. The `redplag_support.py` file must be present in the same folder as `redplagcli`.
 
 First make `redplagcli` executable by using the command `chmod a+x redplagcli`
 
+If this fails, you may use `python3 replag_support.py`
+
+#### For Windows Users.
+
+Use the .exe file named `replag.exe`
+
+If this fails, you may use `python3 redplag_support.py`
 + Login:
 `.\redplagcli login <email_id> <password>`
 
