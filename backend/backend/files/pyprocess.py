@@ -4,7 +4,8 @@ import os
 
 
 def do_file(filename):
-    """ Run on just one file.
+    """
+    Removes comments, multiple endlines, unnecessary tabs from the code
     """
     infile = open(filename, 'r').read()
     infile = re.sub('\"\"\".*\"\"\"', '', infile, flags=re.S)
@@ -98,6 +99,11 @@ def replace_function(filename):
     return fun_list       
 
 def replace_variables(filename, func_names = []):
+    """!
+    Replace all variable names by 'v'
+    \param filename: name of the input file
+    \param func_names: array containing all the function names in the file
+    """
     keywords = ['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
 
     infile = open(filename, 'r').read()
@@ -134,10 +140,11 @@ def replace_variables(filename, func_names = []):
     outfile.close()
 
 def boiler(bo, co):
-    ##Remove the boiler plate code from the given file
-    #
-    # @param bo: boiler plate file
-    # @param co: code file
+    """!
+    Remove the boiler plate code from the given file
+    \param bo: boiler plate file
+    \param co: code file
+    """
     infile = open(bo)
     ct=0;
     for line in infile :

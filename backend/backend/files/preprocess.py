@@ -1,8 +1,7 @@
 import re
 import sys
 
-## @package preprocess
-# @brief Preprocesses the input file before plag check
+## @brief Preprocesses the input file before plag check
 #
 # Removes Comments, #define declarations, headers and redundant function declarations.
 # Replaces function calls with their declaration and replaces words in the code defined with #define directive.
@@ -463,6 +462,9 @@ def stripspaces(filename):
 
 
 def stripspaces_end(filename):
+	"""
+	Remove spaces from the file after variable replacement
+	"""
 	try:
 		infile = open(filename, 'r').read()
 		infile = re.sub('([^a-zA-Z0-9\s]+)', '\\1', infile)
@@ -651,11 +653,12 @@ def boiler(bo, co):
 			        	done=True
 			    f.truncate()
 
-"""
-Removes boiler plate if provided, then strips comments, replaces function calls, removes #defines, removes multiple spaces
-Replace variable by 'v'
-"""
+
 def preprocess(filename, b=False, bo="none.txt"):
+	"""
+	Removes boiler plate if provided, then strips comments, replaces function calls, removes #defines, removes multiple spaces
+	Replace variable by 'v'
+	"""
 	if b==True:
 		boiler(bo,filename)
 	stripcomments(filename)
