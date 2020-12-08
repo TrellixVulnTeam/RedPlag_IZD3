@@ -33,7 +33,7 @@ class FileView(APIView):
                 if mode == 'cpp': pro.moss_given_files(recent, stub_code, stub.name == '',1)
                 elif mode == 'python': pro.moss_given_files(recent, stub_code, stub.name == '',2)
                 elif mode == 'text': word.embedding_process_files(recent)
-                elif mode == 'moss': general.moss_given_files(recent)
+                elif mode == 'moss': general.moss_given_files(recent, stub_code, stub.name == '')
                 filelist = [file.uploaded.name for file in queryset]
                 return Response(filelist[-1])
 
