@@ -81,7 +81,7 @@ def intersection(lst1, lst2):
                                 intersect_with_loc_2 += [[h2[1][0], h2[2][0]]]
 
 	intersect_with_loc_1.sort(key = lambda x : x[0])
-	if len(intersect_with_loc_1) == 0: return 0, 0, [], []
+	if len(intersect_with_loc_1) <= 1: return 0, 0, [], []
 
 	intersect_with_loc_1 = intersect_with_loc_1[1:]
 	p_1= [intersect_with_loc_1[0]]
@@ -115,8 +115,11 @@ def similarity(lst1, lst2, boiler):
 
 	if boiler:
                 boilerplate = set([h[0] for h in boilerplate_fingerprint])
-                l1h = set([h for h in list(l1h) if h not in boilerplate])
-                l2h = set([h for h in list(l2h) if h not in boilerplate])
+                l1h1 = set([h for h in l1h if h not in boilerplate])
+                l2h2 = set([h for h in l2h if h not in boilerplate])
+                l3h3 = set(l1h1)&set(l2h2)
+                sim = len(l3h3)/min(len(set(l1h)), len(set(l2h)))
+                return sim
 	l3h = set(l1h)&set(l2h)
 	sim = len(l3h)/min(len(set(l1h)), len(set(l2h)))
 	return sim
@@ -223,7 +226,7 @@ def moss_all_pairs(folder_path, files, t, k, boilerplate, is_boiler):
 	H = [GetHLoc(f,k) for f in files]
 	HS = [Win(h,t,k) for h in H]
 
-	if is_boiler:
+	if not is_boiler:
                 boilerplate_fingerprint = Win(GetHLoc(boilerplate,k),t,k)
 
 	C = np.identity(n)
@@ -237,7 +240,7 @@ def moss_all_pairs(folder_path, files, t, k, boilerplate, is_boiler):
 	for i in range(n):			
 		for j in range(i+1, n):
 			pi, pj = intersection(HS[i], HS[j])
-			sim = similarity(HS[i], HS[j], is_boiler)
+			sim = similarity(HS[i], HS[j], not is_boiler)
 			C[i][j] = sim
 			C[j][i] = sim
 			markings[i][j] += pi
