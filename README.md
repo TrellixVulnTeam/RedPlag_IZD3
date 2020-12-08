@@ -57,14 +57,14 @@
 + Put Authentication gaurds on each url so that only authenticated user can access them
 + Build an Auth Interceptor that adds JSON web token in the request header of every subsequent request after login, for authentication purpose at the backend. The token is obtained as a response of the GET request of user login
 + Created Services for Authentication that handles login, signup and my_account section and File service handles upload and download of data.(upload part is left)
-+ Red Plag-
-	-Select the Files: Select the ZIP File, containing all the testfiles in the first level of directory
-	-Select Boilerplate: Select the textfile containing the boilerplate
-	-Select the Plagiarism Checker from the Radio Buttons- C++, Python, Word Embedding and Other Languages
-	-Upload the Code- Click on the Button to Upload
-	-Process Files- Finds the similarity between the selected files.
-	-Download Results- CLick the button to get the CSV File, Heatmap and Histogram as a ZIP File
-	-Show Results- Click the button to display HeatMap and Histogram on the website
++ Red Plag -
+	- Select the Files: Select the ZIP File, containing all the testfiles in the first level of directory
+	- Select Boilerplate: Select the textfile containing the boilerplate
+	- Select the Plagiarism Checker from the Radio Buttons- C++, Python, Word Embedding and Other Languages
+	- Upload the Code- Click on the Button to Upload
+	- Process Files- Finds the similarity between the selected files.
+	- Download Results- CLick the button to get the CSV File, Heatmap and Histogram as a ZIP File
+	- Show Results- Click the button to display HeatMap and Histogram on the website
 
 ### Bonus Features :
 1. Terminal :
