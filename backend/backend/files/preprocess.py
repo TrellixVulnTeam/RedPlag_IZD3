@@ -619,7 +619,7 @@ def replace_variables(filename, func_names):
 # @param co: given code file from which boiler plate needs to be removed
 
 def boiler(bo, co):
-	infile = open(bo)
+	infile = open(bo, encoding = 'utf-8')
 	ct=0;
 	s1=["void","int","bool","char","float","double","long"]
 	for line in infile :

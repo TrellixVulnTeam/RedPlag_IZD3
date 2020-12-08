@@ -51,6 +51,7 @@ def Win(H,t,k):
     n=len(H)
     mI=-1
     pmI=-1
+    if len(H) < w: HS.append(H[0])
     for i in range(0,len(H)-w+1):
         tm=9223372036854775807
         for j in range(i, i+w):
@@ -79,7 +80,7 @@ def moss(t1,t2,t,k):
     s=len(HS1&HS2)/min(len(HS1),len(HS2))
     return s
 
-def moss_given_files(zip_dir):
+def moss_given_files(zip_dir, boilerplate, blank_stub):
     initial_path = os.getcwd()
     print(os.getcwd())
     os.chdir(settings.BASE_DIR)
@@ -101,7 +102,7 @@ def moss_given_files(zip_dir):
     paths = []
 
     for f in files:
-        preprocess(folder_path + "/" + f, False)
+        preprocess(folder_path + "/" + f, not(blank_stub), boilerplate)
         paths.append(folder_path + "/" + f)
 
     num_files = len(files)
