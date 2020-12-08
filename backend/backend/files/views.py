@@ -37,7 +37,8 @@ class FileView(APIView):
     else: stub_code = stub.path
     
     mode = queryset[len(queryset)-1].fileType
-    if mode == 'cpp': moss_given_files(recent, stub_code, stub.name == '')
+    if mode == 'cpp': moss_given_files(recent, stub_code, stub.name == '',1)
+    elif mode == 'python': moss_given_files(recent, stub_code, stub.name == '',2)
     elif mode == 'text': embedding_process_files(recent)
     filelist = [file.uploaded.name for file in queryset]
     return Response(filelist[-1])
