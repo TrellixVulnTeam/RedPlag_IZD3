@@ -84,6 +84,8 @@ If this fails, you may use `python3 replag_support.py`
 
 Use the .exe file named `replag.exe`
 
+#### Commands
+
 If this fails, you may use `python3 redplag_support.py`
 + Login:
 `.\redplagcli login <email_id> <password>`

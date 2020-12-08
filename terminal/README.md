@@ -25,6 +25,8 @@ Use the .exe file named `replag.exe`
 
 If this fails, you may use `python3 redplag_support.py`
 
+#### Commands
+
 + Login:
 `.\redplagcli login <email_id> <password>`
 
