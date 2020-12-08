@@ -1,11 +1,13 @@
-""" \package MOSS With Locations
+""" \package MOSS With Locations and Boiler Plate handling
 Plagiarism detector for source code files.
 Detects plagiarism using Karp Rabin Hashing and winnowing
+Keeps a fingerprint of boilerplate file and doesn't consider that as plagiarism
 Marks overlapping hashes to exactly show the parts which where copied
 """
 
 import numpy as np
 from pygments.lexers import guess_lexer_for_filename
+from pygments.lexers.python import PythonLexer
 import pygments
 import sys
 import os
@@ -13,6 +15,8 @@ from .graph_utils import *
 from django.conf import settings
 
 q=1000000007
+
+boilerplate_fingerprint = []
 
 def tokenize(filename):
 	"""!
@@ -24,7 +28,11 @@ def tokenize(filename):
 	"""
 	with open(filename, 'r', encoding = 'utf-8') as f:
 		contents = f.read()
-		tokens = list(guess_lexer_for_filename(filename, contents).get_tokens(contents))
+		try:
+                        lexer = guess_lexer_for_filename(filename, contents)
+		except:
+                        lexer = PythonLexer
+		tokens = list(lexer.get_tokens(contents))
 		mapping = []
 		n = len(tokens)
 		
@@ -55,16 +63,15 @@ def intersection(lst1, lst2):
         
 	
 	\details Finds hashes that are common to both lists and stores their location in both documents
-	Finds similarity that is measured by 
-	sim(A,B) = number of hashes in intersection of both hash sets divided by minimum of the number of hashes in lst1 and lst2
+	Merges nearby intervals if they are overlapping
 		
 	\param  lst1 : 1st list whose elements are of the form [hash, start location, end location]
 	\param lst2: 2nd list whose elements are of the form [hash, start location, end location]
-	\return l3: list of common hashes and their locations in both documents. This is a list whose elements are of the form 
-		[common hash, [start location in 1, end location in 1], [start location in 2, end location in 2]]
-	\return sim: similarity measure evaluated
+	\return p_1 : list of common hashes and merged locations in file 1. This is a list whose elements are of the form 
+		[[start location in 1, end location in 1]]
+	\return p_1 : list of common hashes and merged locations in file 2. This is a list whose elements are of the form 
+		[[start location in 2, end location in 2]]
 	"""
-
 	intersect_with_loc_1 = []
 	intersect_with_loc_2 = []
 	for h1 in lst1:
@@ -92,19 +99,25 @@ def intersection(lst1, lst2):
 		if intersect_with_loc_2[i][0] >= p_2[-1][0] and intersect_with_loc_2[i][1] > p_2[-1][1] and intersect_with_loc_2[i][0] <= p_2[-1][1]:
 			p_2[-1] = [p_2[-1][0],intersect_with_loc_2[i][1]]
 		else: p_2 += [intersect_with_loc_2[i]]
-
-	sim_1 = len(intersect_with_loc_1)/len(lst1)
-	sim_2 = len(intersect_with_loc_2)/len(lst2)
-	return sim_1, sim_2 , p_1, p_2
+	return p_1, p_2
 
 
-def similarity(lst1, lst2):
+def similarity(lst1, lst2, boiler):
 	"""!
-		\details Evaluates similarity as done in intersection function but doesn't return locations of common hashes
+		\details Evaluates similarity as done in intersection function but doesn't return locations of common hashes. It removes influence of boilerplate
+		\param lst1 and lst2: lists of hashes
+		\param boiler: if True a boilerplate will be considered
+		\returns: similarity according to the result
+                        sim(A,B) = number of common hashes divided by minimum of hashes in A and those in B
 	"""
-	l1h = [h[0] for h in lst1] 
-	l2h = [h[0] for h in lst2]
-	l3h = list(set(l1h)&set(l2h))
+	l1h = set([h[0] for h in lst1])
+	l2h = set([h[0] for h in lst2])
+
+	if boiler:
+                boilerplate = set([h[0] for h in boilerplate_fingerprint])
+                l1h = set([h for h in list(l1h) if h not in boilerplate])
+                l2h = set([h for h in list(l2h) if h not in boilerplate])
+	l3h = set(l1h)&set(l2h)
 	sim = len(l3h)/min(len(set(l1h)), len(set(l2h)))
 	return sim
 
@@ -194,18 +207,24 @@ def Win(H,t,k):
 		
 
 		
-def moss_all_pairs(folder_path, files, t, k):
+def moss_all_pairs(folder_path, files, t, k, boilerplate, is_boiler):
 	"""!
         \details Evaluates MOSS similarity and matching portions between each pair of files
+        \param folder_path: path where marked files are to be created
         \param files: list of files
         \param t: Winnowing threshold parameter
         \param k: k-gram parameter
+        \param boiler_file: boilerplate code file's location
+        \param is_boiler: True if a boiler plate is to be considered and passed
         \return C: similarity matrix such that C[i][j] denotes the similarity between the ith and jth file
-        \return markings: markings matrix such that markings[i][j] is a list of charavter indices where matching k-grams begin for ith and jth file"""
+        """
 	
 	n = len(files)
 	H = [GetHLoc(f,k) for f in files]
 	HS = [Win(h,t,k) for h in H]
+
+	if is_boiler:
+                boilerplate_fingerprint = Win(GetHLoc(boilerplate,k),t,k)
 
 	C = np.identity(n)
 	markings = []
@@ -217,9 +236,10 @@ def moss_all_pairs(folder_path, files, t, k):
 	
 	for i in range(n):			
 		for j in range(i+1, n):
-			simi, simj, pi, pj = intersection(HS[i], HS[j])
-			C[i][j] = simi
-			C[j][i] = simj
+			pi, pj = intersection(HS[i], HS[j])
+			sim = similarity(HS[i], HS[j], is_boiler)
+			C[i][j] = sim
+			C[j][i] = sim
 			markings[i][j] += pi
 			markings[j][i] += pj				
 
@@ -241,7 +261,7 @@ def moss_all_pairs(folder_path, files, t, k):
 
 	return C
 
-def moss_given_files(zip_dir):
+def moss_given_files(zip_dir, boiler_file, is_boiler):
     initial_path = os.getcwd()
     print(os.getcwd())
     os.chdir(settings.BASE_DIR)
@@ -261,7 +281,6 @@ def moss_given_files(zip_dir):
     ## List of paths of each file
 
     paths = []
-
     for f in files:
         paths.append(folder_path + "/" + f)
 
@@ -276,7 +295,7 @@ def moss_given_files(zip_dir):
 
     ## \var np.darray $correlation_matrix
     ## Similarity matrix between files
-    correlation_matrix = moss_all_pairs(other_things, paths, 4,3)
+    correlation_matrix = moss_all_pairs(other_things, paths, 4,3, boiler_file, is_boiler)
     print(correlation_matrix)
     
     histogram(correlation_matrix,other_things)
