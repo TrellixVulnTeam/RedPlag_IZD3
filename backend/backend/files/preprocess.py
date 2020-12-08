@@ -1,7 +1,7 @@
 import re
 import sys
 
-## @brief Preprocesses the input file before plag check
+## @brief Preprocesses the cpp input file before plag check
 #
 # Removes Comments, #define declarations, headers
 # Makes the code white space insensitive.
@@ -108,16 +108,13 @@ import pygments
 import pygments.lexers
 
 def tokenize(filename):
-    """
-    ! @brief Tokenie input file
+    """! @brief Tokenize input file
     
-    @detail Remove comments, Replace every variable/class/any other user defined name by N, Replace every string literal by S, Replace every function name by F
+    Remove comments, Replace every variable/class/any other user defined name by N, Replace every string literal by S, Replace every function name by F
     
-    @type filename: str
-    @param filename: path of the file to be tokenized
+    \param filename: path of the file to be tokenized
     
-    @rtype result: list
-    @return result: Every token is a string, obtained by stripping the file content to words and performing the cleaning described. The starting index of the token in the cleaned code and actual code are also stored
+    \return result: Every token is a string, obtained by stripping the file content to words and performing the cleaning described. The starting index of the token in the cleaned code and actual code are also stored
     """
     file = open(filename, "r")
     text = file.read()

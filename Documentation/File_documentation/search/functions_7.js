@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['intersection_197',['intersection',['../namespacefiles_1_1moss__boilerplate__location__tokenisation.html#a7a2fc01ede68187cf4d2d53fe22183f9',1,'files.moss_boilerplate_location_tokenisation.intersection()'],['../namespacefiles_1_1moss__location__tokenisation.html#a4fe688e7fc9ea72a2a055bfa9de6ce07',1,'files.moss_location_tokenisation.intersection()'],['../namespacefiles_1_1moss__locations.html#a1134fc11e972cdf09b4b4312fb392b7a',1,'files.moss_locations.intersection()']]],
-  ['intersection_5fminus_5fboilerplate_198',['intersection_minus_boilerplate',['../namespacefiles_1_1moss__boilerplate__location__tokenisation.html#a8b67759aef7815a82d285868d775b638',1,'files::moss_boilerplate_location_tokenisation']]]
+  ['moss_166',['moss',['../namespacefiles_1_1moss.html#a47f59aefc2856b1007a89136c10ba507',1,'files::moss']]],
+  ['moss_5fall_5fpairs_167',['moss_all_pairs',['../namespacefiles_1_1moss__location.html#a6cbf1cf888edb87c69658ff250ebfef6',1,'files::moss_location']]],
+  ['moss_5fembedding_168',['moss_embedding',['../namespacefiles_1_1wordembeddingpro.html#a4799f5a182b407409b0246689cd4b6a5',1,'files::wordembeddingpro']]],
+  ['moss_5fgiven_5ffiles_169',['moss_given_files',['../namespacefiles_1_1moss.html#a3583193e79bac5d0adbc593e7480d704',1,'files.moss.moss_given_files()'],['../namespacefiles_1_1moss__location.html#a8215100f5bee7549df7383cbf53bc663',1,'files.moss_location.moss_given_files()']]]
 ];

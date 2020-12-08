@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['k_237',['k',['../namespacefiles_1_1moss__boilerplate__location__tokenisation.html#ab0c835aafb1f7a012013c817970da527',1,'files.moss_boilerplate_location_tokenisation.k()'],['../namespacefiles_1_1moss__location__tokenisation.html#aa70ab4bda9c213ff94010b9f0b2ea969',1,'files.moss_location_tokenisation.k()']]]
+  ['model_196',['model',['../classfiles_1_1serializers_1_1_file_serializer_1_1_meta.html#ab0ba5be870c70c6653d9ea097a90b7b8',1,'files::serializers::FileSerializer::Meta']]]
 ];

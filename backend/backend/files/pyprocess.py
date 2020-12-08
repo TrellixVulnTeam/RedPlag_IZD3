@@ -1,7 +1,9 @@
 import sys, token, tokenize
 import re
 import os
-
+## @brief Preprocesses the python input file before plag check
+#
+# Removes boilerplate and does the preprocessing before plag check
 
 def do_file(filename):
     """

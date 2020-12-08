@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['q_94',['q',['../namespacefiles_1_1moss.html#ad56021a8b57057326e7bc9ed560a48dc',1,'files.moss.q()'],['../namespacefiles_1_1moss__boilerplate__location__tokenisation.html#af9b8d086e0dc66dcd0609a717f81bf10',1,'files.moss_boilerplate_location_tokenisation.q()'],['../namespacefiles_1_1moss__location__tokenisation.html#a2211cbdd74465b3a41118ba64267edd5',1,'files.moss_location_tokenisation.q()'],['../namespacefiles_1_1moss__locations.html#aeed932a29bafb8aaa18aaadc4cc2114e',1,'files.moss_locations.q()']]],
-  ['queryset_95',['queryset',['../classfiles_1_1views_1_1_file_view.html#ac4baf0d3f2d4925baf396c4c6db3721f',1,'files::views::FileView']]]
+  ['save_5fcsv_5ffile_81',['save_csv_file',['../namespacefiles_1_1graph__utils.html#a3ca1d1141e5b93222c794977e573dac4',1,'files::graph_utils']]],
+  ['serializers_2epy_82',['serializers.py',['../serializers_8py.html',1,'']]],
+  ['similarity_83',['similarity',['../namespacefiles_1_1moss__location.html#a3d9ee4f99f63b1cd2d3bd4ce78d218e5',1,'files::moss_location']]],
+  ['similarity_5fmetric_5f1_84',['similarity_metric_1',['../namespacefiles_1_1wordembeddingpro.html#abbef13cd70c8528ecd451b4198d20c9d',1,'files::wordembeddingpro']]],
+  ['stripcomments_85',['stripcomments',['../namespacefiles_1_1preprocess.html#a755d3fc9c1d546c2d9b337d92aa9d2ec',1,'files::preprocess']]],
+  ['stripspaces_86',['stripspaces',['../namespacefiles_1_1pyprocess.html#a60f0b838d2db227095d3bb50e9061854',1,'files::pyprocess']]]
 ];

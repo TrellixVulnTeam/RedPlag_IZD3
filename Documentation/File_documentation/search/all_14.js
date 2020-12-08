@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['uploadconfig_115',['UploadConfig',['../classfiles_1_1apps_1_1_upload_config.html',1,'files::apps']]],
-  ['uploaded_116',['uploaded',['../classfiles_1_1models_1_1_upload_file.html#a7638315c32a3824f2021074ce6c30b5e',1,'files::models::UploadFile']]],
-  ['uploadfile_117',['UploadFile',['../classfiles_1_1models_1_1_upload_file.html',1,'files::models']]],
-  ['urls_2epy_118',['urls.py',['../urls_8py.html',1,'']]],
-  ['user_119',['user',['../classfiles_1_1models_1_1_upload_file.html#abc6f2af177cc9f767131bbab23b62449',1,'files::models::UploadFile']]]
+  ['win_97',['Win',['../namespacefiles_1_1moss.html#aad5c94691766ecf909d48fa3fe3597fd',1,'files.moss.Win()'],['../namespacefiles_1_1moss__location.html#a092b28c726a38a79b773fb3477be735c',1,'files.moss_location.Win()']]],
+  ['winnowing_98',['Winnowing',['../namespacefiles_1_1wordembeddingpro.html#a17bb3bc51000f4087cf1be6f47dcddca',1,'files::wordembeddingpro']]],
+  ['word_5fcentroid_99',['word_centroid',['../namespacefiles_1_1wordembeddingpro.html#a7249e875a8c3a54165b6622f3e9e4fa1',1,'files::wordembeddingpro']]],
+  ['word_5fto_5fvec_100',['word_to_vec',['../namespacefiles_1_1wordembeddingpro.html#a299999f6c14652784185647b9ef2357e',1,'files::wordembeddingpro']]],
+  ['wordembeddingpro_2epy_101',['wordembeddingpro.py',['../wordembeddingpro_8py.html',1,'']]]
 ];

@@ -111,22 +111,8 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:aacfe08dc6865f5e428f092300399c9db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e9cffea4f91c335b790e1cf3f019291"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfiles_1_1views_1_1_file_view.html#a6e9cffea4f91c335b790e1cf3f019291">authentication_class</a> = JSONWebTokenAuthentication</td></tr>
 <tr class="separator:a6e9cffea4f91c335b790e1cf3f019291"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4baf0d3f2d4925baf396c4c6db3721f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfiles_1_1views_1_1_file_view.html#ac4baf0d3f2d4925baf396c4c6db3721f">queryset</a> = UploadFile.objects.filter(user=request.user)</td></tr>
-<tr class="separator:ac4baf0d3f2d4925baf396c4c6db3721f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa251d7b64dd605f5ffc20f346bfd620c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfiles_1_1views_1_1_file_view.html#aa251d7b64dd605f5ffc20f346bfd620c">recent</a> = <a class="el" href="classfiles_1_1views_1_1_file_view.html#ac4baf0d3f2d4925baf396c4c6db3721f">queryset</a>[len(<a class="el" href="classfiles_1_1views_1_1_file_view.html#ac4baf0d3f2d4925baf396c4c6db3721f">queryset</a>)-1].uploaded.path</td></tr>
-<tr class="separator:aa251d7b64dd605f5ffc20f346bfd620c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb7f226bff442a95b26d76fd14a8c2fa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfiles_1_1views_1_1_file_view.html#abb7f226bff442a95b26d76fd14a8c2fa">stub</a> = <a class="el" href="classfiles_1_1views_1_1_file_view.html#ac4baf0d3f2d4925baf396c4c6db3721f">queryset</a>[len(<a class="el" href="classfiles_1_1views_1_1_file_view.html#ac4baf0d3f2d4925baf396c4c6db3721f">queryset</a>)-1].boilerplate</td></tr>
-<tr class="separator:abb7f226bff442a95b26d76fd14a8c2fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae20e55db7acb61d9c11d34e3e2c7e274"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfiles_1_1views_1_1_file_view.html#ae20e55db7acb61d9c11d34e3e2c7e274">stub_code</a></td></tr>
-<tr class="separator:ae20e55db7acb61d9c11d34e3e2c7e274"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a203652016f277b6ab89003793f8ee2ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfiles_1_1views_1_1_file_view.html#a203652016f277b6ab89003793f8ee2ed">mode</a> = <a class="el" href="classfiles_1_1views_1_1_file_view.html#ac4baf0d3f2d4925baf396c4c6db3721f">queryset</a>[len(<a class="el" href="classfiles_1_1views_1_1_file_view.html#ac4baf0d3f2d4925baf396c4c6db3721f">queryset</a>)-1].fileType</td></tr>
-<tr class="separator:a203652016f277b6ab89003793f8ee2ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9271d484e975017924381047c242c029"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfiles_1_1views_1_1_file_view.html#a9271d484e975017924381047c242c029">filelist</a> = [file.uploaded.name for file in <a class="el" href="classfiles_1_1views_1_1_file_view.html#ac4baf0d3f2d4925baf396c4c6db3721f">queryset</a>]</td></tr>
-<tr class="separator:a9271d484e975017924381047c242c029"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><pre class="fragment">    Api endpoint to upload file and download the uploaded file
-    URL: http://127.0.0.1:8000/file/upload</pre> </div><h2 class="groupheader">Member Function Documentation</h2>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a6b77fc1f67e527cf8a9220af40608b1b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6b77fc1f67e527cf8a9220af40608b1b">&#9670;&nbsp;</a></span>get()</h2>
 
@@ -158,8 +144,7 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">        Api endpoint to process the uploaded files depending upon it's type
-        and generate results which are available for download</pre> 
+
 </div>
 </div>
 <a id="a580472085897a802a90000670d50f8c1"></a>
@@ -199,7 +184,7 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">        Api endpoint to upload the zip file</pre> 
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -214,50 +199,6 @@ Static Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">files.views.FileView.authentication_class = JSONWebTokenAuthentication</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a9271d484e975017924381047c242c029"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9271d484e975017924381047c242c029">&#9670;&nbsp;</a></span>filelist</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">list files.views.FileView.filelist = [file.uploaded.name for file in <a class="el" href="classfiles_1_1views_1_1_file_view.html#ac4baf0d3f2d4925baf396c4c6db3721f">queryset</a>]</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a203652016f277b6ab89003793f8ee2ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a203652016f277b6ab89003793f8ee2ed">&#9670;&nbsp;</a></span>mode</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">files.views.FileView.mode = <a class="el" href="classfiles_1_1views_1_1_file_view.html#ac4baf0d3f2d4925baf396c4c6db3721f">queryset</a>[len(<a class="el" href="classfiles_1_1views_1_1_file_view.html#ac4baf0d3f2d4925baf396c4c6db3721f">queryset</a>)-1].fileType</td>
         </tr>
       </table>
   </td>
@@ -302,94 +243,6 @@ Static Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">tuple files.views.FileView.permission_classes = (IsAuthenticated,)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac4baf0d3f2d4925baf396c4c6db3721f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac4baf0d3f2d4925baf396c4c6db3721f">&#9670;&nbsp;</a></span>queryset</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">files.views.FileView.queryset = UploadFile.objects.filter(user=request.user)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aa251d7b64dd605f5ffc20f346bfd620c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa251d7b64dd605f5ffc20f346bfd620c">&#9670;&nbsp;</a></span>recent</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">files.views.FileView.recent = <a class="el" href="classfiles_1_1views_1_1_file_view.html#ac4baf0d3f2d4925baf396c4c6db3721f">queryset</a>[len(<a class="el" href="classfiles_1_1views_1_1_file_view.html#ac4baf0d3f2d4925baf396c4c6db3721f">queryset</a>)-1].uploaded.path</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="abb7f226bff442a95b26d76fd14a8c2fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb7f226bff442a95b26d76fd14a8c2fa">&#9670;&nbsp;</a></span>stub</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">files.views.FileView.stub = <a class="el" href="classfiles_1_1views_1_1_file_view.html#ac4baf0d3f2d4925baf396c4c6db3721f">queryset</a>[len(<a class="el" href="classfiles_1_1views_1_1_file_view.html#ac4baf0d3f2d4925baf396c4c6db3721f">queryset</a>)-1].boilerplate</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ae20e55db7acb61d9c11d34e3e2c7e274"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae20e55db7acb61d9c11d34e3e2c7e274">&#9670;&nbsp;</a></span>stub_code</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">files.views.FileView.stub_code</td>
         </tr>
       </table>
   </td>

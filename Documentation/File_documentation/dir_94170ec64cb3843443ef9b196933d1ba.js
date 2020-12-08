@@ -9,10 +9,7 @@ var dir_94170ec64cb3843443ef9b196933d1ba =
     [ "graph_utils.py", "graph__utils_8py.html", "graph__utils_8py" ],
     [ "models.py", "models_8py.html", "models_8py" ],
     [ "moss.py", "moss_8py.html", "moss_8py" ],
-    [ "moss_boilerplate_location_tokenisation.py", "moss__boilerplate__location__tokenisation_8py.html", "moss__boilerplate__location__tokenisation_8py" ],
-    [ "moss_location_tokenisation.py", "moss__location__tokenisation_8py.html", "moss__location__tokenisation_8py" ],
-    [ "moss_locations.py", "moss__locations_8py.html", "moss__locations_8py" ],
-    [ "plag_detect.py", "plag__detect_8py.html", "plag__detect_8py" ],
+    [ "moss_location.py", "moss__location_8py.html", "moss__location_8py" ],
     [ "preprocess.py", "preprocess_8py.html", "preprocess_8py" ],
     [ "pyprocess.py", "pyprocess_8py.html", "pyprocess_8py" ],
     [ "serializers.py", "serializers_8py.html", [
