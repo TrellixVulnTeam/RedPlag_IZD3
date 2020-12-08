@@ -65,7 +65,9 @@
 	- Upload
 	- Download
 2. Boilerplate removal :
-	- Blah Blah Blah
+	- Takes input file as a boilerplate code
+	- Removes the boilerplate from the testfiles
+	- Preserves the functions Declarations and Scoping in the Boilerplate for preprocessing in C++ and Python Pro
 3. Python Pro :
 
 
