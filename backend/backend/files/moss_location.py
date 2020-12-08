@@ -81,7 +81,7 @@ def intersection(lst1, lst2):
                                 intersect_with_loc_2 += [[h2[1][0], h2[2][0]]]
 
 	intersect_with_loc_1.sort(key = lambda x : x[0])
-	if len(intersect_with_loc_1) <= 1: return 0, 0
+	if len(intersect_with_loc_1) <= 1: return [],[]
 
 	intersect_with_loc_1 = intersect_with_loc_1[1:]
 	p_1= [intersect_with_loc_1[0]]
