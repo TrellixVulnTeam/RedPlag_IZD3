@@ -49,7 +49,6 @@ It is necessary to first login before changing password.
 	- Optional arguments : `[-p (short) or --path (long)] <download_path>`
 
 
-
 #### For Windows Users.
 
 Use the .exe file named `redplag.exe`
@@ -59,14 +58,14 @@ If this fails, you may use `python3 redplag_support.py`
 ##### Commands
 
 + Login:
-`./redplag.exe login <email_id> <password>`
+`.\redplag.exe login <email_id> <password>`
 
 + Change Password:
 It is necessary to first login before changing password.
-`./redplag.exe change <old_password> <new_password>`
+`.\redplag.exe change <old_password> <new_password>`
 
 + Upload:
-`./redplag.exe upload <zip_file_path> <type_of_plag_check>`
+`.\redplag.exe upload <zip_file_path> <type_of_plag_check>`
 
 	- Optional arguments : `[-b (short) or --boilerplate (long)] <boilerplate_path>`
 
@@ -81,7 +80,7 @@ It is necessary to first login before changing password.
 		4. English Language Text : text
 
 + Download:
-`./redplag.exe download`
+`.\redplag.exe download`
 
 	- Optional arguments : `[-p (short) or --path (long)] <download_path>`
 
