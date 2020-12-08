@@ -65,7 +65,7 @@
 	- Download
 2. Boilerplate removal :
 	- Blah Blah Blah
-3.  
+3. Python Pro :
 
 
 
@@ -168,33 +168,4 @@ It is necessary to first login before changing password.
 `.\redplag.exe download`
 
 	- Optional arguments : `[-p (short) or --path (long)] <download_path>`
-
-
-
-### Next Stage Plan
-#### CORE STUFF
-	 Read up on better strategy.. preferably containing information on location of words as well.
- 	 Boilerplates
-	 Detect repeating blocks (function)
-	 Iterative vs Recursive functions
-
-#### C++ Pro (Syntax specific stuff)
-	 Comments + Read comments separately to detect if any references are mentioned
-	 Classify identifiers by type (int, class etc)
-	 For <=> while <=> do-while
-	 if(condition) <=> if(!(!condition)) and  if-else reverse by negating condition
-	 if-else <=> use of ? operator
-	 pair<int,int> vs user-defined struct
-	 typedef, define 
-	 
-#### Terminal Client
-	redplag login 
-	redplag upload file_path
-	redplag get_results
-	redplag signup
-
-#### Interface 
-	 Files deleting and viewing
-	 Online result display
-	 Login/Sign-up glitches
 
