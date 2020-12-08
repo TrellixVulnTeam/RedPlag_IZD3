@@ -47,7 +47,7 @@
 	- `HeatMapFile` : For storing the png file of the heatmap
 	- `HistogramFile` : For storing the png file of the histogram
 + For Visualizatio part, Two Views -
-	- `HearMapView` : contains a `get` function that returns the heatmap file in the image/png format
+	- `HeatMapView` : contains a `get` function that returns the heatmap file in the image/png format
 	- `HistogramView` : contains a `get` function that returns the histogram file in the image/png format
 
 ### Frontend :
@@ -80,8 +80,8 @@
 	- Removes the boilerplate from the testfiles
 	- Preserves the functions Declarations and Scoping in the Boilerplate for preprocessing in C++ and Python Pro
 3. C++ pro :
-	- Does C++ preprocessing: removes C++ comments, strips newlines and additional spacings
-	- Substitutes variables, and replaces functions with actual implementation
+	- Does C++ preprocessing: removes C++ comments, headers, namespace declarations ,strips newlines and additional spacings
+	- Substitutes variables, classes and function names
 
 
 
