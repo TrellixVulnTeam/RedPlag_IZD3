@@ -11,11 +11,13 @@
 
        <label>Select the plagiarism checker  </label>
       <input type="radio" name="filetype" value="cpp" required="required" (change)="onRadioChange($event)" />
-      <label for="cpp">C++</label>
+      <label for="cpp">C++ Pro</label>
       <input type="radio" name="filetype" value="python" required="required" (change)="onRadioChange($event)" />
-      <label for="python">Python</label>
+      <label for="python">Python Pro</label>
+      <input type="radio" name="filetype" value="moss" required="required" (change)="onRadioChange($event)" />
+      <label for="moss">MOSS</label>
       <input type="radio" name="filetype" value="text" required="required" (change)="onRadioChange($event)" />
-      <label for="text">Text</label><br>
+      <label for="text">English Text</label><br>
       <br>
       <br>
       <button type="submit" [disabled]="formGroup.invalid" (click)="onSubmit()">Upload the Code</button>
