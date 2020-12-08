@@ -83,7 +83,8 @@
 	- Removes the boilerplate from the testfiles
 	- Preserves the functions Declarations and Scoping in the Boilerplate for preprocessing in C++ and Python Pro
 3. Python Pro :
-	- 
+	- Does python preprocessing: removes python comments, strips extra newlines
+	- substitutes variables, and replaces non recursive functions with actual implementation.
 
 
 
