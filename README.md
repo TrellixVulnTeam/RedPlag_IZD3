@@ -24,8 +24,9 @@
 4. Codes in other languages :
 	- Tokenized the given code file using `pygments` library where each variable name was replaced by V, function name by F and strings by S
 	- While tokenizing, we stored the mapping from final character locations to initial locations
-	- Implemented
-	- xyz
+	- Implemented winnowing and Rabin Karp hashing on kgrams
+	- Evaluated common fingerprints and merged nearby fingerprints to mark the location of copied code
+	- Removed fingerprints of boilerplate code to eliminate it's effect
 5. Graphical visualisation :
 	- Generates a Seaborn HeatMap, showing similarity matrix between the files
 	- Generates Histogram, to show frequency of similarity amongst files
