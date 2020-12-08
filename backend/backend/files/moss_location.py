@@ -53,7 +53,8 @@ def tokenize(filename):
 				b = b + 1
 
 			elif tokens[i][0] != pygments.token.Text and tokens[i][0] != pygments.token.Comment:
-				mapping.append([tokens[i][1], a, b])
+				for j in range(len(tokens[i][1])):
+					mapping.append([tokens[i][1][j],a+j, b+j])
 				b = b + len(tokens[i][1])
 			a = a + len(tokens[i][1])
 		return mapping
@@ -138,41 +139,18 @@ def GetHLoc(t,k):
 	"""
 	H = []
 	mapping = tokenize(t)
-	current_length = 0
-	kgram = ""
 	kgrams = []
 	start_locs = []
 	end_locs = []
-	i = 0
 
-	while i < len(mapping):
-		if kgram == "":
-			start_locs += [[mapping[i][1], mapping[i][2]]]
+	for i in range(len(mapping) - k):
+		kgram = ""
+		start_locs += [[mapping[i][1], mapping[i][2]]]
+		end_locs += [[mapping[i+k][1], mapping[i+k][2]]]
 
-		if current_length + len(mapping[i][0]) > k:
-			deficit = k - current_length
-			kgram = kgram + mapping[i][0][:deficit]
-			kgrams += [kgram]
-			end_locs += [[mapping[i][1], mapping[i][2]]]
-			mapping[i][0] = mapping[i][0][deficit:]
-			current_length = 0
-			kgram = ""
-
-		elif current_length + len(mapping[i][0]) == k:
-			kgram = kgram + mapping[i][0]
-			kgrams += [kgram]
-			end_locs += [[mapping[i][1], mapping[i][2]]]
-			current_length = 0
-			kgram = ""
-			i = i + 1
-
-		else:
-			kgram = kgram + mapping[i][0]
-			current_length += len(mapping[i][0])
-			i = i + 1
-			if i == len(mapping):
-				kgrams += [kgram]
-				end_locs += [[mapping[i-1][1], mapping[i-1][2]]]
+		for j in range(k):
+			kgram += mapping[i+j][0]
+		kgrams += [kgram]
 
 	for j in range(len(kgrams)):
 		h = 0
