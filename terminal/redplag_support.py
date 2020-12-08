@@ -35,6 +35,8 @@ It is necessary to first login before changing password.
 
 	- Optional arguments : `[-b (short) or --boilerplate (long)] <boilerplate_path>`
 
+	- Boilerplate is not available for text
+
 	- zip file must have all files to be checked at depth 0 only. It must not contain any other subfolders.
 
 	- types of plag check and the argument to be passed :
@@ -69,6 +71,8 @@ It is necessary to first login before changing password.
 `.\redplag.exe upload <zip_file_path> <type_of_plag_check>`
 
 	- Optional arguments : `[-b (short) or --boilerplate (long)] <boilerplate_path>`
+
+        - Boilerplate is not available for text
 
 	- zip file must have all files to be checked at depth 0 only. It must not contain any other subfolders.
 
@@ -246,7 +250,7 @@ def redplag_upload(upload_path, boilerplate_path, fileType):
     
     file = {'uploaded' : open(upload_path, 'rb')}
     if boilerplate_path != '':
-        file[boilerplate] = open(boilerplate_path, 'rb')
+        file['boilerplate'] = open(boilerplate_path, 'rb')
 
     
     r = requests.post(url = API_ENDPOINT, headers = auth, data = details, files = file)
@@ -273,6 +277,9 @@ def cmd_upload(args):
     if args.type not in valid_types:
         print("Please select one of the valid types of plagiarism checks")
         print("Valid types = ",valid_types)
+    if args.type == "text" and args.boilerplate_path != "":
+        print("Boilerplates are not allowed for text plagiarism checking")
+        
     else:
         redplag_upload(args.zip_path, args.boilerplate_path, args.type)
 

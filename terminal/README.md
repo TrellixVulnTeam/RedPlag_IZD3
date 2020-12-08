@@ -33,6 +33,8 @@ It is necessary to first login before changing password.
 
 	- Optional arguments : `[-b (short) or --boilerplate (long)] <boilerplate_path>`
 
+	- Boilerplate is not available for text
+
 	- zip file must have all files to be checked at depth 0 only. It must not contain any other subfolders.
 
 	- types of plag check and the argument to be passed :
@@ -68,6 +70,8 @@ It is necessary to first login before changing password.
 
 	- Optional arguments : `[-b (short) or --boilerplate (long)] <boilerplate_path>`
 
+        - Boilerplate is not available for text
+
 	- zip file must have all files to be checked at depth 0 only. It must not contain any other subfolders.
 
 	- types of plag check and the argument to be passed :
@@ -80,4 +84,5 @@ It is necessary to first login before changing password.
 `.\redplag.exe download`
 
 	- Optional arguments : `[-p (short) or --path (long)] <download_path>`
+
 
