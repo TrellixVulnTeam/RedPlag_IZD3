@@ -21,13 +21,7 @@ First make `redplagcli` executable by using the command `chmod a+x redplagcli`
 
 If this fails, you may use `python3 replag_support.py`
 
-#### For Windows Users.
-
-Use the .exe file named `replag.exe`
-
-If this fails, you may use `python3 redplag_support.py`
-
-#### Commands
+##### Commands
 
 + Login:
 `.\redplagcli login <email_id> <password>`
@@ -53,6 +47,42 @@ It is necessary to first login before changing password.
 `.\redplagcli download`
 
 	- Optional arguments : `[-p (short) or --path (long)] <download_path>`
+
+
+
+#### For Windows Users.
+
+Use the .exe file named `redplag.exe`
+
+If this fails, you may use `python3 redplag_support.py`
+
+##### Commands
+
++ Login:
+`.\redplag.exe login <email_id> <password>`
+
++ Change Password:
+It is necessary to first login before changing password.
+`.\redplag.exe change <old_password> <new_password>`
+
++ Upload:
+`.\redplag.exe upload <zip_file_path> <type_of_plag_check>`
+
+	- Optional arguments : `[-b (short) or --boilerplate (long)] <boilerplate_path>`
+
+	- zip file must have all files to be checked at depth 0 only. It must not contain any other subfolders.
+
+	- types of plag check and the argument to be passed :
+		1. C++ : cpp
+		2. Python : python
+		3. Codes in other languages : moss
+		4. English Language Text : text
+
++ Download:
+`.\redplag.exe download`
+
+	- Optional arguments : `[-p (short) or --path (long)] <download_path>`
+
 
 """
 
