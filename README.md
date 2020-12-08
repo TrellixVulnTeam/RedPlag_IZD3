@@ -21,7 +21,9 @@
 	- Blah blah blah
 	- xyz
 4. Codes in other languages :
-	- Blah Blah Blah
+	- Tokenized the given code file using `pygments` library where each variable name was replaced by V, function name by F and strings by S
+	- While tokenizing, we stored the mapping from final character locations to initial locations
+	- Implemented
 	- xyz
 5. Graphical visualisation :
 	- We should really add a surface plot. If not on the frontend, at least return in downloads.
