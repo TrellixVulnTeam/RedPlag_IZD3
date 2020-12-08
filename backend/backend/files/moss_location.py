@@ -1,6 +1,7 @@
-""" \package MOSS With Locations
+""" \package MOSS With Locations and Boiler Plate handling
 Plagiarism detector for source code files.
 Detects plagiarism using Karp Rabin Hashing and winnowing
+Keeps a fingerprint of boilerplate file and doesn't consider that as plagiarism
 Marks overlapping hashes to exactly show the parts which where copied
 """
 
@@ -14,6 +15,8 @@ from .graph_utils import *
 from django.conf import settings
 
 q=1000000007
+
+boilerplate_fingerprint = []
 
 def tokenize(filename):
 	"""!
@@ -100,15 +103,24 @@ def intersection(lst1, lst2):
 	return p_1, p_2
 
 
-def similarity(lst1, lst2):
+def similarity(lst1, lst2, boiler):
 	"""!
-		\details Evaluates similarity as done in intersection function but doesn't return locations of common hashes. 
+		\details Evaluates similarity as done in intersection function but doesn't return locations of common hashes. It removes influence of boilerplate
 		\param lst1 and lst2: lists of hashes
+		\param boiler: if True a boilerplate will be considered
 		\returns: similarity according to the result
                         sim(A,B) = number of common hashes divided by minimum of hashes in A and those in B
 	"""
 	l1h = set([h[0] for h in lst1])
 	l2h = set([h[0] for h in lst2])
+
+	if boiler:
+                boilerplate = set([h[0] for h in boilerplate_fingerprint])
+                l1h1 = set([h for h in l1h if h not in boilerplate])
+                l2h2 = set([h for h in l2h if h not in boilerplate])
+                l3h3 = set(l1h1)&set(l2h2)
+                sim = len(l3h3)/min(len(set(l1h)), len(set(l2h)))
+                return sim
 	l3h = set(l1h)&set(l2h)
 	sim = len(l3h)/min(len(set(l1h)), len(set(l2h)))
 	return sim
@@ -176,19 +188,24 @@ def Win(H,t,k):
 		
 
 		
-def moss_all_pairs(folder_path, files, t, k):
+def moss_all_pairs(folder_path, files, t, k, boilerplate, is_boiler):
 	"""!
         \details Evaluates MOSS similarity and matching portions between each pair of files
         \param folder_path: path where marked files are to be created
         \param files: list of files
         \param t: Winnowing threshold parameter
         \param k: k-gram parameter
+        \param boiler_file: boilerplate code file's location
+        \param is_boiler: True if a boiler plate is to be considered and passed
         \return C: similarity matrix such that C[i][j] denotes the similarity between the ith and jth file
         """
 	
 	n = len(files)
 	H = [GetHLoc(f,k) for f in files]
 	HS = [Win(h,t,k) for h in H]
+
+	if not is_boiler:
+                boilerplate_fingerprint = Win(GetHLoc(boilerplate,k),t,k)
 
 	C = np.identity(n)
 	markings = []
@@ -201,7 +218,7 @@ def moss_all_pairs(folder_path, files, t, k):
 	for i in range(n):			
 		for j in range(i+1, n):
 			pi, pj = intersection(HS[i], HS[j])
-			sim = similarity(HS[i], HS[j])
+			sim = similarity(HS[i], HS[j], not is_boiler)
 			C[i][j] = sim
 			C[j][i] = sim
 			markings[i][j] += pi
@@ -225,7 +242,7 @@ def moss_all_pairs(folder_path, files, t, k):
 
 	return C
 
-def moss_given_files(zip_dir):
+def moss_given_files(zip_dir, boiler_file, is_boiler):
     initial_path = os.getcwd()
     print(os.getcwd())
     os.chdir(settings.BASE_DIR)
@@ -259,7 +276,7 @@ def moss_given_files(zip_dir):
 
     ## \var np.darray $correlation_matrix
     ## Similarity matrix between files
-    correlation_matrix = moss_all_pairs(other_things, paths, 4,3)
+    correlation_matrix = moss_all_pairs(other_things, paths, 4,3, boiler_file, is_boiler)
     print(correlation_matrix)
     
     histogram(correlation_matrix,other_things)
