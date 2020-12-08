@@ -23,6 +23,7 @@
 	- While tokenizing, we stored the mapping from final character locations to initial locations
 	- Implemented winnowing and Rabin Karp hashing on kgrams
 	- Evaluated common fingerprints and merged nearby fingerprints to mark the location of copied code
+	- Removed Influence of Boilerplate fingerprints.
 4. Graphical visualisation :
 	- Generates a Seaborn HeatMap, showing similarity matrix between the files
 	- Generates Histogram, to show frequency of similarity amongst files
@@ -102,6 +103,7 @@
 + SCSS for styling
 
 ### How the Website is supposed to be run - 
++ Download Glove.6B.zip from https://nlp.stanford.edu/projects/glove/. Unzip it. Rename the filename Glove.6B.100D.txt as glove100D.txt in the backend Files folder.
 + Fire a terminal and `cd` into `backend` directory. 
 	- Here run `source env/bin/activate` to enter the virtual environment. 
 	- Then run `pip install -r requirements.txt` to install required packages of python
