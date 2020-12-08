@@ -237,7 +237,7 @@ def moss_all_pairs(folder_path, files, t, k, boilerplate, is_boiler):
 				middle=infile[pr[0]+space:pr[1]+space+1]
 				end=infile[pr[1]+1+space:]
 				infile=start+"\033[1;42m" + middle + "\033[0m"+end
-				space=space+12
+				space=space+17
 			match.write(infile)
 
 	return C
