@@ -19,8 +19,8 @@
 	- Does C++ preprocessing: removes C++ comments, strips newlines and additional spacings
 	- Substitutes variables, and replaces functions with actual implementation
 3. Python pro :
-	- Does python preprocessing: removes python comments, strips extra newlines, but preserves indetation
-	- substitutes variables, and replaces functions with actual implementation.
+	- Does python preprocessing: removes python comments, strips extra newlines
+	- substitutes variables, and replaces non recursive functions with actual implementation.
 4. Codes in other languages :
 	- Tokenized the given code file using `pygments` library where each variable name was replaced by V, function name by F and strings by S
 	- While tokenizing, we stored the mapping from final character locations to initial locations
@@ -83,6 +83,7 @@
 	- Removes the boilerplate from the testfiles
 	- Preserves the functions Declarations and Scoping in the Boilerplate for preprocessing in C++ and Python Pro
 3. Python Pro :
+	- 
 
 
 
