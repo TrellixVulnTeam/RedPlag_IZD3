@@ -16,19 +16,20 @@
 		+ So, the metric we defined was - let the fingerprint of file 1 be X (a x n matrix) and the fingerprint of file 2 be Y (b x n) matrix. 
 		+ Our similarity metric was trace(XX'YY')/ sqrt(trace((XX')^2) * trace((YY')^2)
 2. C++ pro :
-	- Blah blah blah
-	- xyz
+	- Does C++ preprocessing: removes C++ comments, strips newlines and additional spacings
+	- Substitutes variables, and replaces functions with actual implementation
 3. Python pro :
-	- Blah blah blah
-	- xyz
+	- Does python preprocessing: removes python comments, strips extra newlines, but preserves indetation
+	- substitutes variables, and replaces functions with actual implementation.
 4. Codes in other languages :
 	- Tokenized the given code file using `pygments` library where each variable name was replaced by V, function name by F and strings by S
 	- While tokenizing, we stored the mapping from final character locations to initial locations
 	- Implemented
 	- xyz
 5. Graphical visualisation :
-	- We should really add a surface plot. If not on the frontend, at least return in downloads.
-	- xyz
+	- Generates a Seaborn HeatMap, showing similarity matrix between the files
+	- Generates Histogram, to show frequency of similarity amongst files
+	- Generate CSV File, containing similarity coefficients between files
 
 ### Backend :
 + Implemented login/signup using JWT(JSON Web Token) authentication with Self defined User models
