@@ -29,10 +29,11 @@ It is necessary to first login before changing password.
 
 	- zip file must have all files to be checked at depth 0 only. It must not contain any other subfolders.
 
-	- types of plag check = 
-		1. cpp
-		2. text
-		3. python
+	- types of plag check and the argument to be passed :
+		1. C++ : cpp
+		2. Python : python
+		3. Codes in other languages : moss
+		4. English Language Text : text
 
 + Download:
 `.\redplagcli download`
