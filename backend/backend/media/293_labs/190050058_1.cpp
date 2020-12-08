@@ -1,0 +1,1 @@
+J ( long long , int v ){ if ( v == 1 ) return 0 ; if ( v < v ) return ( J ( v - 1 , v )+ v )% v ; long long int v = J ( v - v / v , v ); v = v - v % v ; if ( v < 0 ) v += v ; else v = v + v /( v - 1 ); return v ; } main (){ long long int v ; int v ; v >> v >> v ; cout << J ( v , v ) + 1 << endl ; return 0 ; } 

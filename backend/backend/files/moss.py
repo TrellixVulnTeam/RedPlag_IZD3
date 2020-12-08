@@ -28,6 +28,7 @@ def GetH(t, k):
     \returns H : List of Hashes for the textfile
     """
     H=[]
+
     infile = open(t,'r', encoding = 'utf-8').read()
     infile=infile.rstrip("\n")
     for i in range(0,len(infile)-k):
@@ -52,7 +53,13 @@ def Win(H,t,k):
     n=len(H)
     mI=-1
     pmI=-1
-    if len(H) < w: HS.append(H[0])
+    
+    if(len(H) < w):
+        if (len(H) > 0):
+            HS.append(H[0])
+        else:
+            HS.append(q)
+            
     for i in range(0,len(H)-w+1):
         tm=9223372036854775807
         for j in range(i, i+w):

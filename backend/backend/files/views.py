@@ -28,20 +28,21 @@ class FileView(APIView):
 		Api endpoint to process the uploaded files depending upon it's type
 		and generate results which are available for download
 		"""
-    print(os.getcwd())
-    queryset = UploadFile.objects.filter(user=request.user)
-    recent = queryset[len(queryset)-1].uploaded.path
-    stub = queryset[len(queryset)-1].boilerplate
+		
+		print(os.getcwd())
+		queryset = UploadFile.objects.filter(user=request.user)
+		recent = queryset[len(queryset)-1].uploaded.path
+		stub = queryset[len(queryset)-1].boilerplate
 
-    if stub.name == '': stub_code = 'None.txt'
-    else: stub_code = stub.path
+		if stub.name == '': stub_code = 'None.txt'
+		else: stub_code = stub.path
     
-    mode = queryset[len(queryset)-1].fileType
-    if mode == 'cpp': moss_given_files(recent, stub_code, stub.name == '',1)
-    elif mode == 'python': moss_given_files(recent, stub_code, stub.name == '',2)
-    elif mode == 'text': embedding_process_files(recent)
-    filelist = [file.uploaded.name for file in queryset]
-    return Response(filelist[-1])
+		mode = queryset[len(queryset)-1].fileType
+		if mode == 'cpp': moss_given_files(recent, stub_code, stub.name == '',1)
+		elif mode == 'python': moss_given_files(recent, stub_code, stub.name == '',2)
+		elif mode == 'text': embedding_process_files(recent)
+		filelist = [file.uploaded.name for file in queryset]
+		return Response(filelist[-1])
 
 	def post(self, request, *args, **kwargs):
 		"""

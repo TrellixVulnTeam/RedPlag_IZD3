@@ -148,7 +148,14 @@ def Winnowing(H, t, k):
 	mI = -1
 	pmI = -1
 
-	if len(H) < w: HS.append(H[0])
+	if(len(H) < w):
+		if (len(H) > 0):
+			HS.append(H[0])
+		else:
+			HS.append(np.zeros(100))
+
+
+        
 	for i in range(len(H)-w+1):
 		tm = 2
 		for j in range(i, i+w):
