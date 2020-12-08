@@ -13,7 +13,8 @@ import scipy
 import zipfile
 import seaborn as sns
 from .graph_utils import *
-from .preprocess import *
+import files.preprocess as cpp
+import files.pyprocess as py
 from django.conf import settings
 
 q=1000000007
@@ -80,7 +81,7 @@ def moss(t1,t2,t,k):
     s=len(HS1&HS2)/min(len(HS1),len(HS2))
     return s
 
-def moss_given_files(zip_dir, boilerplate, blank_stub):
+def moss_given_files(zip_dir, boilerplate, blank_stub, which_pro):
     initial_path = os.getcwd()
     print(os.getcwd())
     os.chdir(settings.BASE_DIR)
@@ -102,7 +103,8 @@ def moss_given_files(zip_dir, boilerplate, blank_stub):
     paths = []
 
     for f in files:
-        preprocess(folder_path + "/" + f, not(blank_stub), boilerplate)
+        if which_pro == 1: cpp.preprocess(folder_path + "/" + f, not(blank_stub), boilerplate)
+        elif which_pro == 2: py.preprocess(folder_path + "/" + f, not(blank_stub), boilerplate)
         paths.append(folder_path + "/" + f)
 
     num_files = len(files)
