@@ -8,7 +8,7 @@
 	- Implemented an algorithm similar to k-gram and winnowing.
 	- k-gramming equivalent : Words are selected completely to get the number of characters closest to k as possible. 
 	Next word is __always__ chosen in next iteration so that algorithm does not get stuck.
-	- Winnowing : Vectors closest to centroid are chosen using cosine similarity. If tie, vector to the right is chosen.
+	- Winnowing : Vectors closest to centroid of current window are chosen using cosine similarity. If tie, vector to the right is chosen.
 	- Similarity Metric : 
 		+ The fingerprints won't be of similar sizes in most cases. 
 		+ And vectors in n dimensional spaces are not easily countable on a computer.
