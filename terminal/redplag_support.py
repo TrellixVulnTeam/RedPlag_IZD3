@@ -24,14 +24,14 @@ If this fails, you may use `python3 replag_support.py`
 ##### Commands
 
 + Login:
-`.\redplagcli login <email_id> <password>`
+`./redplagcli login <email_id> <password>`
 
 + Change Password:
 It is necessary to first login before changing password.
-`.\redplagcli change <old_password> <new_password>`
+`./redplagcli change <old_password> <new_password>`
 
 + Upload:
-`.\replagcli upload <zip_file_path> <type_of_plag_check>`
+`./redplagcli upload <zip_file_path> <type_of_plag_check>`
 
 	- Optional arguments : `[-b (short) or --boilerplate (long)] <boilerplate_path>`
 
@@ -46,10 +46,9 @@ It is necessary to first login before changing password.
 		4. English Language Text : text
 
 + Download:
-`.\redplagcli download`
+`./redplagcli download`
 
 	- Optional arguments : `[-p (short) or --path (long)] <download_path>`
-
 
 
 #### For Windows Users.

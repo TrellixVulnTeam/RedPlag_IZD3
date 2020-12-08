@@ -61,12 +61,12 @@
 + Build an Auth Interceptor that adds JSON web token in the request header of every subsequent request after login, for authentication purpose at the backend. The token is obtained as a response of the GET request of user login
 + Created Services for Authentication that handles login, signup and my_account section and File service handles upload and download of data.(upload part is left)
 + Red Plag -
-	- Select the Files: Select the ZIP File, containing all the testfiles in the first level of directory
-	- Select Boilerplate: Select the textfile containing the boilerplate
+	- Select the Files: Select the ZIP File. The zip must contain all files at depth 0 and no other files or subfolders
+	- Select Boilerplate: Select the file containing the boilerplate
 	- Select the Plagiarism Checker from the Radio Buttons- C++, Python, Word Embedding and Other Languages
 	- Upload the Code- Click on the Button to Upload
 	- Process Files- Finds the similarity between the selected files.
-	- Download Results- CLick the button to get the CSV File, Heatmap and Histogram as a ZIP File
+	- Download Results- Click the button to get the CSV File, Heatmap and Histogram as a ZIP File
 	- Show Results- Click the button to display HeatMap and Histogram on the website
 
 ### Bonus Features :
@@ -92,6 +92,11 @@
 	- matplotlib
 	- scipy
 	- zipfile
+	- seaborn
+	- pandas
+	- pyparsing
+	- sqlparse
+	
 + Angular for the frontend
 + Django and Django REST framework for the backend with JWT authentication 
 + sqlite for backend database
@@ -106,8 +111,15 @@
 	- Here run `npm install` to install dependencies
 	- Then run `ng serve --open` to open the web page after compiling front end application.
 + On the home page, register as a user or login
-+ In the RED PLAG tab on top right corner go and upload zip file and download results.
 + In the MY ACCOUNT tab you can view/edit account details
++ Go to the RedPlag Section
++ Select the Files: Select the ZIP File. The zip must contain all files at depth 0 and no other files or subfolders
++ Select Boilerplate: Select the file containing the boilerplate
++ Select the Plagiarism Checker from the Radio Buttons- C++, Python, Word Embedding and Other Languages
++ Upload the Code- Click on the Button to Upload
++ Process Files- Finds the similarity between the selected files.
++ Download Results- Click the button to get the CSV File, Heatmap and Histogram as a ZIP File
++ Show Results- Click the button to display HeatMap and Histogram on the website
 
 ### How the terminal is supposed to be run :
 
@@ -126,14 +138,14 @@ If this fails, you may use `python3 replag_support.py`
 ##### Commands
 
 + Login:
-`.\redplagcli login <email_id> <password>`
+`./redplagcli login <email_id> <password>`
 
 + Change Password:
 It is necessary to first login before changing password.
-`.\redplagcli change <old_password> <new_password>`
+`./redplagcli change <old_password> <new_password>`
 
 + Upload:
-`.\replagcli upload <zip_file_path> <type_of_plag_check>`
+`./redplagcli upload <zip_file_path> <type_of_plag_check>`
 
 	- Optional arguments : `[-b (short) or --boilerplate (long)] <boilerplate_path>`
 
@@ -148,7 +160,7 @@ It is necessary to first login before changing password.
 		4. English Language Text : text
 
 + Download:
-`.\redplagcli download`
+`./redplagcli download`
 
 	- Optional arguments : `[-p (short) or --path (long)] <download_path>`
 
@@ -157,20 +169,19 @@ It is necessary to first login before changing password.
 #### For Windows Users.
 
 Use the .exe file named `redplag.exe`
-
 If this fails, you may use `python3 redplag_support.py`
 
 ##### Commands
 
 + Login:
-`.\redplag.exe login <email_id> <password>`
+`./redplag.exe login <email_id> <password>`
 
 + Change Password:
 It is necessary to first login before changing password.
-`.\redplag.exe change <old_password> <new_password>`
+`./redplag.exe change <old_password> <new_password>`
 
 + Upload:
-`.\redplag.exe upload <zip_file_path> <type_of_plag_check>`
+`./redplag.exe upload <zip_file_path> <type_of_plag_check>`
 
 	- Optional arguments : `[-b (short) or --boilerplate (long)] <boilerplate_path>`
 
@@ -185,8 +196,7 @@ It is necessary to first login before changing password.
 		4. English Language Text : text
 
 + Download:
-`.\redplag.exe download`
-
+`./redplag.exe download`
 	- Optional arguments : `[-p (short) or --path (long)] <download_path>`
 
 
