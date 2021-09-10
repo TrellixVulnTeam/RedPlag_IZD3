@@ -18,5 +18,5 @@ requests==2.25.0
 scipy==1.5.3
 seaborn==0.11.0
 six==1.15.0
-sqlparse==0.4.1
+sqlparse==0.4.2
 zipdir==0.1.2
